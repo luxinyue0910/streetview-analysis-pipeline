@@ -1,91 +1,92 @@
 # Streetview Analysis Pipeline
 
-本地街景分析流程：中心点位筛选、道路侧向照片识别、人工验证，以及后续 VLM 评分与分析。
+A local pipeline for selecting study-area coordinates, identifying side-facing street views, validating image selections, and preparing for VLM scoring and analysis.
 
-目前已实现并验证的是**数据筛选、标注、视觉分类和模型评估**。VLM 评分与结果分析为后续阶段，尚未实现；全量清洗也尚未执行。
+**Data filtering, annotation, visual classification, and model evaluation are implemented and tested.** VLM scoring and downstream analysis are planned. Full-dataset processing has not yet been run.
 
-## 当前任务与交付
+## Task and Deliverables
 
-每个点位有四张以 `经度_纬度_角度_附加字段.png` 命名的图片，角度为 0、90、180、270。只处理中心点位名单中的坐标，为每点位选择两张朝向道路两侧的照片。
+Each location has four images named `longitude_latitude_angle_extra.png`, with angles of 0, 90, 180, and 270 degrees. The pipeline processes only coordinates in the study-area point list and selects two images facing the sides of the road.
 
-角度不能直接解释为道路前后左右。模型比较 0/180 与 90/270 两对，人工界面允许选任意两张。`side_a`、`side_b` 只是两个引用名称，不表示实际左侧或右侧。
+The angles do not directly identify forward, backward, left, or right relative to the road. The model compares the opposing pairs 0/180 and 90/270; the annotation interface allows any two images to be selected. `side_a` and `side_b` are reference labels, not physical left/right directions.
 
-交付形式为**筛选清单与读取脚本**。图片保留在本地原始 ZIP 中，后续 VLM 可以按清单直接读取图像字节，不必重复打包传图。
+Deliverables are a **selection manifest and an image-reading script**. Images remain in the original local ZIP archives. Subsequent VLM jobs can read image bytes from the manifest without repackaging or uploading the images.
 
-## 结果概览
+## Results
 
-| 阶段 | 样本 | 方法 | 结果 |
+| Stage | Sample | Method | Result |
 |---|---|---|---|
-| 初次试验 | 50 点位 | CLIP 零样本、相反方向配对 | 44/50 一致，88%；确定程度未系统记录 |
-| 新样本验证 | 100 点位 | 固定 CLIP 零样本 | 确定组77/84，91.7%；勉强组8/16，50% |
-| 分类器试验 | 上述84个确定点位 | 固定CLIP特征＋逻辑回归，按点位5折验证 | 折外预测81/84，96.4%；原方案77/84 |
-| 独立留出验证 | 全新30点位，排除此前150点位及相同图片 | 冻结的84点位分类器 | 确定组24/25，96%；勉强组2/5，40% |
+| Initial experiment | 50 locations | Zero-shot CLIP with opposing-pair selection | 44/50 agreement, 88%; annotation certainty was not systematically recorded |
+| Fresh-sample validation | 100 locations | Fixed zero-shot CLIP baseline | Certain: 77/84, 91.7%; uncertain: 8/16, 50% |
+| Classifier experiment | The 84 certain locations above | Frozen CLIP features plus logistic regression; five-fold validation grouped by location | Out-of-fold: 81/84, 96.4%; baseline: 77/84 |
+| Independent holdout | 30 new locations, excluding the previous 150 locations and identical images | Frozen classifier trained on 84 locations | Certain: 24/25, 96%; uncertain: 2/5, 40% |
 
-这里的一致率要求同点位两张均与人工选择匹配，忽略 a/b 顺序。勉强组的不一致不能直接视为确定的模型错误。小样本表现不代表全量准确率保证。
+Agreement requires both selected images at a location to match the human selection, ignoring a/b order. Disagreements on uncertain annotations are not automatically definitive model errors. Small-sample performance does not guarantee full-dataset accuracy.
 
-## 仓库结构
+## Repository Structure
 
-- `scripts/`：采样、数据检查、标注服务器、特征提取、训练、评估与读取脚本。
-- `web/`：50、100、30点位三轮本地标注界面，无图片或标注数据。
-- `docs/methodology.md`：方法、验证划分、交付字段与局限。
-- `docs/iteration_log.md`：按实际发生顺序记录迭代，不伪造Git提交历史。
-- `docs/roadmap.md`：全量清洗、复核和后续VLM分析计划。
-- `results/aggregate_metrics.json`：不含逐点坐标的汇总结果。
+- `scripts/`: sampling, data inspection, the annotation server, feature extraction, training, evaluation, and image reading.
+- `web/`: local annotation interfaces for the 50-, 100-, and 30-location rounds; no images or annotation data.
+- `docs/methodology.md`: methods, validation splits, manifest fields, and limitations.
+- `docs/iteration_log.md`: the actual experiment sequence, documented retrospectively rather than reconstructed as Git history.
+- `docs/roadmap.md`: plans for full-dataset processing, review, and subsequent VLM analysis.
+- `results/aggregate_metrics.json`: aggregate results without individual coordinates.
 
-现有实验脚本保留固定样本数及轮次目录，以便追溯。它们不是已经完成的通用批处理产品。
+The experiment scripts retain fixed sample sizes and round-specific directories for traceability. They are not yet a general-purpose batch-processing product.
 
-## 本地运行
+## Local Setup and Execution
 
-测试环境为 Python 3.12、Apple M2 Pro、16GB统一内存，使用 PyTorch MPS。其他平台可使用CPU，依赖版本兼容性需要验证。
+The tested environment is Python 3.12 on an Apple M2 Pro with 16 GB of unified memory, using PyTorch MPS. CPU execution is available on other platforms, but dependency compatibility needs to be verified.
 
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-# 指向你本地的私有工作目录与四个原始ZIP所在目录。
+# Set your private workspace and the directory containing the four original ZIPs.
 export STREETVIEW_WORKSPACE="$PWD/workspace"
 export STREETVIEW_ARCHIVE_DIR="$STREETVIEW_WORKSPACE/raw"
 python scripts/install_annotation_assets.py
-python scripts/inspect_data.py --centers "$STREETVIEW_WORKSPACE/raw/中心点位.xls"
+# Replace this example filename with your actual study-area XLS filename.
+python scripts/inspect_data.py --centers "$STREETVIEW_WORKSPACE/raw/center_points.xls"
 
-# 第一轮：生成样本，打开本地界面；先完成人工标注。
+# Round 1: sample locations, open the interface, and complete human annotation.
 python scripts/prepare_sample.py
 python scripts/annotation_server.py --port 8765 --open-browser
-# 在另一个终端继承相同环境配置，完成标注后：
+# In another terminal with the same environment variables, after annotation:
 python scripts/evaluate_clip.py
 
-# 第二轮：先预测，再标注，保持页面不显示模型答案。
+# Round 2: predict before annotation; model answers remain hidden in the interface.
 python scripts/prepare_validation100.py
 python scripts/predict_validation100.py
 STREETVIEW_ANNOTATION_DIR="$STREETVIEW_WORKSPACE/annotation100" \
   python scripts/annotation_server.py --port 8768 --open-browser
-# 完成标注后：
+# After annotation:
 python scripts/compare_validation100.py
 python scripts/train_lightweight.py
 
-# 第三轮：分类器独立留出验证。
+# Round 3: independent holdout validation of the trained classifier.
 python scripts/prepare_validation30.py
 python scripts/predict_validation30.py
 STREETVIEW_ANNOTATION_DIR="$STREETVIEW_WORKSPACE/annotation30" \
   python scripts/annotation_server.py --port 8769 --open-browser
-# 完成标注后：
+# After annotation:
 python scripts/compare_validation30.py
 ```
 
-首次CLIP运行需要下载官方权重。后续脚本使用缓存模型，推理在本地完成。新工作目录没有私有图像与标注时，不能直接复现研究指标。
+The first CLIP run downloads the official model weights. Subsequent scripts use the cached model, and inference runs locally. Reproducing the reported study metrics requires the private images and annotations; they are not included in a fresh workspace.
 
-最终读取示例：
+Image-reading examples:
 
 ```bash
 python scripts/read_selected.py "$STREETVIEW_WORKSPACE/annotation30/annotations.csv"
 python scripts/read_selected.py "$STREETVIEW_WORKSPACE/annotation30/annotations.csv" --output "$STREETVIEW_WORKSPACE/selected_images"
 ```
 
-读取脚本只处理 `status=confirmed` 的两张图；`needs_review` 记录仅为候选，需复核后用于正式分析。
+The reader processes only the two images in records with `status=confirmed`. Records marked `needs_review` contain candidate selections and require review before use in the final analysis.
 
-## 数据边界
+## Data Boundaries
 
-公开仓库只包含代码、方法、界面模板和汇总指标。原始图片、中心点位表、坐标清单、人工标注、逐点预测、图像特征、权重、生成报告及本地环境均不提交。
+The public repository contains only code, methods, interface templates, and aggregate metrics. Original images, the study-area point table, coordinate manifests, human annotations, per-location predictions, image features, model weights, generated reports, and local environments are excluded.
 
-本仓库未赋予原始数据任何再分发许可。模型与依赖的使用遵循各自条款。
+This repository grants no redistribution rights to the original data. Models and dependencies remain subject to their respective terms.
