@@ -126,6 +126,18 @@ The page supports image zoom, restoring model choices, changing batches, and exp
 python scripts/validate_selection_manifest.py "$STREETVIEW_WORKSPACE/review_workspace/selection_manifest_reviewed.csv"
 ```
 
+## Blind Audit of Unflagged Selections
+
+```bash
+python scripts/sample_auto_validation.py
+STREETVIEW_ANNOTATION_DIR="$STREETVIEW_WORKSPACE/annotation_auto50" \
+  python scripts/annotation_server.py --port 8772 --open-browser
+# After completing annotation:
+python scripts/compare_auto_validation.py
+```
+
+This samples 50 unflagged `auto_selected` locations at random across the eligible pool, rather than assigning equal road-level quotas. Previously annotated or reviewed coordinates and byte-identical images are excluded. Existing classifier predictions are frozen separately and hidden from the labeling interface. Certain and uncertain annotations are evaluated separately. This audit measures agreement within the unflagged subset, not the entire dataset; 50 locations provide only an initial check.
+
 ## Data Boundaries
 
 The public repository contains only code, methods, interface templates, and aggregate metrics. Original images, the study-area point table, coordinate manifests, human annotations, per-location predictions, image features, model weights, generated reports, and local environments are excluded.

@@ -10,9 +10,11 @@ __pycache__/
 /annotation/
 /annotation100/
 /annotation30/
+/annotation_auto50/
 /evaluation/
 /evaluation100/
 /evaluation30/
+/evaluation_auto50/
 /classifier_trial/
 /models/
 /outputs/
