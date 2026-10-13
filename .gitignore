@@ -27,6 +27,7 @@ selection_manifest.csv
 review_manifest.csv
 /review_workspace/
 /final_selection/
+/deliverables/
 review_results.csv
 selection_manifest_reviewed.csv
 *.zip

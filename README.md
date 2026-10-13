@@ -4,6 +4,8 @@ A local pipeline for selecting study-area coordinates, identifying side-facing s
 
 **Data filtering, annotation, visual classification, model evaluation, and resumable full-dataset selection are implemented.** VLM scoring and downstream analysis are planned. Full-dataset selection produces provisional model choices and a separate review queue.
 
+The final center-point selection and local team handoff are complete under the user's acceptance policy. See the [October 13 milestone report](docs/milestone_2026-10-13.md) for final counts, review decisions, validation, and delivery scope. The data-bearing handoff package is not published in this repository.
+
 ## Task and Deliverables
 
 Each location has four images named `longitude_latitude_angle_extra.png`, with angles of 0, 90, 180, and 270 degrees. The pipeline processes only coordinates in the study-area point list and selects two images facing the sides of the road.
@@ -154,6 +156,8 @@ This creates a separate final manifest with all 13,660 locations and 27,320 imag
 All final records have `status=selected`, meaning accepted for use under this policy. `prior_status`, `original_review_reasons`, and `review_outcome` preserve provenance. Acceptance does not imply that every location was manually verified. Original prediction and review-progress files remain unchanged.
 
 ## Data Boundaries
+
+For a portable handoff without installing the project, use `scripts/team_read_selected.py`. It uses only the Python standard library and requires an explicit `--archive-dir` path. The local delivery package renames it to `read_selected.py` and includes the manifest and English instructions.
 
 The public repository contains only code, methods, interface templates, and aggregate metrics. Original images, the study-area point table, coordinate manifests, human annotations, per-location predictions, image features, model weights, generated reports, and local environments are excluded.
 
