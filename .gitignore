@@ -16,6 +16,13 @@ __pycache__/
 /classifier_trial/
 /models/
 /outputs/
+/full_selection*/
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+selection_manifest.csv
+review_manifest.csv
 *.zip
 *.xls
 *.xlsx

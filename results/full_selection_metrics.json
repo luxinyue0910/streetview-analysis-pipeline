@@ -1,0 +1,51 @@
+{
+  "total_center_points": 13660,
+  "processed_points": 13660,
+  "selected_image_references": 27320,
+  "complete": true,
+  "status_counts": {
+    "auto_selected": 11170,
+    "needs_review": 2380,
+    "confirmed": 110
+  },
+  "review_reason_counts": {
+    "classifier_baseline_disagreement": 1468,
+    "low_classifier_margin": 1487,
+    "legacy_annotation_certainty_not_recorded": 49,
+    "human_uncertain": 21
+  },
+  "selection_sources": {
+    "classifier": 13480,
+    "classifier_with_human_candidate": 70,
+    "human_confirmed": 110
+  },
+  "by_level": {
+    "1": {
+      "auto_selected": 5043,
+      "needs_review": 1148,
+      "confirmed": 27
+    },
+    "2": {
+      "auto_selected": 2832,
+      "needs_review": 616,
+      "confirmed": 25
+    },
+    "3": {
+      "auto_selected": 933,
+      "needs_review": 153,
+      "confirmed": 30
+    },
+    "4": {
+      "needs_review": 463,
+      "auto_selected": 2362,
+      "confirmed": 28
+    }
+  },
+  "runtime_seconds_this_invocation": 626.8460606660228,
+  "review_rules": {
+    "classifier_margin_below": 0.3,
+    "baseline_disagreement": true,
+    "existing_uncertain_annotations": true,
+    "confidence_calibration": false
+  }
+}

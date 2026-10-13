@@ -9,13 +9,16 @@ import csv
 import zipfile
 from pathlib import Path
 
-def iter_selected(manifest, archive_dir):
+def iter_selected(manifest, archive_dir, include_auto=False, include_review=False):
     with open(manifest, encoding='utf-8-sig', newline='') as f:
         rows = list(csv.DictReader(f))
     archives = {}
     try:
         for row in rows:
-            if row['status'] != 'confirmed':
+            allowed = {'confirmed'}
+            if include_auto: allowed.add('auto_selected')
+            if include_review: allowed.add('needs_review')
+            if row['status'] not in allowed:
                 continue
             name = row['archive']
             if Path(name).name != name:
@@ -36,12 +39,14 @@ if __name__ == '__main__':
     p.add_argument('manifest')
     p.add_argument('--archive-dir', default=str(ARCHIVE_DIR))
     p.add_argument('--output', type=Path)
+    p.add_argument('--include-auto', action='store_true', help='Also read model-selected images not manually reviewed')
+    p.add_argument('--include-review', action='store_true', help='Also read provisional images flagged for review')
     args = p.parse_args()
     count = 0
-    for row, side, data in iter_selected(args.manifest, args.archive_dir):
+    for row, side, data in iter_selected(args.manifest, args.archive_dir, args.include_auto, args.include_review):
         if args.output:
             directory = args.output / row['road_level'] / row['point_id']
             directory.mkdir(parents=True, exist_ok=True)
             (directory / (side + '.png')).write_bytes(data)
         count += 1
-    print(f'Read {count} confirmed images successfully.')
+    print(f'Read {count} selected images successfully.')

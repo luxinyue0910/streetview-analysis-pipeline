@@ -2,7 +2,7 @@
 
 A local pipeline for selecting study-area coordinates, identifying side-facing street views, validating image selections, and preparing for VLM scoring and analysis.
 
-**Data filtering, annotation, visual classification, and model evaluation are implemented and tested.** VLM scoring and downstream analysis are planned. Full-dataset processing has not yet been run.
+**Data filtering, annotation, visual classification, model evaluation, and resumable full-dataset selection are implemented.** VLM scoring and downstream analysis are planned. Full-dataset selection produces provisional model choices and a separate review queue.
 
 ## Task and Deliverables
 
@@ -20,8 +20,11 @@ Deliverables are a **selection manifest and an image-reading script**. Images re
 | Fresh-sample validation | 100 locations | Fixed zero-shot CLIP baseline | Certain: 77/84, 91.7%; uncertain: 8/16, 50% |
 | Classifier experiment | The 84 certain locations above | Frozen CLIP features plus logistic regression; five-fold validation grouped by location | Out-of-fold: 81/84, 96.4%; baseline: 77/84 |
 | Independent holdout | 30 new locations, excluding the previous 150 locations and identical images | Frozen classifier trained on 84 locations | Certain: 24/25, 96%; uncertain: 2/5, 40% |
+| Full center-point selection | 13,660 locations / 54,640 input images | Frozen classifier with human overrides and heuristic review flags | 27,320 references; 11,170 auto-selected locations, 110 human-confirmed, 2,380 needing review |
 
 Agreement requires both selected images at a location to match the human selection, ignoring a/b order. Disagreements on uncertain annotations are not automatically definitive model errors. Small-sample performance does not guarantee full-dataset accuracy.
+
+Full-run counts describe output coverage and review workload, not measured full-dataset accuracy. The inference run took approximately 10.4 minutes on the tested Mac; preparation, validation, and human review are additional work.
 
 ## Repository Structure
 
@@ -84,6 +87,27 @@ python scripts/read_selected.py "$STREETVIEW_WORKSPACE/annotation30/annotations.
 ```
 
 The reader processes only the two images in records with `status=confirmed`. Records marked `needs_review` contain candidate selections and require review before use in the final analysis.
+
+## Full-Dataset Selection
+
+Once the local center-point manifest and frozen classifier are available:
+
+```bash
+python scripts/select_full_dataset.py
+python scripts/validate_selection_manifest.py "$STREETVIEW_WORKSPACE/full_selection/selection_manifest.csv"
+# Validate or read automatically selected images as well as human confirmations:
+python scripts/read_selected.py "$STREETVIEW_WORKSPACE/full_selection/selection_manifest.csv" --include-auto
+# Include review candidates only when explicitly needed for inspection:
+python scripts/read_selected.py "$STREETVIEW_WORKSPACE/full_selection/review_manifest.csv" --include-review
+```
+
+Outputs are `selection_manifest.csv`, `review_manifest.csv`, `run_summary.json`, and a local SQLite checkpoint in the private workspace. Rerunning the same command resumes committed batches; changed model, input manifest, annotation files, or review settings require a new output directory. Identical image bytes reuse cached scores.
+
+Each point receives two references. `confirmed` denotes a human-confirmed choice; `auto_selected` denotes an unreviewed model choice; `needs_review` denotes a provisional selection. A point enters review if the classifier pair margin is below the initial heuristic of 0.3, the classifier and fixed zero-shot baseline choose different pairs, or its existing human annotation is uncertain. This threshold is not a calibrated confidence guarantee and uses the classifier's score scale, not CLIP cosine similarity.
+
+Certain choices in rounds 2 and 3 override the model. Round 1 did not systematically record certainty, so its annotations remain in review unless an explicit confirmation is listed in the private `annotation/explicit_certainty.json` file (an array of `road_level:point_id` strings). Original human candidates are preserved in the note field. For model selections, a/b follow ascending angle order; for confirmed annotations, they preserve click order. Neither convention denotes physical left/right.
+
+Original filename extensions do not necessarily identify the actual encoding. The reader preserves original bytes; detect their image format before constructing MIME types for a future VLM API.
 
 ## Data Boundaries
 
