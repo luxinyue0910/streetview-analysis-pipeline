@@ -1,0 +1,293 @@
+{
+  "dataset": {
+    "archive_points": 26295,
+    "archive_images": 105180,
+    "center_points": 13660,
+    "center_images_before_direction_selection": 54640,
+    "excluded_images": 50540,
+    "expected_final_images": 27320
+  },
+  "baseline50": {
+    "pair_correct": 44,
+    "points": 50,
+    "agreement": 0.88,
+    "human_certainty": "Not systematically recorded; some labels ambiguous",
+    "unconstrained_top2_correct": 28
+  },
+  "baseline100": {
+    "overall": {
+      "n": 100,
+      "agree": 85,
+      "disagree": 15,
+      "agreement_rate": 0.85
+    },
+    "certain": {
+      "n": 84,
+      "agree": 77,
+      "disagree": 7,
+      "agreement_rate": 0.9166666666666666
+    },
+    "uncertain": {
+      "n": 16,
+      "agree": 8,
+      "disagree": 8,
+      "agreement_rate": 0.5
+    },
+    "by_level": {
+      "1": {
+        "overall": {
+          "n": 25,
+          "agree": 20,
+          "disagree": 5,
+          "agreement_rate": 0.8
+        },
+        "certain": {
+          "n": 20,
+          "agree": 18,
+          "disagree": 2,
+          "agreement_rate": 0.9
+        },
+        "uncertain": {
+          "n": 5,
+          "agree": 2,
+          "disagree": 3,
+          "agreement_rate": 0.4
+        }
+      },
+      "2": {
+        "overall": {
+          "n": 25,
+          "agree": 22,
+          "disagree": 3,
+          "agreement_rate": 0.88
+        },
+        "certain": {
+          "n": 18,
+          "agree": 17,
+          "disagree": 1,
+          "agreement_rate": 0.9444444444444444
+        },
+        "uncertain": {
+          "n": 7,
+          "agree": 5,
+          "disagree": 2,
+          "agreement_rate": 0.7142857142857143
+        }
+      },
+      "3": {
+        "overall": {
+          "n": 25,
+          "agree": 21,
+          "disagree": 4,
+          "agreement_rate": 0.84
+        },
+        "certain": {
+          "n": 24,
+          "agree": 21,
+          "disagree": 3,
+          "agreement_rate": 0.875
+        },
+        "uncertain": {
+          "n": 1,
+          "agree": 0,
+          "disagree": 1,
+          "agreement_rate": 0.0
+        }
+      },
+      "4": {
+        "overall": {
+          "n": 25,
+          "agree": 22,
+          "disagree": 3,
+          "agreement_rate": 0.88
+        },
+        "certain": {
+          "n": 22,
+          "agree": 21,
+          "disagree": 1,
+          "agreement_rate": 0.9545454545454546
+        },
+        "uncertain": {
+          "n": 3,
+          "agree": 1,
+          "disagree": 2,
+          "agreement_rate": 0.3333333333333333
+        }
+      }
+    },
+    "note": "Exact pair agreement, ignoring side_a/b order. Uncertain disagreements are not definitive model errors. Predictions frozen before labeling; no retraining or prompt tuning."
+  },
+  "classifier_cross_validation": {
+    "points": 84,
+    "distinct_duplicate_groups": 84,
+    "baseline_correct": 77,
+    "classifier_oof_correct": 81,
+    "baseline_accuracy": 0.9166666666666666,
+    "classifier_oof_accuracy": 0.9642857142857143,
+    "fixed_baseline_errors": 6,
+    "introduced_errors": 2,
+    "folds": [
+      {
+        "fold": 1,
+        "training_points": 67,
+        "validation_points": 17,
+        "baseline_correct": 13,
+        "classifier_correct": 16
+      },
+      {
+        "fold": 2,
+        "training_points": 67,
+        "validation_points": 17,
+        "baseline_correct": 17,
+        "classifier_correct": 17
+      },
+      {
+        "fold": 3,
+        "training_points": 67,
+        "validation_points": 17,
+        "baseline_correct": 16,
+        "classifier_correct": 17
+      },
+      {
+        "fold": 4,
+        "training_points": 67,
+        "validation_points": 17,
+        "baseline_correct": 16,
+        "classifier_correct": 16
+      },
+      {
+        "fold": 5,
+        "training_points": 68,
+        "validation_points": 16,
+        "baseline_correct": 15,
+        "classifier_correct": 15
+      }
+    ],
+    "by_level": {
+      "1": {
+        "n": 20,
+        "baseline_correct": 18,
+        "classifier_correct": 20
+      },
+      "2": {
+        "n": 18,
+        "baseline_correct": 17,
+        "classifier_correct": 16
+      },
+      "3": {
+        "n": 24,
+        "baseline_correct": 21,
+        "classifier_correct": 24
+      },
+      "4": {
+        "n": 22,
+        "baseline_correct": 21,
+        "classifier_correct": 21
+      }
+    },
+    "limitation": "Single fixed grouped 5-fold CV on 84 certain points. Each reported prediction is out-of-fold. Final all-data refit is for future validation and its training accuracy is not reported."
+  },
+  "classifier_holdout30": {
+    "overall": {
+      "n": 30,
+      "agree": 26,
+      "disagree": 4,
+      "agreement_rate": 0.8666666666666667
+    },
+    "certain": {
+      "n": 25,
+      "agree": 24,
+      "disagree": 1,
+      "agreement_rate": 0.96
+    },
+    "uncertain": {
+      "n": 5,
+      "agree": 2,
+      "disagree": 3,
+      "agreement_rate": 0.4
+    },
+    "by_level": {
+      "1": {
+        "overall": {
+          "n": 8,
+          "agree": 7,
+          "disagree": 1,
+          "agreement_rate": 0.875
+        },
+        "certain": {
+          "n": 7,
+          "agree": 7,
+          "disagree": 0,
+          "agreement_rate": 1.0
+        },
+        "uncertain": {
+          "n": 1,
+          "agree": 0,
+          "disagree": 1,
+          "agreement_rate": 0.0
+        }
+      },
+      "2": {
+        "overall": {
+          "n": 8,
+          "agree": 7,
+          "disagree": 1,
+          "agreement_rate": 0.875
+        },
+        "certain": {
+          "n": 7,
+          "agree": 7,
+          "disagree": 0,
+          "agreement_rate": 1.0
+        },
+        "uncertain": {
+          "n": 1,
+          "agree": 0,
+          "disagree": 1,
+          "agreement_rate": 0.0
+        }
+      },
+      "3": {
+        "overall": {
+          "n": 7,
+          "agree": 6,
+          "disagree": 1,
+          "agreement_rate": 0.8571428571428571
+        },
+        "certain": {
+          "n": 6,
+          "agree": 5,
+          "disagree": 1,
+          "agreement_rate": 0.8333333333333334
+        },
+        "uncertain": {
+          "n": 1,
+          "agree": 1,
+          "disagree": 0,
+          "agreement_rate": 1.0
+        }
+      },
+      "4": {
+        "overall": {
+          "n": 7,
+          "agree": 6,
+          "disagree": 1,
+          "agreement_rate": 0.8571428571428571
+        },
+        "certain": {
+          "n": 5,
+          "agree": 5,
+          "disagree": 0,
+          "agreement_rate": 1.0
+        },
+        "uncertain": {
+          "n": 2,
+          "agree": 1,
+          "disagree": 1,
+          "agreement_rate": 0.5
+        }
+      }
+    },
+    "note": "Exact pair agreement, ignoring side_a/b order. Uncertain disagreements are not definitive model errors. Predictions frozen before labeling; no retraining or prompt tuning."
+  }
+}

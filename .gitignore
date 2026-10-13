@@ -1,0 +1,30 @@
+# Local data and generated artifacts
+.venv/
+.env
+__pycache__/
+*.pyc
+.DS_Store
+/raw/
+/workspace/
+/inspection/
+/annotation/
+/annotation100/
+/annotation30/
+/evaluation/
+/evaluation100/
+/evaluation30/
+/classifier_trial/
+/models/
+/outputs/
+*.zip
+*.xls
+*.xlsx
+*.png
+*.jpg
+*.jpeg
+*.npy
+*.npz
+*.safetensors
+*.pt
+*.pth
+# Machine-readable aggregate metrics in results/ are intentionally tracked.

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>上海街景 · 新100点位验证</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><div><span class="eyebrow">上海街景 / 中心点位</span><h1>选择道路两侧的照片</h1></div><div class="exports"><a href="/api/export.csv" download="center100_annotations.csv">导出 CSV</a><a href="/api/export.json" download="center100_labels.json">备份 JSON</a></div></header>
+<section class="overview"><span id="progress">正在加载…</span><span>100 个新随机点位 · 四个道路等级各 25 个</span><span id="saveState" role="status">本地保存</span></section>
+<div class="progress-track"><div id="progressBar"></div></div>
+<main>
+<div class="point-head"><div><span id="position" class="eyebrow"></span><h2 id="pointTitle"></h2><p id="pointMeta"></p></div><label>跳转点位 <select id="jump" aria-label="跳转点位"></select></label></div>
+<p class="instruction">选择<strong>朝向道路一侧</strong>的画面。沿道路向远处看的照片不选。第一次选中为 <strong>side_a</strong>，第二次为 <strong>side_b</strong>；这两个名称不表示实际左右。</p>
+<div id="cards" class="cards"></div>
+<div class="form-row"><label class="note-label">备注（可选）<input id="note" maxlength="2000" placeholder="例如：路口、斜向道路、遮挡，或只能勉强选出两张"></label><button id="swap" class="quiet">交换 a / b</button><button id="clear" class="quiet">重新选择</button></div>
+<div class="footer"><div class="navigation"><button id="prev" class="quiet">上一点位</button><button id="next" class="quiet">下一点位</button><span id="selectionStatus" aria-live="polite"></span></div><div class="actions"><button id="review" class="review">勉强选这两张并继续</button><button id="confirm" class="primary" disabled>确定选这两张并继续</button></div></div>
+<details><summary>标注说明与保存方式</summary><p>保留侧向视角，即相机主要朝向路侧建筑、围墙、植被或其他环境。侧向照片也可以包含路面，不按道路面积判断，不固定选择某一对角度。可以选择任意两张。</p><p>每次选择、备注修改和确认都会保存到本地。两种完成按钮都需要先选两张。明确时点击“确定选这两张”；拿不准时点击“勉强选这两张”，记录为待复核，可加备注。全部 100 个点位都会导出。模型预测在此页面隐藏，避免影响你的判断。</p><p>快捷键：1–4 选择四张图片，左右方向键切换点位，Enter 确认；点击“放大”查看原图。</p></details>
+<div id="error" role="alert" hidden></div>
+</main>
+<dialog id="zoom"><button id="closeZoom">关闭 ×</button><p id="zoomTitle"></p><img id="zoomImage" alt="街景原图"></dialog>
+<script src="/app.js"></script></body></html>
