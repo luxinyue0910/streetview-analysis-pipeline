@@ -109,6 +109,23 @@ Certain choices in rounds 2 and 3 override the model. Round 1 did not systematic
 
 Original filename extensions do not necessarily identify the actual encoding. The reader preserves original bytes; detect their image format before constructing MIME types for a future VLM API.
 
+## Reviewing Flagged Locations
+
+```bash
+python scripts/review_server.py --port 8770
+# Open http://127.0.0.1:8770/?batch=1
+```
+
+The review page streams all four original images from the ZIP archives, shows the classifier's two selections, and preselects them for confirmation or correction. Review reasons and original model badges remain visible. The 2,380-location queue is presented in 48 batches of up to 50 locations; the first batch follows manifest order rather than a new random sample.
+
+Selections, notes, and confirmation status are saved locally in `review_workspace/labels.json`. Confirmed reviews generate `review_results.csv` and `selection_manifest_reviewed.csv`, applying human overrides to a copy of the full manifest. Unconfirmed drafts and uncertain choices remain provisional. Editing a previously confirmed selection revokes that override until it is confirmed again. Original prediction manifests remain unchanged.
+
+The page supports image zoom, restoring model choices, changing batches, and exporting the updated full manifest. Use `STREETVIEW_REVIEW_DIR` to select another private progress directory. To validate the updated output:
+
+```bash
+python scripts/validate_selection_manifest.py "$STREETVIEW_WORKSPACE/review_workspace/selection_manifest_reviewed.csv"
+```
+
 ## Data Boundaries
 
 The public repository contains only code, methods, interface templates, and aggregate metrics. Original images, the study-area point table, coordinate manifests, human annotations, per-location predictions, image features, model weights, generated reports, and local environments are excluded.

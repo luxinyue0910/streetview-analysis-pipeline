@@ -23,6 +23,9 @@ __pycache__/
 *.sqlite-shm
 selection_manifest.csv
 review_manifest.csv
+/review_workspace/
+review_results.csv
+selection_manifest_reviewed.csv
 *.zip
 *.xls
 *.xlsx

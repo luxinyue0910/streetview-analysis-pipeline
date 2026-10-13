@@ -10,13 +10,15 @@ from settings import WORKSPACE, ARCHIVE_DIR
 from select_full_dataset import annotations
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('manifest',type=Path);p.add_argument('--allow-partial',action='store_true');args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('manifest',type=Path);p.add_argument('--allow-partial',action='store_true')
+    p.add_argument('--review-labels',type=Path,default=WORKSPACE/'review_workspace/labels.json');args=p.parse_args()
     with (WORKSPACE/'inspection/center_point_filter_manifest.csv').open(encoding='utf-8-sig') as f:expected={r['point_id']:r for r in csv.DictReader(f) if r['decision']=='keep'}
     with args.manifest.open(encoding='utf-8-sig') as f:rows=list(csv.DictReader(f))
     observed={r['point_id'] for r in rows};assert len(observed)==len(rows),'Duplicate point rows'
     assert observed<=set(expected),'Non-center coordinates in output'
     if not args.allow_partial:assert observed==set(expected),'Missing center point rows'
     known,_=annotations();archives={};manual=0
+    reviewed=json.loads(args.review_labels.read_text()) if args.review_labels.exists() else {}
     try:
         for row in rows:
             source=expected[row['point_id']]
@@ -33,8 +35,12 @@ def main():
             assert row['status'] in ['confirmed','auto_selected','needs_review']
             assert math.isfinite(float(row['classifier_margin']))
             if row['status']=='confirmed':
-                human=known[f'{row["road_level"]}:{row["point_id"]}'];assert human['certain']
-                assert angles==human['selected'] and row['selection_source']=='human_confirmed';manual+=1
+                pid=f'{row["road_level"]}:{row["point_id"]}'
+                if row['selection_source']=='human_review':
+                    human=reviewed[pid];assert human['status']=='confirmed'
+                else:
+                    human=known[pid];assert human['certain'] and row['selection_source']=='human_confirmed'
+                assert angles==human['selected'];manual+=1
             else:assert sorted(angles)==list(map(int,row['classifier_pair'].split('/')))
             if row['status']=='needs_review':assert row['review_reasons']
             else:assert not row['review_reasons']
