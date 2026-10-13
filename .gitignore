@@ -26,6 +26,7 @@ __pycache__/
 selection_manifest.csv
 review_manifest.csv
 /review_workspace/
+/final_selection/
 review_results.csv
 selection_manifest_reviewed.csv
 *.zip

@@ -15,7 +15,7 @@ def iter_selected(manifest, archive_dir, include_auto=False, include_review=Fals
     archives = {}
     try:
         for row in rows:
-            allowed = {'confirmed'}
+            allowed = {'confirmed', 'selected'}
             if include_auto: allowed.add('auto_selected')
             if include_review: allowed.add('needs_review')
             if row['status'] not in allowed:

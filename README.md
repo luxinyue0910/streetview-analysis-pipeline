@@ -86,7 +86,7 @@ python scripts/read_selected.py "$STREETVIEW_WORKSPACE/annotation30/annotations.
 python scripts/read_selected.py "$STREETVIEW_WORKSPACE/annotation30/annotations.csv" --output "$STREETVIEW_WORKSPACE/selected_images"
 ```
 
-The reader processes only the two images in records with `status=confirmed`. Records marked `needs_review` contain candidate selections and require review before use in the final analysis.
+By default, the reader processes the two images in records with `status=confirmed` or `status=selected`. The latter denotes acceptance under the final-selection policy, not individual human verification. Provisional `needs_review` records in the original manifest require explicit inclusion or finalization before downstream use.
 
 ## Full-Dataset Selection
 
@@ -139,6 +139,19 @@ python scripts/compare_auto_validation.py
 This samples 50 unflagged `auto_selected` locations at random across the eligible pool, rather than assigning equal road-level quotas. Previously annotated or reviewed coordinates and byte-identical images are excluded. Existing classifier predictions are frozen separately and hidden from the labeling interface. Certain and uncertain annotations are evaluated separately. This audit measures agreement within the unflagged subset, not the entire dataset; 50 locations provide only an initial check.
 
 For visual browsing without annotation, copy `web/prediction_browser/index.html` and `app.js` into the local sample directory, retaining its `style.css`. Start the annotation server with `STREETVIEW_PREDICTIONS_FILE` pointing to the matching frozen prediction JSON. The read-only page highlights the two model-selected images and supports navigation and zoom; it does not submit human labels. Once predictions are revealed, subsequent judgments are a visual review rather than a blind accuracy test.
+
+## Final Selection Policy
+
+After visual review, the user chose to retain existing model selections, including unreviewed flagged points, and apply only confirmed human modifications:
+
+```bash
+python scripts/finalize_selection.py
+python scripts/read_selected.py "$STREETVIEW_WORKSPACE/final_selection/final_selection_manifest.csv"
+```
+
+This creates a separate final manifest with all 13,660 locations and 27,320 image references. The initial finalized snapshot applies one confirmed pair modification, records 28 reviewed choices that stayed unchanged, and retains 110 earlier human-confirmed selections. Draft and uncertain review edits do not replace existing choices.
+
+All final records have `status=selected`, meaning accepted for use under this policy. `prior_status`, `original_review_reasons`, and `review_outcome` preserve provenance. Acceptance does not imply that every location was manually verified. Original prediction and review-progress files remain unchanged.
 
 ## Data Boundaries
 

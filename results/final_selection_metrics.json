@@ -1,0 +1,16 @@
+{
+  "points": 13660,
+  "image_references": 27320,
+  "confirmed_review_modifications": 1,
+  "confirmed_review_unchanged": 28,
+  "existing_human_confirmed_selections_retained": 110,
+  "all_selected_members_verified": true,
+  "selection_sources": {
+    "classifier": 13479,
+    "classifier_with_human_candidate": 70,
+    "human_confirmed": 110,
+    "human_review_modified": 1
+  },
+  "policy": "User accepted existing model choices including previously flagged points; only confirmed review pair changes applied. Existing earlier human-confirmed selections retained.",
+  "status_semantics": "selected means accepted for use under this policy, not individually human-verified."
+}
