@@ -138,6 +138,8 @@ python scripts/compare_auto_validation.py
 
 This samples 50 unflagged `auto_selected` locations at random across the eligible pool, rather than assigning equal road-level quotas. Previously annotated or reviewed coordinates and byte-identical images are excluded. Existing classifier predictions are frozen separately and hidden from the labeling interface. Certain and uncertain annotations are evaluated separately. This audit measures agreement within the unflagged subset, not the entire dataset; 50 locations provide only an initial check.
 
+For visual browsing without annotation, copy `web/prediction_browser/index.html` and `app.js` into the local sample directory, retaining its `style.css`. Start the annotation server with `STREETVIEW_PREDICTIONS_FILE` pointing to the matching frozen prediction JSON. The read-only page highlights the two model-selected images and supports navigation and zoom; it does not submit human labels. Once predictions are revealed, subsequent judgments are a visual review rather than a blind accuracy test.
+
 ## Data Boundaries
 
 The public repository contains only code, methods, interface templates, and aggregate metrics. Original images, the study-area point table, coordinate manifests, human annotations, per-location predictions, image features, model weights, generated reports, and local environments are excluded.

@@ -1,0 +1,8 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>街景 · 查看模型结果</title><link rel="stylesheet" href="/style.css"></head><body>
+<header><div><span class="eyebrow">上海街景 / 普通自动选择点位</span><h1>直接查看模型选择</h1></div><span>只读浏览，无需标注</span></header>
+<section class="overview"><span id="progress">正在加载…</span><span>50 个随机点位 · 未标记待复核</span><span>不会写入人工标注</span></section>
+<main><div class="point-head"><div><span id="position" class="eyebrow"></span><h2 id="pointTitle"></h2><p id="pointMeta"></p></div><label>跳转点位 <select id="jump" aria-label="跳转点位"></select></label></div>
+<p class="instruction">绿色边框表示<strong>模型选中的两张</strong>，其余两张用于对照。点击图片可放大，直接用“下一点位”浏览，不需要确认。side_a/b不表示实际左右。</p>
+<div id="cards" class="cards"></div><div class="footer"><div class="navigation"><button id="prev" class="quiet">上一点位</button><button id="next" class="primary">下一点位</button></div><span id="pairText"></span></div>
+<div id="error" role="alert" hidden></div></main>
+<dialog id="zoom"><button id="closeZoom">关闭 ×</button><p id="zoomTitle"></p><img id="zoomImage" alt="街景原图"></dialog><script src="/app.js"></script></body></html>

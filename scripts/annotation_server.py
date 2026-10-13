@@ -46,6 +46,11 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urlsplit(self.path).path
+        if path == '/api/predictions':
+            configured = os.environ.get('STREETVIEW_PREDICTIONS_FILE')
+            if not configured:
+                return self.send_data(b'{}', status=404)
+            return self.send_data(Path(configured).read_bytes())
         if path == '/api/state':
             with LOCK:
                 labels = load_labels()
