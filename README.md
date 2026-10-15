@@ -159,6 +159,14 @@ All final records have `status=selected`, meaning accepted for use under this po
 
 For a portable handoff without installing the project, use `scripts/team_read_selected.py`. It uses only the Python standard library and requires an explicit `--archive-dir` path. The local delivery package renames it to `read_selected.py` and includes the manifest and English instructions.
 
+To create an image-inclusive package for a team drive:
+
+```bash
+python scripts/package_selected_images.py --output "$STREETVIEW_WORKSPACE/deliverables/selected_images.zip"
+```
+
+This streams unchanged selected image bytes from the original ZIPs into a ZIP64 archive, grouped as `images/road_level_<level>/<point_id>/<original_filename>`. The final CSV and English usage instructions are included. No loose intermediate image copy is created; source sizes and CRCs are checked. The resulting image package stays local and is excluded from Git.
+
 The public repository contains only code, methods, interface templates, and aggregate metrics. Original images, the study-area point table, coordinate manifests, human annotations, per-location predictions, image features, model weights, generated reports, and local environments are excluded.
 
 This repository grants no redistribution rights to the original data. Models and dependencies remain subject to their respective terms.
