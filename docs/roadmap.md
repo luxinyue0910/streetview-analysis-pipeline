@@ -1,5 +1,15 @@
 # 后续阶段
 
+## October 20 update: VLM scoring pilots
+
+Two local Qwen scoring experiments are complete and summarized in the
+[pilot report](vlm_pilot_2026-10-20.md). Versioned prompt fragments and aggregate
+results are published. Production batch scoring remains unimplemented. Next:
+evaluate compact prompts on a larger fixed training-only sample with Qwen3.8
+Flash and Qwen3-VL Plus, review evidence/anchor and visibility errors, then run
+the untouched validation set. Historical planning text below predates these
+pilots; no full-dataset VLM scoring result is claimed.
+
 ## 全量中心数据初筛
 
 全量入口 `scripts/select_full_dataset.py` 已实现：处理13,660个中心点位的54,640张图片，每点位选出两张。沿用已验证的冻结分类器，批量读取原ZIP，SQLite保存进度，支持断点续跑与重复图片评分缓存。

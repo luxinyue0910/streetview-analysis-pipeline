@@ -1,0 +1,44 @@
+{
+  "version": "v1_compact",
+  "language": "zh-CN",
+  "full_prompt_assembly": "prefix + private_rubric_text + suffix; no inserted whitespace or normalization",
+  "stages": {
+    "overall": {
+      "prefix": "overall.prefix.txt",
+      "suffix": "overall.suffix.txt",
+      "rubric": "overall",
+      "image_count": 2
+    },
+    "side_A": {
+      "prefix": "side_A.prefix.txt",
+      "suffix": "side_A.suffix.txt",
+      "rubric": "single_side",
+      "image_count": 1
+    },
+    "side_B": {
+      "prefix": "side_B.prefix.txt",
+      "suffix": "side_B.suffix.txt",
+      "rubric": "single_side",
+      "image_count": 1
+    }
+  },
+  "pilot_composed_prompt_sha256": {
+    "overall": "208fd2cc49a2b732714a60f99f03972dbef5aa67687b796b2dc26c186941944c",
+    "side_A": "225b955a99c4cd89f1724c758de818aa9a62dc566111b3e5b348296d65e73bbc",
+    "side_B": "225b955a99c4cd89f1724c758de818aa9a62dc566111b3e5b348296d65e73bbc"
+  },
+  "private_rubric_text_sha256": {
+    "overall": "3a3020e6368400872f9208d3dc086dd3cc78c4b877c058da32d7c0b8a0d1f4b6",
+    "single_side": "0a793a952c64fda0ff5df56ada287e71365798461190230a837e0da4e3b2352e"
+  },
+  "parameters": {
+    "temperature": 0,
+    "enable_thinking": false,
+    "max_tokens": 900,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "rubrics_published": false,
+  "note": "Exact authored prompt fragments; source PDF text stays private. Stage names are technical labels, not geographic directions."
+}

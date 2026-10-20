@@ -1,6 +1,8 @@
 # Local data and generated artifacts
 .venv/
 .env
+.env.*
+!.env.example
 __pycache__/
 *.pyc
 .DS_Store
@@ -18,6 +20,8 @@ __pycache__/
 /classifier_trial/
 /models/
 /outputs/
+/internal/
+/private/
 /full_selection*/
 *.sqlite
 *.sqlite-journal

@@ -1,0 +1,43 @@
+{
+  "experiment_id": "qwen_vlm_verbose_pilot_2026-10-20",
+  "models": {
+    "qwen3-vl-plus": {
+      "successful_requests": 9,
+      "expected_requests": 9,
+      "usage": {
+        "prompt_tokens": 37224,
+        "completion_tokens": 6198,
+        "total_tokens": 43422,
+        "cached_input_tokens": 0
+      },
+      "na_count": 3,
+      "cost_CNY_at_uncached_list_prices": 0.099204,
+      "cost_CNY_with_observed_cache": 0.099204
+    },
+    "qwen3.8-max": {
+      "successful_requests": 9,
+      "expected_requests": 9,
+      "usage": {
+        "prompt_tokens": 40776,
+        "completion_tokens": 4844,
+        "total_tokens": 45620,
+        "cached_input_tokens": 19200
+      },
+      "na_count": 1,
+      "cost_CNY_at_uncached_list_prices": 0.663696,
+      "cost_CNY_with_observed_cache": 0.462096
+    }
+  },
+  "sample": {
+    "training_points": 3,
+    "images": 6,
+    "road_levels_sampled": 3,
+    "seed": 20261020,
+    "calls_per_point_per_model": 3,
+    "scores_per_model": 36,
+    "common_numeric_pairs": 31,
+    "reference_provenance": "Prior AI-assisted annotations; not independent human ground truth."
+  },
+  "prompt_version": "v0",
+  "note": "Three-point smoke test, no population accuracy claim. Cache-aware costs recalculated from raw API usage during repository audit. The earlier chat estimate for Max was a no-cache estimate, not its cache-adjusted cost. Usage-based calculations are not account billing."
+}

@@ -1,0 +1,123 @@
+{
+  "models": {
+    "qwen3-vl-plus": {
+      "successful_requests": 9,
+      "input_tokens": 37263,
+      "output_tokens": 1482,
+      "cached_input_tokens": 0,
+      "cost_CNY": 0.052083,
+      "no_cache_cost_CNY": 0.052083,
+      "no_cache_cost_per_1000_points_CNY": 17.360999999999997,
+      "cost_per_1000_points_CNY": 17.360999999999997,
+      "cost_per_12160_points_CNY": 211.10975999999997,
+      "na_count": 3,
+      "reference_exact_match_count": 12,
+      "score_count": 36,
+      "numeric_pairs": 31,
+      "numeric_pair_MAE": 0.13870967741935483,
+      "numeric_pairs_within_0_1_count": 20,
+      "reference_numeric_scores": 32,
+      "schema_issues": [],
+      "common_numeric_pair_count": 31,
+      "common_numeric_pair_MAE": 0.13870967741935483,
+      "common_numeric_exact_match_count": 10
+    },
+    "qwen3.8-flash": {
+      "successful_requests": 9,
+      "input_tokens": 40788,
+      "output_tokens": 1057,
+      "cached_input_tokens": 26624,
+      "cost_CNY": 0.0168475,
+      "no_cache_cost_CNY": 0.0354843,
+      "no_cache_cost_per_1000_points_CNY": 11.828100000000001,
+      "cost_per_1000_points_CNY": 5.615833333333334,
+      "cost_per_12160_points_CNY": 68.28853333333333,
+      "na_count": 0,
+      "reference_exact_match_count": 13,
+      "score_count": 36,
+      "numeric_pairs": 32,
+      "numeric_pair_MAE": 0.09375,
+      "numeric_pairs_within_0_1_count": 23,
+      "reference_numeric_scores": 32,
+      "schema_issues": [],
+      "common_numeric_pair_count": 31,
+      "common_numeric_pair_MAE": 0.0935483870967742,
+      "common_numeric_exact_match_count": 13
+    },
+    "qwen3.7-plus": {
+      "successful_requests": 9,
+      "input_tokens": 40671,
+      "output_tokens": 1521,
+      "cached_input_tokens": 20736,
+      "cost_CNY": 0.0603324,
+      "no_cache_cost_CNY": 0.09351,
+      "no_cache_cost_per_1000_points_CNY": 31.169999999999998,
+      "cost_per_1000_points_CNY": 20.1108,
+      "cost_per_12160_points_CNY": 244.54732800000002,
+      "na_count": 1,
+      "reference_exact_match_count": 8,
+      "score_count": 36,
+      "numeric_pairs": 32,
+      "numeric_pair_MAE": 0.1625,
+      "numeric_pairs_within_0_1_count": 16,
+      "reference_numeric_scores": 32,
+      "schema_issues": [],
+      "common_numeric_pair_count": 31,
+      "common_numeric_pair_MAE": 0.16774193548387098,
+      "common_numeric_exact_match_count": 6
+    }
+  },
+  "notes": [
+    "Reference agreement is descriptive, not validated accuracy.",
+    "Costs are calculated from API usage and published Beijing online rates, not account billing.",
+    "All stages are independent and reference scores are never included in prompts."
+  ],
+  "vl_compact_vs_v0": {
+    "old_output_tokens": 6198,
+    "new_output_tokens": 1482,
+    "output_token_reduction_percent": 76.0890609874153,
+    "old_cost_CNY": 0.099204,
+    "new_cost_CNY": 0.052083,
+    "cost_reduction_percent": 47.499092778516996
+  },
+  "experiment_id": "qwen_vlm_compact_2026-10-20",
+  "sample": {
+    "training_points": 3,
+    "images": 6,
+    "road_levels_sampled": 3,
+    "seed": 20261020,
+    "calls_per_point_per_model": 3,
+    "scores_per_model": 36,
+    "common_numeric_pairs": 31,
+    "reference_provenance": "Prior AI-assisted annotations; not independent human ground truth."
+  },
+  "model_aliases_not_snapshot_pinned": true,
+  "pricing": {
+    "region": "cn-beijing",
+    "currency": "CNY",
+    "checked_date": "2026-10-20",
+    "basis": "API usage and published ordinary-online prices, not account billing. No account discounts or free quota included.",
+    "per_million_tokens": {
+      "qwen3-vl-plus": {
+        "input": 1,
+        "output": 10,
+        "cached_input": 0.2
+      },
+      "qwen3.8-flash": {
+        "input": 0.8,
+        "output": 2.7,
+        "cached_input": 0.1
+      },
+      "qwen3.7-plus": {
+        "input": 2,
+        "output": 8,
+        "cached_input": 0.4
+      }
+    },
+    "sources": {
+      "qwen3-vl-plus": "https://help.aliyun.com/zh/model-studio/qwen3-vl-plus",
+      "qwen3.8-flash": "https://help.aliyun.com/zh/model-studio/qwen3-8-flash",
+      "qwen3.7-plus": "https://help.aliyun.com/zh/model-studio/qwen3-7-plus"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+请严格按以下原始规范对街景可见环境评分。这是独立视觉评估，请勿猜测图外条件，也不要为了拉开分布刻意调整分数。
+通行安全、沿街界面、绿荫停留、环境维护分别对应 pedestrian_safety, street_interface, greenery_staying, environmental_maintenance。
+只用 0.0,0.1,0.2,0.4,0.5,0.6,0.8,0.9,1.0。先用清晰图像证据判低/中/高档，再按原文选择档内锚点。
+尽可能依据可见区域给出数值。不确定、局部遮挡、看不到座椅本身不应自动导致NA；但目标侧或相关空间完全不能辨认时，不能捏造证据，保留NA并给出简短原因。不要把不可观察冒充明确缺失。NA不是低分。
+绿化多不等于行人遮蔽，主要通行带不是独立停留空间。环境维护不能固定给0.8，须逐项检查立面、设施、清洁、招牌线缆，且不能仅因建筑旧而扣分。
+输出且仅输出JSON对象，只保留scores和evidence两个字段。scores四项使用上述数值或字符串"NA"；evidence对应四项各一句简短、具体的中文可见证据，每句不超过40个字符，不要长段解释，不另写锚点、目标描述、思维过程或不确定性段落。若分数为NA，在同一项evidence中用几个词说明不可观察的原因。格式：
+{"scores":{"pedestrian_safety":0.0,"street_interface":0.0,"greenery_staying":0.0,"environmental_maintenance":0.0},"evidence":{"pedestrian_safety":"一句短证据","street_interface":"一句短证据","greenery_staying":"一句短证据","environmental_maintenance":"一句短证据"}}
+原始规范：

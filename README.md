@@ -2,9 +2,16 @@
 
 A local pipeline for selecting study-area coordinates, identifying side-facing street views, validating image selections, and preparing for VLM scoring and analysis.
 
-**Data filtering, annotation, visual classification, model evaluation, and resumable full-dataset selection are implemented.** VLM scoring and downstream analysis are planned. Full-dataset selection produces provisional model choices and a separate review queue.
+**Data filtering, annotation, visual classification, model evaluation, and resumable full-dataset selection are implemented.** Initial Qwen VLM scoring pilots are documented; production scoring and downstream analysis remain in development. Full-dataset selection produces provisional model choices and a separate review queue.
 
 The final center-point selection and local team handoff are complete under the user's acceptance policy. See the [October 13 milestone report](docs/milestone_2026-10-13.md) for final counts, review decisions, validation, and delivery scope. The data-bearing handoff package is not published in this repository.
+
+The [October 20 VLM pilot report](docs/vlm_pilot_2026-10-20.md) records model options,
+versioned prompts, compact versus verbose output, observed token costs, and known
+scoring failures. Qwen3.8 Flash is the next-test candidate from a three-point
+comparison, not a validated winner. Prior AI-assisted reference scores are not
+independent human ground truth. VLM inference uses a cloud API; image-selection
+inference remains local.
 
 ## Task and Deliverables
 
@@ -36,6 +43,8 @@ Full-run counts describe output coverage and review workload, not measured full-
 - `docs/iteration_log.md`: the actual experiment sequence, documented retrospectively rather than reconstructed as Git history.
 - `docs/roadmap.md`: plans for full-dataset processing, review, and subsequent VLM analysis.
 - `results/aggregate_metrics.json`: aggregate results without individual coordinates.
+- `prompts/qwen_scoring/`: versioned scoring instructions and the compact response contract; private rubric text is supplied locally.
+- `results/vlm_*_2026-10-20.json`: aggregate-only scoring pilot metrics and usage-based cost estimates.
 
 The experiment scripts retain fixed sample sizes and round-specific directories for traceability. They are not yet a general-purpose batch-processing product.
 
