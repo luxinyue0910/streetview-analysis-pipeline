@@ -13,6 +13,12 @@ comparison, not a validated winner. Prior AI-assisted reference scores are not
 independent human ground truth. VLM inference uses a cloud API; image-selection
 inference remains local.
 
+The [organized-rubric follow-up](docs/vlm_organized_pilot_2026-10-20.md) archives
+`v2_organized`, PDF page checks, and a matched v1/v2 comparison. It showed no
+consistent gain on the three debugging points; visual grounding and rule
+application errors both remain. The next experiments separate those failure
+sources rather than assuming cleaner PDF text guarantees better scores.
+
 ## Task and Deliverables
 
 Each location has four images named `longitude_latitude_angle_extra.png`, with angles of 0, 90, 180, and 270 degrees. The pipeline processes only coordinates in the study-area point list and selects two images facing the sides of the road.

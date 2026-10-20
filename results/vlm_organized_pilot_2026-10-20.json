@@ -1,0 +1,81 @@
+{
+  "version": "v2_organized",
+  "common_numeric_cells": 30,
+  "models": {
+    "qwen3-vl-plus": {
+      "versions": {
+        "v1_compact": {
+          "successful_calls": 9,
+          "input_tokens": 37263,
+          "cached_input_tokens": 0,
+          "output_tokens": 1482,
+          "cost_CNY": 0.052083,
+          "no_cache_cost_CNY": 0.052083,
+          "na_count": 3,
+          "common_numeric_MAE": 0.13333333333333333,
+          "common_numeric_exact_match_count": 10
+        },
+        "v2_organized": {
+          "successful_calls": 9,
+          "input_tokens": 33345,
+          "cached_input_tokens": 0,
+          "output_tokens": 1507,
+          "cost_CNY": 0.048415,
+          "no_cache_cost_CNY": 0.048415,
+          "na_count": 4,
+          "common_numeric_MAE": 0.14666666666666667,
+          "common_numeric_exact_match_count": 10
+        }
+      },
+      "changed_scores": 16,
+      "na_added_count": 1,
+      "na_removed_count": 0
+    },
+    "qwen3.8-flash": {
+      "versions": {
+        "v1_compact": {
+          "successful_calls": 9,
+          "input_tokens": 40788,
+          "cached_input_tokens": 26624,
+          "output_tokens": 1057,
+          "cost_CNY": 0.0168475,
+          "no_cache_cost_CNY": 0.0354843,
+          "na_count": 0,
+          "common_numeric_MAE": 0.08666666666666666,
+          "common_numeric_exact_match_count": 13
+        },
+        "v2_organized": {
+          "successful_calls": 9,
+          "input_tokens": 32403,
+          "cached_input_tokens": 19456,
+          "output_tokens": 1112,
+          "cost_CNY": 0.0153056,
+          "no_cache_cost_CNY": 0.028924800000000004,
+          "na_count": 0,
+          "common_numeric_MAE": 0.11666666666666667,
+          "common_numeric_exact_match_count": 9
+        }
+      },
+      "changed_scores": 15,
+      "na_added_count": 0,
+      "na_removed_count": 0
+    }
+  },
+  "notes": [
+    "Reference agreement is descriptive, not independent accuracy.",
+    "Single generation per cell; no repeated-trial causal claim.",
+    "Costs calculated from returned usage and archived Beijing list rates, not account billing."
+  ],
+  "experiment_date": "2026-10-20",
+  "sample": {
+    "training_points": 3,
+    "images": 6,
+    "seed": 20261020,
+    "prior_reference": "AI-assisted annotations, not independent human ground truth",
+    "matched_common_numeric_cells": 30
+  },
+  "parent_experiment": "vlm_compact_pilot_2026-10-20",
+  "interpretation": "No consistent improvement in this single three-point run. Visual grounding, target-side ambiguity, and rubric violations all remain. Aggregate reference distance is not task accuracy.",
+  "model_aliases_not_snapshot_pinned": true,
+  "rates_reference": "vlm_compact_pilot_2026-10-20.json:pricing"
+}

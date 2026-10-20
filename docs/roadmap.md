@@ -10,6 +10,11 @@ Flash and Qwen3-VL Plus, review evidence/anchor and visibility errors, then run
 the untouched validation set. Historical planning text below predates these
 pilots; no full-dataset VLM scoring result is claimed.
 
+The [v2 trial](vlm_organized_pilot_2026-10-20.md) did not show a consistent gain
+after PDF rule grouping. Before further tuning, measure output variability and
+diagnose visual facts separately from rubric-to-score mapping. No v3 experiment
+has been run or validated yet.
+
 ## 全量中心数据初筛
 
 全量入口 `scripts/select_full_dataset.py` 已实现：处理13,660个中心点位的54,640张图片，每点位选出两张。沿用已验证的冻结分类器，批量读取原ZIP，SQLite保存进度，支持断点续跑与重复图片评分缓存。

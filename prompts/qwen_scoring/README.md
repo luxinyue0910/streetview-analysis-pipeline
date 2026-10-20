@@ -13,11 +13,37 @@ version's `config.json`.
 |---|---|---:|
 | `v0` | Scores, target description, visible evidence, anchors, uncertainty, NA reasons | 2,200 |
 | `v1_compact` | Scores and one evidence sentence per dimension, at most 40 characters | 900 |
+| `v2_organized` | Same compact response; PDF rules grouped correctly by dimension | 900 |
 
 The compact version changes output instructions and the token cap; scoring
 instructions, rubric text, and stage-specific image inputs remain unchanged.
 The instruction fragments are experimental baselines, not validated guidance:
 known rule violations remain in the model responses.
+
+`v2_organized` changes only private rubric organization and extraction cleanup.
+The task prefix, suffix, response schema, parameters, and image bytes match
+`v1_compact`. Both PDFs were checked visually page by page. The
+[v2 experiment report](../../docs/vlm_organized_pilot_2026-10-20.md) records the
+result, including the absence of a consistent quality gain.
+
+To reproduce the organized private rubric text from the original extracts:
+
+```bash
+python scripts/organize_scoring_rubrics.py \
+  --overall-text /path/to/private/overall_extracted.txt \
+  --single-side-text /path/to/private/single_side_extracted.txt \
+  --output-dir workspace/vlm/rubrics-v2
+python scripts/render_scoring_prompt.py \
+  --version v2_organized --stage overall \
+  --rubric-text workspace/vlm/rubrics-v2/overall.txt \
+  --output workspace/vlm/prompts-v2/overall.txt --verify-pilot-hash
+```
+
+The organizer is specific to the source documents and extraction order used
+in these pilots. It checks normalized source-character conservation before
+adding display headings; that check alone does not prove semantic equivalence,
+which also required visual review of the PDF pages. It does not process arbitrary
+PDFs and refuses to overwrite an existing output directory.
 
 For each point, make three independent requests with no previous scores in
 context: `overall` with both images, `side_A` with image 1, and `side_B` with image

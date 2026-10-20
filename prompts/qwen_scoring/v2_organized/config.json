@@ -1,0 +1,145 @@
+{
+  "version": "v2_organized",
+  "language": "zh-CN",
+  "full_prompt_assembly": "prefix + private_rubric_text + suffix; no inserted whitespace or normalization",
+  "stages": {
+    "overall": {
+      "prefix": "overall.prefix.txt",
+      "suffix": "overall.suffix.txt",
+      "rubric": "overall",
+      "image_count": 2
+    },
+    "side_A": {
+      "prefix": "side_A.prefix.txt",
+      "suffix": "side_A.suffix.txt",
+      "rubric": "single_side",
+      "image_count": 1
+    },
+    "side_B": {
+      "prefix": "side_B.prefix.txt",
+      "suffix": "side_B.suffix.txt",
+      "rubric": "single_side",
+      "image_count": 1
+    }
+  },
+  "pilot_composed_prompt_sha256": {
+    "overall": "8ed80087c0109d4bf6313931982439ff2924a6b55bb439285d34b6c4b2731f36",
+    "side_A": "9d97bb49c0f85f8f8904522656fafb3a4065693d04cc1d663e5abeda0fd1da1f",
+    "side_B": "9d97bb49c0f85f8f8904522656fafb3a4065693d04cc1d663e5abeda0fd1da1f"
+  },
+  "private_rubric_text_sha256": {
+    "overall": "3b4e9a528448a979f441df3e88de0e7e75cd7f364f2674f653bd186c41213051",
+    "single_side": "8a20cc606388e167dd51e30f14ae0e6169d3679eba70e7ab86cd628db9643e03"
+  },
+  "parameters": {
+    "temperature": 0,
+    "enable_thinking": false,
+    "max_tokens": 900,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "rubrics_published": false,
+  "note": "Exact authored prompt fragments; source PDF text stays private. Stage names are technical labels, not geographic directions.",
+  "parent_version": "v1_compact",
+  "changed_components": [
+    "Private rubric grouping by dimension",
+    "Extraction whitespace and Unicode glyph normalization",
+    "Explicit dimension/definition/band/limit headings"
+  ],
+  "unchanged_components": [
+    "Task prefix",
+    "Stage suffix",
+    "Input image bytes",
+    "Output schema",
+    "temperature=0",
+    "enable_thinking=false",
+    "max_tokens=900"
+  ],
+  "models_tested": [
+    "qwen3-vl-plus",
+    "qwen3.8-flash"
+  ],
+  "source_pdf_audit": {
+    "overall": {
+      "source_pdf_sha256": "31126efdf977c2d616af31ac77f2096fac8d9b26c32e59a5074692f62cdb6d2e",
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "normalized_source_character_multiset_conserved": true,
+      "dimensions": [
+        {
+          "dimension": "pedestrian_safety",
+          "source_pages": "1-2",
+          "definition_sha256": "c395fa401474abd0440539c3fd75cc1c41b14de169e67eb79bce418a6b856127",
+          "score_rules_sha256": "ca09788bcbe44b6c709a84da4f8eaac08741743512c0f847a479cb3ca3945988",
+          "hard_limits_sha256": "4d436a068daea33ca5e5eb590ee82b98e54b4a2163eefffa1e06548d13f15567"
+        },
+        {
+          "dimension": "street_interface",
+          "source_pages": "2-3",
+          "definition_sha256": "f5cb065246eadb10e7afce5b12ba81eb1f9d6b3cc1160b1620328834bb78fa96",
+          "score_rules_sha256": "8ebf4c02ade180d3603426293177e99b515be8c793132bd5a16c0dc396ca21ab",
+          "hard_limits_sha256": "125e0179b9c6dac56194fea403d1016b8a37ab8ec6aa6a4560d3889a4f47bb56"
+        },
+        {
+          "dimension": "greenery_staying",
+          "source_pages": "3",
+          "definition_sha256": "34eca15d5171cac817b5eab49beed3364133118c3457331a538ecb21e9ade7d3",
+          "score_rules_sha256": "6355814fb3287b918e8ba4bc038918bc62315ce7e04d7fbdb3e34ea73257e8f6",
+          "hard_limits_sha256": "9f2dcf2d3b65289eae2328c36bee12fa56da2e3524cbaad18a4c686e054e65c3"
+        },
+        {
+          "dimension": "environmental_maintenance",
+          "source_pages": "3-4",
+          "definition_sha256": "3b378329c2b03478acd9d6aec3dec98576e2429b08a3d136cd605e2e72c1bb31",
+          "score_rules_sha256": "9f471a6755c5cbed81073f8d85a38bfedec19c2da142b37583d27a133d0038f7",
+          "hard_limits_sha256": "184dd411be0adaf2dfe3d14fddda21b25ff704c7c1a06aaa41e327aa5c3e57bd"
+        }
+      ]
+    },
+    "single_side": {
+      "source_pdf_sha256": "b2c71308c3cd119ddd0f61487ce93f322dd5bdbcbd85118ca9d7f6db2192d231",
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "normalized_source_character_multiset_conserved": true,
+      "dimensions": [
+        {
+          "dimension": "pedestrian_safety",
+          "source_pages": "1-2",
+          "definition_sha256": "2070f381a4775ebaae17c0298e6e82f9283a7158a77d9218910403ae9f0306cc",
+          "score_rules_sha256": "466f2bb423f6404e8c43f6d531e14b29dd7ab3723943cafac91521f1d9f8c5c9",
+          "hard_limits_sha256": "6b3689321d44b74bd92d0bb5cb5808ce97bccc90ec03bb0996b63c7e1b4d9823"
+        },
+        {
+          "dimension": "street_interface",
+          "source_pages": "2-3",
+          "definition_sha256": "8f002820ff513ef72437da3bdbaa013b115928666b2a45bd521848b5adb6ed6b",
+          "score_rules_sha256": "d53a2a1d1f374a21b7250940e783a80c26d0301d39fbcceb110743b7d60b0f65",
+          "hard_limits_sha256": "6f8d000ca9fd8169f90cd27a50e6115f79aba6abbdf38618096aff8d2500a2e5"
+        },
+        {
+          "dimension": "greenery_staying",
+          "source_pages": "3",
+          "definition_sha256": "318eb8ebe045b029214069d4e4bab53c8e3502f3f7a9966fdf10bdbc62ba0252",
+          "score_rules_sha256": "31227f4059124938fc60b8e07eeefb6dd92bb2824044f3a8327a064512908e85",
+          "hard_limits_sha256": "155f35a31cd72d5df79842a73f97c052d3d49ca10ef666bb656af9b2fe70dc7b"
+        },
+        {
+          "dimension": "environmental_maintenance",
+          "source_pages": "4",
+          "definition_sha256": "92d6f4580d3621651d2b4d0725e1c9b993751b10563d7948a3653fa93b8dae3f",
+          "score_rules_sha256": "de186bb48f3da953c19e5058886628451a0106e41346802fdc2b98b007fda13a",
+          "hard_limits_sha256": "58f3b489997c57f2b7885b6afe31571f1b877c12be73f712d3f915d8ec230440"
+        }
+      ]
+    }
+  }
+}

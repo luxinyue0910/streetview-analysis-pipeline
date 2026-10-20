@@ -18,7 +18,7 @@ def compose(version_dir: Path, stage: str, rubric_text: str) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", choices=["v0", "v1_compact"], required=True)
+    parser.add_argument("--version", choices=["v0", "v1_compact", "v2_organized"], required=True)
     parser.add_argument("--stage", choices=["overall", "side_A", "side_B"], required=True)
     parser.add_argument("--rubric-text", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)

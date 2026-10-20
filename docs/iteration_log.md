@@ -3,6 +3,8 @@
 Latest scoring work: see the [October 20 Qwen VLM pilot report](vlm_pilot_2026-10-20.md).
 The numbered entries below are the historical image-selection phase; statements
 that VLM scoring had not run describe that phase, not the current status.
+The [organized-rubric follow-up](vlm_organized_pilot_2026-10-20.md) documents the
+subsequent v2 trial, including the lack of consistent improvement.
 
 以下按实际工作顺序整理，首次试验发生在2026-10-12至2026-10-13（America/Los_Angeles）。仓库是在试验之后建立的，Git历史不模拟此前的开发过程。
 
