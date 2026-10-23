@@ -108,6 +108,12 @@ Several diagnostics ran alongside supervised-model development:
 | Assistant-reviewed visual facts | 20 diagnostic points | Safety/greenery MAE improved on common numeric items, but 15 new NAs appeared. Facts were prepared with access to reference scores, so this was explicitly reference-informed diagnosis, not independent accuracy. |
 | Generalized v6 target/evidence prompt | 50 development points | Safety MAE improved 0.1839 → 0.1658; interface worsened 0.1141 → 0.1550. Across all targets, common-item MAE 0.1575 → 0.1590. Did not replace v2. |
 
+The exact authored instructions and response contracts for the numbered branches
+are archived as [V4 spatial](../prompts/qwen_scoring/v4_spatial/README.md),
+[V5 safety only](../prompts/qwen_scoring/v5_safety_only/README.md), and
+[V6 target/evidence](../prompts/qwen_scoring/v6_target_evidence/README.md).
+Private rubric text must be supplied locally to reproduce the full prompts.
+
 More detailed explanations did not ensure correct observations. Visual review
 found unsupported facility claims and target-area mistakes. Some pilots used
 selected difficult cases, and token output increased in richer-output arms;

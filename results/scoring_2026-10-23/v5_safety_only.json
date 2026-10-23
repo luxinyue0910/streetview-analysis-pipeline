@@ -1,0 +1,81 @@
+{
+  "source": {
+    "experiment": "flash_safety_only60_20261022T052547Z",
+    "artifact": "results/summary.json",
+    "sha256": "f15f992718fa9a50c41140e9626420c09d3c88cd032d7dfdff90e3990a60c544"
+  },
+  "points": 60,
+  "reference_safety_items": 180,
+  "paired_numeric_safety_items": 174,
+  "primary_safety_comparison": {
+    "v2_baseline": {
+      "paired": {
+        "n": 174,
+        "mae": 0.21494252873563222,
+        "rmse": 0.29865599324113784,
+        "bias": -0.16321839080459774,
+        "within_0_1": 0.5,
+        "severe_ge_0_3": 0.3390804597701149,
+        "ccc": 0.42607453754080526,
+        "icc_A1": 0.4274845621097887,
+        "spearman": 0.5302103838527416,
+        "prediction_sd": 0.24280912048755668,
+        "reference_sd": 0.26422784900483376
+      },
+      "macro_target_CCC": 0.4265716007031863,
+      "NA_items": 1,
+      "all_available": {
+        "n": 179,
+        "mae": 0.21061452513966483,
+        "rmse": 0.2949292122246687,
+        "bias": -0.15810055865921788,
+        "within_0_1": 0.5083798882681564,
+        "severe_ge_0_3": 0.329608938547486,
+        "ccc": 0.44869910609905905,
+        "icc_A1": 0.45008532084606595,
+        "spearman": 0.5505053977785108,
+        "prediction_sd": 0.24424974568378968,
+        "reference_sd": 0.2704152997123672
+      }
+    },
+    "v5_safety_only": {
+      "paired": {
+        "n": 174,
+        "mae": 0.17356321839080466,
+        "rmse": 0.23707993705019442,
+        "bias": -0.024137931034482744,
+        "within_0_1": 0.5747126436781609,
+        "severe_ge_0_3": 0.25287356321839083,
+        "ccc": 0.6788092469838586,
+        "icc_A1": 0.6800645944504746,
+        "spearman": 0.6945443526735744,
+        "prediction_sd": 0.3234136360312194,
+        "reference_sd": 0.26422784900483376
+      },
+      "macro_target_CCC": 0.6776695312794973,
+      "NA_items": 6,
+      "all_available": {
+        "n": 174,
+        "mae": 0.17356321839080466,
+        "rmse": 0.23707993705019442,
+        "bias": -0.024137931034482744,
+        "within_0_1": 0.5747126436781609,
+        "severe_ge_0_3": 0.25287356321839083,
+        "ccc": 0.6788092469838586,
+        "icc_A1": 0.6800645944504746,
+        "spearman": 0.6945443526735744,
+        "prediction_sd": 0.3234136360312194,
+        "reference_sd": 0.26422784900483376
+      }
+    }
+  },
+  "promotion_gate": {
+    "all_safety_MAE_gain": 0.04137931034482756,
+    "low_reference_safety_MAE_worsening": -0.02765957446808505,
+    "ordinary_control_safety_MAE_worsening": 0.0,
+    "new_safety_NA_items": 5,
+    "resolved_safety_NA_items": 0,
+    "passes_numeric_gate": false
+  },
+  "production_default_changed": false
+}

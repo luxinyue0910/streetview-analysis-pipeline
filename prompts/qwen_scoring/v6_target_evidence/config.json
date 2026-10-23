@@ -1,0 +1,88 @@
+{
+  "version": "v6_target_evidence",
+  "language": "zh-CN",
+  "status": "evaluated_development_not_selected",
+  "parent_version": "v2_organized",
+  "full_prompt_assembly": "prefix + transformed private rubric text + suffix; no inserted whitespace or normalization",
+  "stages": {
+    "overall": {
+      "prefix": "overall.prefix.txt",
+      "suffix": "overall.suffix.txt",
+      "rubric": "overall",
+      "image_count": 2
+    },
+    "side_A": {
+      "prefix": "side_A.prefix.txt",
+      "suffix": "side_A.suffix.txt",
+      "rubric": "single_side",
+      "image_count": 1
+    },
+    "side_B": {
+      "prefix": "side_B.prefix.txt",
+      "suffix": "side_B.suffix.txt",
+      "rubric": "single_side",
+      "image_count": 1
+    }
+  },
+  "private_rubric_text_sha256": {
+    "overall": "3b4e9a528448a979f441df3e88de0e7e75cd7f364f2674f653bd186c41213051",
+    "single_side": "8a20cc606388e167dd51e30f14ae0e6169d3679eba70e7ab86cd628db9643e03"
+  },
+  "pilot_composed_prompt_sha256": {
+    "overall": "5a58d267c36d1cbe24a36ee57474b5f66df17826addc6f405e78c73e468dd8f1",
+    "side_A": "68bbfe6c761e8ad7407dbe44d0a3a3af1949f60ec02b051dc4bbb5d2e17b1733",
+    "side_B": "68bbfe6c761e8ad7407dbe44d0a3a3af1949f60ec02b051dc4bbb5d2e17b1733"
+  },
+  "parameters": {
+    "temperature": 0,
+    "enable_thinking": false,
+    "max_tokens": 3000,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "models_tested": [
+    "qwen3.8-flash"
+  ],
+  "rubrics_published": false,
+  "source_experiment": "flash_facts20_prompt50_20261023T043353Z",
+  "pilot_points": 50,
+  "response_schema": "response.schema.json",
+  "production_default_changed": false,
+  "targets_per_request": [
+    "pedestrian_safety",
+    "street_interface",
+    "greenery_staying",
+    "environmental_maintenance"
+  ],
+  "later_evaluation": {
+    "experiment": "flash_v2_v6_dino_groupcv488_20261023T045922Z",
+    "development_points": 488,
+    "parameters": {
+      "temperature": 0,
+      "enable_thinking": false,
+      "max_tokens": 3000,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "prompt_hashes_identical": true
+  },
+  "response_normalization": {
+    "numeric_score_strings": [
+      "0",
+      "0.0",
+      "0.1",
+      "0.2",
+      "0.4",
+      "0.5",
+      "0.6",
+      "0.8",
+      "0.9",
+      "1",
+      "1.0"
+    ],
+    "action": "Convert only these exact score strings to numbers before schema validation; retain original API response separately."
+  },
+  "note": "Generic prompt, not the reference-informed facts_assisted diagnostic arm. Same prompt hashes used in the later 488-point v2/v6 comparison. Max output tokens 3000; selected final V2 deployment uses 900."
+}

@@ -9,6 +9,14 @@ from pathlib import Path
 def compose(version_dir: Path, stage: str, rubric_text: str) -> str:
     config = json.loads((version_dir / "config.json").read_text(encoding="utf-8"))
     entry = config["stages"][stage]
+    transform = config.get("rubric_transform")
+    if transform:
+        if transform.get("kind") != "before_heading":
+            raise ValueError("Unsupported rubric transformation.")
+        heading = transform["heading"]
+        if rubric_text.count(heading) != 1:
+            raise ValueError("Expected the full organized rubric with exactly one cutoff heading.")
+        rubric_text = rubric_text[:rubric_text.index(heading)]
     return (
         (version_dir / entry["prefix"]).read_text(encoding="utf-8")
         + rubric_text
@@ -18,7 +26,7 @@ def compose(version_dir: Path, stage: str, rubric_text: str) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", choices=["v0", "v1_compact", "v2_organized", "v3_evidence_aligned"], required=True)
+    parser.add_argument("--version", choices=["v0", "v1_compact", "v2_organized", "v3_evidence_aligned", "v4_spatial", "v5_safety_only", "v6_target_evidence"], required=True)
     parser.add_argument("--stage", choices=["overall", "side_A", "side_B"], required=True)
     parser.add_argument("--rubric-text", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
@@ -27,7 +35,10 @@ def main():
     version_dir = Path(__file__).resolve().parents[1] / "prompts" / "qwen_scoring" / args.version
     # Preserve extracted rubric line endings and characters for exact hash checks.
     rubric = args.rubric_text.read_bytes().decode("utf-8")
-    prompt = compose(version_dir, args.stage, rubric)
+    try:
+        prompt = compose(version_dir, args.stage, rubric)
+    except ValueError as exc:
+        parser.error(str(exc))
     digest = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
     config = json.loads((version_dir / "config.json").read_text(encoding="utf-8"))
     if args.verify_pilot_hash:

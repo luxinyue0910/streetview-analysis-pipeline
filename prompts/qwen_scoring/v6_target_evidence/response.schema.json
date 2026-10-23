@@ -1,0 +1,184 @@
+{
+  "type": "object",
+  "properties": {
+    "observations": {
+      "type": "object",
+      "properties": {
+        "target_area": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "walk_route": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "separation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "shade": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "staying": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "required": [
+        "target_area",
+        "walk_route",
+        "separation",
+        "shade",
+        "staying"
+      ],
+      "additionalProperties": false
+    },
+    "scores": {
+      "type": "object",
+      "properties": {
+        "pedestrian_safety": {
+          "anyOf": [
+            {
+              "type": "number",
+              "enum": [
+                0,
+                0.1,
+                0.2,
+                0.4,
+                0.5,
+                0.6,
+                0.8,
+                0.9,
+                1
+              ]
+            },
+            {
+              "type": "string",
+              "const": "NA"
+            }
+          ]
+        },
+        "street_interface": {
+          "anyOf": [
+            {
+              "type": "number",
+              "enum": [
+                0,
+                0.1,
+                0.2,
+                0.4,
+                0.5,
+                0.6,
+                0.8,
+                0.9,
+                1
+              ]
+            },
+            {
+              "type": "string",
+              "const": "NA"
+            }
+          ]
+        },
+        "greenery_staying": {
+          "anyOf": [
+            {
+              "type": "number",
+              "enum": [
+                0,
+                0.1,
+                0.2,
+                0.4,
+                0.5,
+                0.6,
+                0.8,
+                0.9,
+                1
+              ]
+            },
+            {
+              "type": "string",
+              "const": "NA"
+            }
+          ]
+        },
+        "environmental_maintenance": {
+          "anyOf": [
+            {
+              "type": "number",
+              "enum": [
+                0,
+                0.1,
+                0.2,
+                0.4,
+                0.5,
+                0.6,
+                0.8,
+                0.9,
+                1
+              ]
+            },
+            {
+              "type": "string",
+              "const": "NA"
+            }
+          ]
+        }
+      },
+      "required": [
+        "pedestrian_safety",
+        "street_interface",
+        "greenery_staying",
+        "environmental_maintenance"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "pedestrian_safety": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "street_interface": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "greenery_staying": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "environmental_maintenance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        }
+      },
+      "required": [
+        "pedestrian_safety",
+        "street_interface",
+        "greenery_staying",
+        "environmental_maintenance"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "observations",
+    "scores",
+    "evidence"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "v6_target_evidence normalized response",
+  "$comment": "Reconstructed from the archived runtime validator. Stage-specific observation counts are specified in config.json. JSON-object API output was validated locally; this schema was not sent as a strict API response schema."
+}

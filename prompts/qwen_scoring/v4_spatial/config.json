@@ -1,0 +1,61 @@
+{
+  "version": "v4_spatial",
+  "language": "zh-CN",
+  "status": "evaluated_development_not_selected",
+  "parent_version": "v2_organized",
+  "full_prompt_assembly": "prefix + transformed private rubric text + suffix; no inserted whitespace or normalization",
+  "stages": {
+    "overall": {
+      "prefix": "overall.prefix.txt",
+      "suffix": "overall.suffix.txt",
+      "rubric": "overall",
+      "image_count": 2,
+      "observation_count": 2
+    },
+    "side_A": {
+      "prefix": "side_A.prefix.txt",
+      "suffix": "side_A.suffix.txt",
+      "rubric": "single_side",
+      "image_count": 1,
+      "observation_count": 1
+    },
+    "side_B": {
+      "prefix": "side_B.prefix.txt",
+      "suffix": "side_B.suffix.txt",
+      "rubric": "single_side",
+      "image_count": 1,
+      "observation_count": 1
+    }
+  },
+  "private_rubric_text_sha256": {
+    "overall": "3b4e9a528448a979f441df3e88de0e7e75cd7f364f2674f653bd186c41213051",
+    "single_side": "8a20cc606388e167dd51e30f14ae0e6169d3679eba70e7ab86cd628db9643e03"
+  },
+  "pilot_composed_prompt_sha256": {
+    "overall": "a2e4596590c6f35f247398fba0c4408df920ea5f848e772657055f3b3d53e7dd",
+    "side_A": "8a2c240dab39946c273912f1dc6ffb6fa1825c9ae4db38fadfdb46d9b36d52e2",
+    "side_B": "8a2c240dab39946c273912f1dc6ffb6fa1825c9ae4db38fadfdb46d9b36d52e2"
+  },
+  "parameters": {
+    "temperature": 0,
+    "enable_thinking": false,
+    "max_tokens": 900,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "models_tested": [
+    "qwen3.8-flash"
+  ],
+  "rubrics_published": false,
+  "source_experiment": "flash_spatial_prompt60_20261022T051000Z",
+  "pilot_points": 60,
+  "response_schema": "response.schema.json",
+  "production_default_changed": false,
+  "targets_per_request": [
+    "pedestrian_safety",
+    "street_interface",
+    "greenery_staying",
+    "environmental_maintenance"
+  ]
+}

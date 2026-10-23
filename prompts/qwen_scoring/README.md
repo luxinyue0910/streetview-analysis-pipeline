@@ -7,7 +7,9 @@ Documentation is in English; prompt language is retained to reproduce the
 Chinese scoring task.
 
 Each full prompt is `prefix + private rubric text + suffix`, with no extra
-separator or normalization. The original PDFs and their extracted text are not
+separator or normalization. V5 first applies its configured safety-section
+selection to the full private V2 rubric; other archived versions use the supplied
+rubric unchanged. The original PDFs and their extracted text are not
 published. Their text hashes and the composed prompt hashes are in each
 version's `config.json`.
 
@@ -16,7 +18,24 @@ version's `config.json`.
 | `v0` | Scores, target description, visible evidence, anchors, uncertainty, NA reasons | 2,200 |
 | `v1_compact` | Scores and one evidence sentence per dimension, at most 40 characters | 900 |
 | `v2_organized` | Same compact response; PDF rules grouped correctly by dimension | 900 |
-| `v3_evidence_aligned` | Same compact response and complete V2 rules; observation and band-condition checks revised after the 100-point development audit; evaluated, not selected | 900 |
+| [`v3_evidence_aligned`](v3_evidence_aligned/README.md) | Same compact response and complete V2 rules; observation and band-condition checks revised after the 100-point development audit; evaluated, not selected | 900 |
+| [`v4_spatial`](v4_spatial/README.md) | Per-image spatial-relation observations, four scores and short evidence; evaluated on 60 points, not selected | 900 |
+| [`v5_safety_only`](v5_safety_only/README.md) | Route diagnosis and safety score only; three safety targets per point, other targets retain V2; evaluated on 60 points, not selected | 900 |
+| [`v6_target_evidence`](v6_target_evidence/README.md) | Five short observation strings plus four scores and evidence; 50-point pilot and 488-point supervised comparison, not selected | 3,000 |
+
+The numbered archive now covers V0 through V6. These are experimental branches,
+not a chain where each later prompt replaces every earlier component. V4 and V6
+retain the complete V2 rubric; V5 selects its general principles and safety
+section. The current selected method uses **V2**, not the highest version number.
+Unnumbered brief-explanation, two-stage and reference-informed fact diagnostics
+are described in the [experiment history](../../docs/scoring_iterations_2026-10-23.md);
+they are not silently relabeled as V4–V6.
+
+Each new version includes authored prefix/suffix fragments, exact composed-prompt
+hashes, parameters, a documented local response schema, and an English account
+of its changes and rejection rationale. No per-point facts or reference scores
+are published. New schemas document the archived local validators rather than
+claiming strict API-enforced structured output.
 
 The compact version changes output instructions and the token cap; scoring
 instructions, rubric text, and stage-specific image inputs remain unchanged.

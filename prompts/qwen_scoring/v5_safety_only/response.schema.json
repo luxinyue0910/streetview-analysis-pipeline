@@ -1,0 +1,138 @@
+{
+  "type": "object",
+  "properties": {
+    "observations": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "integer",
+            "enum": [
+              1,
+              2
+            ]
+          },
+          "target_edge": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "route_type": {
+            "type": "string",
+            "enum": [
+              "separate_pedestrian_route",
+              "shared_vehicle_surface",
+              "no_walkable_route",
+              "not_observable"
+            ]
+          },
+          "continuity": {
+            "type": "string",
+            "enum": [
+              "continuous",
+              "interrupted",
+              "not_applicable",
+              "unclear"
+            ]
+          },
+          "obstruction": {
+            "type": "string",
+            "enum": [
+              "none_visible",
+              "local_narrowing",
+              "major_blockage",
+              "unclear"
+            ]
+          },
+          "visible_support": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          }
+        },
+        "required": [
+          "image",
+          "target_edge",
+          "route_type",
+          "continuity",
+          "obstruction",
+          "visible_support"
+        ],
+        "additionalProperties": false
+      },
+      "prefixItems": [
+        {
+          "properties": {
+            "image": {
+              "const": 1
+            }
+          }
+        },
+        {
+          "properties": {
+            "image": {
+              "const": 2
+            }
+          }
+        }
+      ]
+    },
+    "scores": {
+      "type": "object",
+      "properties": {
+        "pedestrian_safety": {
+          "anyOf": [
+            {
+              "type": "number",
+              "enum": [
+                0,
+                0.1,
+                0.2,
+                0.4,
+                0.5,
+                0.6,
+                0.8,
+                0.9,
+                1
+              ]
+            },
+            {
+              "type": "string",
+              "const": "NA"
+            }
+          ]
+        }
+      },
+      "required": [
+        "pedestrian_safety"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "pedestrian_safety": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        }
+      },
+      "required": [
+        "pedestrian_safety"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "observations",
+    "scores",
+    "evidence"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "v5_safety_only normalized response",
+  "$comment": "Reconstructed from the archived runtime validator. Stage-specific observation counts are specified in config.json. JSON-object API output was validated locally; this schema was not sent as a strict API response schema."
+}
