@@ -10,6 +10,7 @@ and [iteration history](../../docs/scoring_iterations_2026-10-23.md).
 |---|---|
 | `initial_supervision.json` | 488-point nested spatial OOF; 5,835 common raw-numeric score items |
 | `regression_iterations.json` | Weighting, specialists, constraints and blends; same common-item development comparison |
+| `v3_prompt_comparison.json` | Matched V2/V3 on 100 development points; 1,191 common numeric items under the earlier reference |
 | `prompt_diagnostics.json` | Separate 12/24/60/100-point diagnostic samples; do not pool or rank across samples |
 | `v5_safety_only.json` | 60-point safety-only pilot; 174 numeric pairs out of 180 safety reference items, with NA coverage and failed promotion gate |
 | `v2_v6_comparison.json` | Matched 488-point nested spatial OOF; all 5,856 reference items |

@@ -6,6 +6,11 @@ described in [the method report](scoring_method_2026-10-23.md); full-dataset
 scoring remains paused. New documentation is in English; archived task prompts
 retain their original Chinese language.
 
+**Start here:** [V0–V6 prompt changes and decisions](#1-prompt-evolution-v0v6),
+[additional explanation experiments](#4-additional-visual-grounding-and-explanation-experiments),
+[v2/v6 with the same supervised workflow](#5-v2-v6-and-both-versions-in-the-same-supervised-workflow),
+and [final choice](#8-dino-ablation-and-final-choice).
+
 ## Reading the results correctly
 
 - Compare alternatives on the **same reference version, point set, item mask
@@ -27,29 +32,167 @@ retain their original Chinese language.
   CV prevents the fitted regression components from seeing their outer labels,
   but cannot undo earlier prompt-development exposure to those points.
 
-## 1. Prompt and model pilots
+## 1. Prompt evolution: V0–V6
 
-The [initial pilot](vlm_pilot_2026-10-20.md) compared verbose and compact output,
-Qwen model options and measured usage on three points. Flash became the economical
-candidate for larger experiments; VL Plus remained an alternative. Three points
-were insufficient to establish a general model ranking.
+**The final pipeline uses Flash + V2, not V6.** Later versions tested specific
+hypotheses; they were not automatic upgrades. V4 and V6 keep the full V2 rubric,
+while V5 is a safety-only branch. The table below records what actually changed.
+Prompt versions are separate from DINOv2 (the image encoder) and from subsequent
+supervised calibration/regression experiments.
 
-The [organized-rubric experiment](vlm_organized_pilot_2026-10-20.md) made PDF
-definitions, bands and constraints explicit by dimension. Cleaner organization
-did not consistently improve scores. Errors included both incorrect visual
-facts and incorrect mapping from visible facts to scoring bands.
+| Version and archived instructions | Problem addressed | Concrete change | Evaluation and decision |
+|---|---|---|---|
+| [V0](../prompts/qwen_scoring/v0) | Establish image scoring with the PDF rules | Original extracted rubric; scores plus target description, visible evidence, rubric anchors, uncertainty and NA reasons | Three-point model pilot with VL Plus and 3.8 Max; verbose starting point, not a validated baseline |
+| [V1 compact](../prompts/qwen_scoring/v1_compact) | Reduce output length and cost | Keep rubric and image protocol; return scores + one short evidence sentence per dimension, at most 40 characters | Same three points; VL Plus output tokens fell 76.1%. Retain compact output; Flash became the economical candidate |
+| [V2 organized](../prompts/qwen_scoring/v2_organized) | Make PDF rules easier to follow | Group definitions, score bands and hard restrictions by dimension; clean extraction artifacts | Three-point agreement did not improve consistently. Retain as the explicit, reproducible baseline; ultimately selected for the mixed pipeline |
+| [V3 evidence aligned](../prompts/qwen_scoring/v3_evidence_aligned/README.md) | Address errors found in the 100-point audit | Add target-location, object-function, evidence-to-band and observability checks; keep full V2 rubric and compact output | Same 100 development points, earlier reference: MAE 0.1572 → 0.1586; within 0.1 49.12% → 48.61%. Not selected |
+| [V4 spatial](../prompts/qwen_scoring/v4_spatial/README.md) | Prevent wrong-route and wrong-side judgments | Add per-image categorical observations of walkway, barriers, vehicles, canopy and staying support before scoring | 60-point pilot: MAE 0.1586 → 0.1558, but low-score safety and NA coverage failed promotion checks. Not selected |
+| [V5 safety only](../prompts/qwen_scoring/v5_safety_only/README.md) | Isolate difficult safety decisions | Retain only general/safety rubric sections; describe route type, continuity and obstruction; output safety only | 60-point safety pilot: MAE 0.2149 → 0.1736 on 174 numeric pairs, but five new NAs. Not selected |
+| [V6 target/evidence](../prompts/qwen_scoring/v6_target_evidence/README.md) | Generalize lessons from visual-grounding and explanation pilots | Five short observation fields, then scores and evidence; keep full V2 rubric | 50-point pilot: safety improved, interface worsened. Later matched 488-point DINO comparison also favored V2. Not selected |
 
-The v3 evidence-aligned prompt added target-location, function and band checks
-after auditing the 100-point development set. It was evaluated against v2 on
-those same points under the then-current reference; it was not selected as a
-general replacement. Its [instruction archive](../prompts/qwen_scoring/v3_evidence_aligned/README.md)
-is now marked evaluated rather than leaving the old “unevaluated” status.
-VL Plus and image-fact/maintenance-oriented pilots were also explored. Changes
-were treated as dimension-specific hypotheses, not as automatic replacements.
+Each arrow is a **within-experiment comparison**, not a comparison with the
+previous row. Samples, reference versions and numeric-item masks differ. MAE
+is mean absolute error; “within 0.1” means the fraction of evaluated scores
+whose absolute difference from the reference is ≤0.1. Missing outputs are
+reported separately, because a better numeric-only average can hide lost coverage.
 
-After the reference replacement, the fixed 100-point Flash v2 baseline had
-52.56% within 0.1, MAE 0.1581 and 19.98% errors ≥0.3 on its 1,191 numeric items;
-9 of 1,200 outputs were NA. This diagnostic baseline is not the final test.
+### V0 → V1: shorten the output, preserve the task
+
+V0 requested a substantial explanation alongside each score. V1 removed the
+separate target/anchor/uncertainty narrative and retained one short evidence
+sentence per dimension, including the reason when a score is NA. The maximum
+output allowance changed from 2,200 to 900 tokens; this is a cap, not actual usage.
+The rubric, images and independent overall/A/B request protocol stayed the same.
+
+Across nine matched VL Plus requests, actual output tokens fell from 6,198 to
+1,482 (76.1%). Scores also changed, so this was not proof of equal accuracy.
+The compact pilot compared Flash, VL Plus and 3.7 Plus on only three points;
+its reference was an earlier AI-assisted annotation set, not an independent
+human gold standard. Flash was retained as an economical experimental candidate,
+with VL Plus as an alternative. [Full pilot and usage record](vlm_pilot_2026-10-20.md).
+
+### V1 → V2: reorganize the rubric, not the scoring criteria
+
+V2 places each definition, low/middle/high band and restriction under the correct
+scoring dimension. It also removes extraction artifacts and repeated headers.
+The authored task instructions, response contract, image bytes and 900-token
+limit stayed unchanged. Original PDF pages were checked to preserve rule meaning.
+
+On the same 30 numeric cells across both versions and models, Flash's reference
+MAE changed from 0.087 to 0.117; VL Plus changed from 0.133 to 0.147. This small
+pilot did **not** demonstrate an accuracy gain from organization. V2 provided a
+clear fixed baseline for further development; its eventual selection rests on
+later pipeline comparisons, not on winning this pilot.
+[Matched experiment](vlm_organized_pilot_2026-10-20.md).
+
+### V2 → V3: align visual evidence with score-band conditions
+
+The 100-point error audit led to explicit checks for:
+
+- **Safety:** locate the actual walking route and evaluate spatial relationships,
+  rather than treating the foreground road as the pedestrian target.
+- **Interface:** inspect ground-floor access and object function, not just the
+  presence of buildings or walls.
+- **Greenery/staying:** check both shade coverage and usable staying support;
+  avoid raising or lowering a band based on greenery alone.
+- **Maintenance:** use visible physical defects and severity, rather than age,
+  architectural style or an habitual default score.
+- **Scope and visibility:** assess each dimension's observability separately and
+  score overall from both images, independently of the side requests.
+
+The full V2 rubric was retained; no few-shot examples or new scoring anchors
+were added. On 1,191 common numeric items from the same 100 points under the
+**earlier reference**, results were:
+
+| Target dimension, pooled across overall/A/B | V2 MAE | V3 MAE |
+|---|---:|---:|
+| Safety | 0.1998 | 0.1955 |
+| Interface | 0.1074 | 0.1125 |
+| Greenery/staying | 0.1572 | 0.1582 |
+| Maintenance | 0.1643 | 0.1680 |
+| All dimensions | 0.1572 | 0.1586 |
+
+The pooled within-0.1 rate fell from 49.12% to 48.61%. V3 produced numeric values
+for all 1,200 items versus V2's 1,191, but improved coverage did not establish
+better agreement. Keep V2 as the baseline.
+[Aggregate paired comparison](../results/scoring_2026-10-23/v3_prompt_comparison.json).
+
+After the team replaced the reference table, the same fixed 100-point Flash V2
+baseline was re-evaluated: within 0.1 **52.56%**, MAE **0.1581**, error ≥0.3
+**19.98%**, with 1,191 numeric items and nine NAs. This is a different reference
+comparison, not a new prompt gain and not the final independent test.
+
+### V4: require spatial observations before scores
+
+V4 adds categorical observations for each image: the target edge, walkway
+continuity, barrier relation, vehicle relation, canopy relation and staying
+support. For example, a boundary wall is not automatically traffic protection;
+a parked vehicle matters differently when it occupies the walkway; tree canopy
+must relate to the walking route rather than merely appear somewhere in view.
+
+The four scores and short evidence remain. Overall requests contain two ordered
+observation objects, side requests one. On 710 common numeric items from 60
+points, MAE improved from 0.1586 to 0.1558, while within 0.1 changed from 55.21%
+to 54.79%. Low-score safety worsened and total NAs rose from five to six.
+The improvement was insufficient under the promotion checks.
+[Instructions and response contract](../prompts/qwen_scoring/v4_spatial/README.md).
+
+### V5: isolate safety instead of changing all 12 targets
+
+V5 narrows the task to route type, continuity, obstruction and supporting
+observations, using only the general principles and safety portion of the V2
+rubric. Three calls yield **three safety scores**, not 12; the other nine scores
+in composite reports remain V2 outputs.
+
+On 174 numeric safety pairs from 60 points, within 0.1 rose from 50.00% to 57.47%
+and MAE fell from 0.2149 to 0.1736. However, safety NAs increased from one to six,
+with five new NAs and none resolved. The numeric improvement did not satisfy the
+coverage requirement, so this branch was not promoted.
+[Instructions and matched metrics](../prompts/qwen_scoring/v5_safety_only/README.md).
+
+### V6: short target-grounded observations, then scores
+
+V6 returns five short observation fields—`target_area`, `walk_route`,
+`separation`, `shade`, `staying`—followed by the four scores and short evidence.
+It distinguishes physical presence from useful function: whether vegetation
+shades the public walking route, whether a barrier separates traffic, and whether
+there is usable staying space. It also distinguishes confirmed absence from
+unobservable space instead of substituting default low scores for uncertainty.
+
+This generic prompt contains **no per-point reference scores or assistant facts**.
+It is distinct from the reference-informed facts diagnostic in section 4. The
+full V2 rubric remains; the output cap rises to 3,000 tokens for observations.
+
+In the 50-point pilot, safety MAE improved from 0.1839 to 0.1658, but interface
+worsened from 0.1141 to 0.1550; greenery changed from 0.1600 to 0.1633 and
+maintenance from 0.1720 to 0.1520. Across 598 common numeric items, MAE changed
+from 0.1575 to 0.1590. Better safety/maintenance did not offset the other losses.
+
+V6 was also tested inside the **same supervised DINO workflow**, rather than
+being rejected on raw scores alone. On 488 development points, its guarded
+mixture had MAE 0.0970 versus V2's 0.0942 and worsened MAE in all five outer folds.
+Combining both prompts yielded only a small uncertain gain, with extra calls.
+Section 5 provides that matched comparison. These are earlier guarded-mixture
+results, not the later final SVR/probability mixture's test performance.
+[Exact V6 archive](../prompts/qwen_scoring/v6_target_evidence/README.md).
+
+### What is reproducible, and what was learned
+
+The [prompt archive](../prompts/qwen_scoring/README.md) contains each version's
+authored prefix/suffix, parameters, response contract and composed-prompt hashes.
+A complete prompt is **prefix + private PDF-derived rubric + suffix**; the short
+prefix alone is not the request. V5 first selects its safety section. The
+[renderer](../scripts/render_scoring_prompt.py) composes these locally when the
+private rubric is supplied. Original PDFs, full private rubric text and per-point
+reference data are not published.
+
+All versions use independent overall/A/B calls, temperature 0, thinking disabled
+and JSON-object output. Schemas document local response validation; they were not
+sent as server-enforced strict schemas. V0 allows 2,200 output tokens, V1–V5 900,
+and V6 3,000. More output tokens or better-written evidence do not prove better
+visual recognition. Single runs also do not isolate prompt effects from service
+variability. The evidence supported **keeping V2 and improving the downstream
+supervised mixture**, while preserving rejected branches for future work.
 
 ## 2. Supervised score calibration and image features
 

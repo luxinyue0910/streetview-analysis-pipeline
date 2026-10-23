@@ -1,0 +1,182 @@
+{
+  "description": "Historical matched Flash V2/V3 comparison on 100 development points using the earlier reference, before the team reference replacement. Not an independent test.",
+  "comparison_policy": "Primary performance deltas use exactly the same numeric cells in both versions. Coverage and NA changes are reported separately. Original reference values are not rounded. Within means absolute error <=0.1, severe means >=0.3. CCC is Lin concordance, not Pearson correlation. Single run per prompt; prompt effects and run-to-run variability are not separated.",
+  "pooled": {
+    "common_numeric_items": 1191,
+    "v2": {
+      "total_items": 1191,
+      "numeric_items": 1191,
+      "numeric_coverage": 1.0,
+      "mae": 0.1572208228379513,
+      "bias": -0.1149874055415617,
+      "exact": 0.1855583543240974,
+      "within_0_1": 0.491183879093199,
+      "severe_ge_0_3": 0.17548278757346766,
+      "ccc": 0.7168473025861691
+    },
+    "v3": {
+      "total_items": 1191,
+      "numeric_items": 1191,
+      "numeric_coverage": 1.0,
+      "mae": 0.15856423173803527,
+      "bias": -0.10062972292191436,
+      "exact": 0.1998320738874895,
+      "within_0_1": 0.48614609571788414,
+      "severe_ge_0_3": 0.18052057094878254,
+      "ccc": 0.7036785321084419
+    },
+    "delta_v3_minus_v2": {
+      "mae": 0.00134340890008397,
+      "bias": 0.014357682619647344,
+      "exact": 0.014273719563392101,
+      "within_0_1": -0.005037783375314853,
+      "severe_ge_0_3": 0.00503778337531488,
+      "ccc": -0.013168770477727243
+    }
+  },
+  "by_dimension": {
+    "pedestrian_safety": {
+      "common_numeric_items": 298,
+      "v2": {
+        "total_items": 298,
+        "numeric_items": 298,
+        "numeric_coverage": 1.0,
+        "mae": 0.19983221476510066,
+        "bias": -0.16560402684563758,
+        "exact": 0.17114093959731544,
+        "within_0_1": 0.38926174496644295,
+        "severe_ge_0_3": 0.2516778523489933,
+        "ccc": 0.4624576804241868
+      },
+      "v3": {
+        "total_items": 298,
+        "numeric_items": 298,
+        "numeric_coverage": 1.0,
+        "mae": 0.19546979865771813,
+        "bias": -0.14714765100671143,
+        "exact": 0.20134228187919462,
+        "within_0_1": 0.41946308724832215,
+        "severe_ge_0_3": 0.24496644295302014,
+        "ccc": 0.4416981846580467
+      },
+      "delta_v3_minus_v2": {
+        "mae": -0.004362416107382527,
+        "bias": 0.018456375838926148,
+        "exact": 0.03020134228187918,
+        "within_0_1": 0.030201342281879207,
+        "severe_ge_0_3": -0.006711409395973172,
+        "ccc": -0.020759495766140057
+      }
+    },
+    "street_interface": {
+      "common_numeric_items": 297,
+      "v2": {
+        "total_items": 297,
+        "numeric_items": 297,
+        "numeric_coverage": 1.0,
+        "mae": 0.1074074074074074,
+        "bias": -0.006060606060606053,
+        "exact": 0.2255892255892256,
+        "within_0_1": 0.6632996632996633,
+        "severe_ge_0_3": 0.06734006734006734,
+        "ccc": 0.7836054258134012
+      },
+      "v3": {
+        "total_items": 297,
+        "numeric_items": 297,
+        "numeric_coverage": 1.0,
+        "mae": 0.11245791245791248,
+        "bias": 0.014478114478114486,
+        "exact": 0.21885521885521886,
+        "within_0_1": 0.6464646464646465,
+        "severe_ge_0_3": 0.0707070707070707,
+        "ccc": 0.7760497218068755
+      },
+      "delta_v3_minus_v2": {
+        "mae": 0.005050505050505083,
+        "bias": 0.020538720538720537,
+        "exact": -0.006734006734006731,
+        "within_0_1": -0.01683501683501676,
+        "severe_ge_0_3": 0.0033670033670033656,
+        "ccc": -0.007555704006525721
+      }
+    },
+    "greenery_staying": {
+      "common_numeric_items": 298,
+      "v2": {
+        "total_items": 298,
+        "numeric_items": 298,
+        "numeric_coverage": 1.0,
+        "mae": 0.15721476510067114,
+        "bias": -0.12634228187919463,
+        "exact": 0.16778523489932887,
+        "within_0_1": 0.4228187919463087,
+        "severe_ge_0_3": 0.13087248322147652,
+        "ccc": 0.5914487466092547
+      },
+      "v3": {
+        "total_items": 298,
+        "numeric_items": 298,
+        "numeric_coverage": 1.0,
+        "mae": 0.15822147651006713,
+        "bias": -0.10520134228187919,
+        "exact": 0.174496644295302,
+        "within_0_1": 0.38926174496644295,
+        "severe_ge_0_3": 0.13087248322147652,
+        "ccc": 0.6032743614971388
+      },
+      "delta_v3_minus_v2": {
+        "mae": 0.0010067114093959828,
+        "bias": 0.021140939597315445,
+        "exact": 0.006711409395973145,
+        "within_0_1": -0.03355704697986578,
+        "severe_ge_0_3": 0.0,
+        "ccc": 0.011825614887884028
+      }
+    },
+    "environmental_maintenance": {
+      "common_numeric_items": 298,
+      "v2": {
+        "total_items": 298,
+        "numeric_items": 298,
+        "numeric_coverage": 1.0,
+        "mae": 0.16426174496644297,
+        "bias": -0.1615771812080537,
+        "exact": 0.17785234899328858,
+        "within_0_1": 0.4899328859060403,
+        "severe_ge_0_3": 0.2516778523489933,
+        "ccc": 0.508061906834587
+      },
+      "v3": {
+        "total_items": 298,
+        "numeric_items": 298,
+        "numeric_coverage": 1.0,
+        "mae": 0.16795302013422822,
+        "bias": -0.16426174496644297,
+        "exact": 0.20469798657718122,
+        "within_0_1": 0.4899328859060403,
+        "severe_ge_0_3": 0.2751677852348993,
+        "ccc": 0.49170511467042394
+      },
+      "delta_v3_minus_v2": {
+        "mae": 0.0036912751677852518,
+        "bias": -0.002684563758389269,
+        "exact": 0.026845637583892634,
+        "within_0_1": 0.0,
+        "severe_ge_0_3": 0.023489932885906006,
+        "ccc": -0.016356792164163025
+      }
+    }
+  },
+  "coverage": {
+    "reference_items": 1200,
+    "v2_numeric": 1191,
+    "v3_numeric": 1200
+  },
+  "privacy": "Aggregate metrics only; no point identifiers, images or reference rows.",
+  "source": {
+    "experiment": "flash_v3_development100_20261021T043857Z",
+    "file": "comparison_metrics.json",
+    "sha256": "3d2fd08ceecf898bb202a0c05449dd582c830e4dd3fc659b8c65e75d41d75552"
+  }
+}
