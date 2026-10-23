@@ -1,0 +1,103 @@
+{
+  "source": {
+    "experiment": "flash_v2_v6_dino_groupcv488_20261023T045922Z",
+    "artifact": "results/summary.json",
+    "sha256": "b8d3607f86fb2feabe74aeb38161cc675a61f1945f64b43f6abe5ff9134ec9f1"
+  },
+  "points": 488,
+  "spatial_groups": 400,
+  "reference_items": 5856,
+  "evaluation": "spatial nested development OOF; all reference items",
+  "methods": {
+    "v2": {
+      "n": 5856,
+      "mae": 0.09417326724564312,
+      "rmse": 0.12519718655294945,
+      "bias": -0.003552281172347903,
+      "within_0_1": 0.6302937158469946,
+      "severe_ge_0_3": 0.024419398907103824,
+      "ccc": 0.8736649727513266,
+      "icc_A1": 0.8736838212604396,
+      "spearman": 0.882012164810741,
+      "prediction_sd": 0.2360687303822516,
+      "reference_sd": 0.26139726412516073,
+      "macro_target_ccc": 0.7143599181969247
+    },
+    "v6": {
+      "n": 5856,
+      "mae": 0.09700435569037504,
+      "rmse": 0.12851692495729464,
+      "bias": 0.0017091673794379463,
+      "within_0_1": 0.6219262295081968,
+      "severe_ge_0_3": 0.02817622950819672,
+      "ccc": 0.8637132420031481,
+      "icc_A1": 0.8637333436795801,
+      "spearman": 0.8748612254731518,
+      "prediction_sd": 0.22990999603868453,
+      "reference_sd": 0.26139726412516073,
+      "macro_target_ccc": 0.6959330064239168
+    },
+    "v2_v6": {
+      "n": 5856,
+      "mae": 0.09383228582404304,
+      "rmse": 0.12419665128577348,
+      "bias": -0.0044079238222489445,
+      "within_0_1": 0.6335382513661202,
+      "severe_ge_0_3": 0.023736338797814206,
+      "ccc": 0.8762474251557292,
+      "icc_A1": 0.8762659429437565,
+      "spearman": 0.8839986064282468,
+      "prediction_sd": 0.23726432891678573,
+      "reference_sd": 0.26139726412516073,
+      "macro_target_ccc": 0.7206491755121647
+    }
+  },
+  "raw_missing_items": {
+    "v2": 21,
+    "v6": 45
+  },
+  "development_gates": {
+    "v6": {
+      "checks": {
+        "mae_gain": false,
+        "dimension_regression": false,
+        "low_safety_greenery": false,
+        "severe_rate": false,
+        "macro_CCC": false
+      },
+      "passes": false,
+      "mae_gain": -0.0028310884447319135,
+      "dimension_mae_change": {
+        "pedestrian_safety": 0.0015453288007352822,
+        "street_interface": 0.00868950494790452,
+        "greenery_staying": 0.0007707328417038972,
+        "environmental_maintenance": 0.00031878718858402433
+      },
+      "low_band_mae_change": {
+        "pedestrian_safety": -0.011046092624410836,
+        "greenery_staying": 0.008216709333667485
+      }
+    },
+    "v2_v6": {
+      "checks": {
+        "mae_gain": false,
+        "dimension_regression": true,
+        "low_safety_greenery": true,
+        "severe_rate": true,
+        "macro_CCC": true
+      },
+      "passes": false,
+      "mae_gain": 0.0003409814216000784,
+      "dimension_mae_change": {
+        "pedestrian_safety": -0.0009455814525826389,
+        "street_interface": -0.0005316517661230202,
+        "greenery_staying": -0.0004679578508580834,
+        "environmental_maintenance": 0.0005812653831634707
+      },
+      "low_band_mae_change": {
+        "pedestrian_safety": -0.01624893833477392,
+        "greenery_staying": -0.0012160423939980708
+      }
+    }
+  }
+}

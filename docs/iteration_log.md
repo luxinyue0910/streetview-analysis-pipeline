@@ -1,6 +1,11 @@
 # 迭代记录
 
-Latest scoring work: see the [October 20 Qwen VLM pilot report](vlm_pilot_2026-10-20.md).
+Latest scoring work: see the [scoring experiment history](scoring_iterations_2026-10-23.md)
+and [selected method](scoring_method_2026-10-23.md). These cover prompt revisions,
+spatial supervised learning, the independent 200-point test, decimal delivery
+and the DINO ablation. Full-dataset scoring has not started.
+
+Earlier scoring work: see the [October 20 Qwen VLM pilot report](vlm_pilot_2026-10-20.md).
 The numbered entries below are the historical image-selection phase; statements
 that VLM scoring had not run describe that phase, not the current status.
 The [organized-rubric follow-up](vlm_organized_pilot_2026-10-20.md) documents the

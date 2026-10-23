@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Compact streetview scoring response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scores",
+    "evidence"
+  ],
+  "properties": {
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pedestrian_safety",
+        "street_interface",
+        "greenery_staying",
+        "environmental_maintenance"
+      ],
+      "properties": {
+        "pedestrian_safety": {
+          "enum": [
+            0,
+            0.1,
+            0.2,
+            0.4,
+            0.5,
+            0.6,
+            0.8,
+            0.9,
+            1,
+            "NA"
+          ]
+        },
+        "street_interface": {
+          "enum": [
+            0,
+            0.1,
+            0.2,
+            0.4,
+            0.5,
+            0.6,
+            0.8,
+            0.9,
+            1,
+            "NA"
+          ]
+        },
+        "greenery_staying": {
+          "enum": [
+            0,
+            0.1,
+            0.2,
+            0.4,
+            0.5,
+            0.6,
+            0.8,
+            0.9,
+            1,
+            "NA"
+          ]
+        },
+        "environmental_maintenance": {
+          "enum": [
+            0,
+            0.1,
+            0.2,
+            0.4,
+            0.5,
+            0.6,
+            0.8,
+            0.9,
+            1,
+            "NA"
+          ]
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pedestrian_safety",
+        "street_interface",
+        "greenery_staying",
+        "environmental_maintenance"
+      ],
+      "properties": {
+        "pedestrian_safety": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "street_interface": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "greenery_staying": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "environmental_maintenance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        }
+      }
+    }
+  }
+}

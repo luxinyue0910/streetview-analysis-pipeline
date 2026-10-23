@@ -1,0 +1,66 @@
+{
+  "language": "zh-CN",
+  "full_prompt_assembly": "prefix + private_rubric_text + suffix; no inserted whitespace or normalization",
+  "stages": {
+    "overall": {
+      "prefix": "overall.prefix.txt",
+      "suffix": "overall.suffix.txt",
+      "rubric": "overall",
+      "image_count": 2
+    },
+    "side_A": {
+      "prefix": "side_A.prefix.txt",
+      "suffix": "side_A.suffix.txt",
+      "rubric": "single_side",
+      "image_count": 1
+    },
+    "side_B": {
+      "prefix": "side_B.prefix.txt",
+      "suffix": "side_B.suffix.txt",
+      "rubric": "single_side",
+      "image_count": 1
+    }
+  },
+  "private_rubric_text_sha256": {
+    "overall": "3b4e9a528448a979f441df3e88de0e7e75cd7f364f2674f653bd186c41213051",
+    "single_side": "8a20cc606388e167dd51e30f14ae0e6169d3679eba70e7ab86cd628db9643e03"
+  },
+  "parameters": {
+    "temperature": 0,
+    "enable_thinking": false,
+    "max_tokens": 900,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "rubrics_published": false,
+  "version": "v3_evidence_aligned",
+  "parent_version": "v2_organized",
+  "status": "evaluated_development_not_selected",
+  "models_tested": [
+    "qwen3.8-flash"
+  ],
+  "few_shot_examples": false,
+  "source": "Qualitative visual audit of all 100 development points; no stage-check or validation examples used.",
+  "changed_components": [
+    "Observation order and spatial/functional relationships",
+    "Two-way band-condition checks across four dimensions",
+    "Stage-specific target and two-image coverage checks",
+    "Neutral evidence-to-score checks replacing the fixed-0.8 warning"
+  ],
+  "unchanged_components": [
+    "Full private v2 organized rubric bytes",
+    "All numeric anchors and NA type",
+    "Response schema",
+    "Three independent stage calls and image pairing",
+    "temperature=0",
+    "enable_thinking=false",
+    "max_tokens=900"
+  ],
+  "note": "Evaluated on 100 development points using the then-current reference; not selected. Later reference replacement and supervised experiments are documented separately.",
+  "pilot_composed_prompt_sha256": {
+    "overall": "8a7be28a03d4eca8c2bdca9b513ecf9a9581f31daefaf082102e9d6c77787e01",
+    "side_A": "b371168f000d67cf0cde0fe07427029bb9328c683244e23155dd3892928571e5",
+    "side_B": "b371168f000d67cf0cde0fe07427029bb9328c683244e23155dd3892928571e5"
+  }
+}

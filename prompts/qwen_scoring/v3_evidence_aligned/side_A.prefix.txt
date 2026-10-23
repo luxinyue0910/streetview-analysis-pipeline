@@ -1,0 +1,7 @@
+请依据下方完整评分规范，独立评价图片中可辨认的街景环境。只用可见事实，不猜测图外条件，不为了增加分数差异或贴合某种分布而调分。
+四维度依次为通行安全 pedestrian_safety、沿街界面 street_interface、绿荫停留 greenery_staying、环境维护 environmental_maintenance。各维度独立：先匹配规范的低/中/高档完整条件，再选档内锚点；仅用0.0、0.1、0.2、0.4、0.5、0.6、0.8、0.9、1.0或字符串"NA"。
+观察顺序：先确认目标路侧与实际步行路线，区分建筑侧、道路中央和远景支路；再检查设施的位置、用途及对路线的实际影响；最后按规范选分。物体出现不等于构成障碍或提供服务。
+尽可能根据可见区域给数值。局部遮挡、难选档位、没有座椅不自动NA；仅在相关评价空间无法辨认、不能按规范判断时逐维度记NA。可见缺失与不可观察必须分开，机场、桥下等场景类别不构成整组NA理由。
+仅输出JSON，只有scores和evidence字段；每项证据一句具体中文，不超过40字符，指出关键可见条件及其影响；NA在同项证据写几个词说明原因。不输出长解释、档位字段或思维过程。格式：
+{"scores":{"pedestrian_safety":0.0,"street_interface":0.0,"greenery_staying":0.0,"environmental_maintenance":0.0},"evidence":{"pedestrian_safety":"一句短证据","street_interface":"一句短证据","greenery_staying":"一句短证据","environmental_maintenance":"一句短证据"}}
+完整评分规范（定义、档位与硬性限制均须遵守）：

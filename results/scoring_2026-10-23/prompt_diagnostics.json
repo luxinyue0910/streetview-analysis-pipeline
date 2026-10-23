@@ -1,0 +1,193 @@
+[
+  {
+    "source": {
+      "experiment": "flash_v2_newreference100_20261022T033932Z",
+      "artifact": "metrics.json",
+      "sha256": "a925f18a3778dc707a0eaa7abae11c796b85e277560a2116881909de838e9d59"
+    },
+    "points": 100,
+    "interpretation": "Flash v2 baseline re-evaluated against the accepted replacement reference.",
+    "methods": {
+      "flash_v2": {
+        "total_items": 1200,
+        "numeric_items": 1191,
+        "NA_items": 9,
+        "mae": 0.1581024349286314,
+        "rmse": 0.21204295938485002,
+        "bias": -0.11360201511335014,
+        "within_0_1": 0.5256087321578505,
+        "exact": 0.25524769101595296,
+        "severe_ge_0_3": 0.1998320738874895,
+        "ccc": 0.7083455107454735,
+        "numeric_coverage": 0.9925
+      }
+    }
+  },
+  {
+    "source": {
+      "experiment": "weighted_specialists_roi_20261022T053501Z",
+      "artifact": "roi_pilot/results/summary.json",
+      "sha256": "d97ee19138b41e83511e88c649f61aad88e7f1b6ee97bf868e52d44a308d5c62"
+    },
+    "points": 12,
+    "interpretation": "Safety-only assisted crops; selected diagnostic sample, not population evaluation.",
+    "methods": {
+      "full_only": {
+        "macro_CCC": 0.5256368061814459,
+        "NA_items": 4
+      },
+      "full_plus_roi": {
+        "macro_CCC": 0.5317607385638379,
+        "NA_items": 3
+      }
+    }
+  },
+  {
+    "source": {
+      "experiment": "flash_spatial_prompt60_20261022T051000Z",
+      "artifact": "results/summary.json",
+      "sha256": "0ed8acc12050b1be4d7947308ea9fd709c6ca7d9e589f06b519a6c7740473891"
+    },
+    "points": 60,
+    "interpretation": "Spatial-target prompt versus fresh v2; pilot, not a blinded final test.",
+    "methods": {
+      "v2_baseline": {
+        "n": 710,
+        "mae": 0.15859154929577465,
+        "rmse": 0.21792879054057746,
+        "bias": -0.10619718309859155,
+        "within_0_1": 0.5521126760563381,
+        "severe_ge_0_3": 0.2211267605633803,
+        "ccc": 0.7139742728333621,
+        "icc_A1": 0.7142620155268525,
+        "spearman": 0.781312343568516,
+        "prediction_sd": 0.27124815281340003,
+        "reference_sd": 0.2849402642235014,
+        "macro_target_CCC": 0.6163301580256854,
+        "NA_items": 5
+      },
+      "v4_spatial": {
+        "n": 710,
+        "mae": 0.15577464788732395,
+        "rmse": 0.21500081886512915,
+        "bias": -0.07267605633802818,
+        "within_0_1": 0.547887323943662,
+        "severe_ge_0_3": 0.21267605633802816,
+        "ccc": 0.7168884286094046,
+        "icc_A1": 0.717174400963796,
+        "spearman": 0.7506505752479642,
+        "prediction_sd": 0.27713414201806474,
+        "reference_sd": 0.2849402642235014,
+        "macro_target_CCC": 0.6122544240352509,
+        "NA_items": 6
+      }
+    }
+  },
+  {
+    "source": {
+      "experiment": "prompt_explanation_twostage24_20261023T025359Z",
+      "artifact": "results/summary.json",
+      "sha256": "9eee2f1fc9344c73c0d5725cdd0778da12296e8663b1322edb3c22a3854bc138"
+    },
+    "points": 24,
+    "interpretation": "Brief explanations and two-stage observation/scoring; common three-arm numeric subset.",
+    "methods": {
+      "v2_baseline": {
+        "n": 274,
+        "mae": 0.18686131386861315,
+        "rmse": 0.24210150492330978,
+        "bias": -0.1467153284671533,
+        "within_0_1": 0.4635036496350365,
+        "severe_ge_0_3": 0.27007299270072993,
+        "ccc": 0.5927969277749505,
+        "icc_A1": 0.5936792197537816,
+        "spearman": 0.7240824190911931,
+        "prediction_sd": 0.2546956324777884,
+        "reference_sd": 0.23988654368008372,
+        "within_0_2": 0.7299270072992701,
+        "macro_target_ccc": 0.41242055736887356,
+        "na_items": 5,
+        "available_items": 283
+      },
+      "brief_explanation": {
+        "n": 274,
+        "mae": 0.16605839416058393,
+        "rmse": 0.22006966382104232,
+        "bias": -0.09014598540145986,
+        "within_0_1": 0.5437956204379562,
+        "severe_ge_0_3": 0.26277372262773724,
+        "ccc": 0.6838173783133705,
+        "icc_A1": 0.6846073818053602,
+        "spearman": 0.7500548103920106,
+        "prediction_sd": 0.29580601546491747,
+        "reference_sd": 0.23988654368008372,
+        "within_0_2": 0.7372262773722628,
+        "macro_target_ccc": 0.49544738013485595,
+        "na_items": 7,
+        "available_items": 281
+      },
+      "two_stage": {
+        "n": 274,
+        "mae": 0.17554744525547447,
+        "rmse": 0.23233187940913538,
+        "bias": -0.09306569343065693,
+        "within_0_1": 0.5364963503649635,
+        "severe_ge_0_3": 0.2664233576642336,
+        "ccc": 0.6144267198973953,
+        "icc_A1": 0.6152925606668808,
+        "spearman": 0.6677956426123896,
+        "prediction_sd": 0.27163878319639195,
+        "reference_sd": 0.23988654368008372,
+        "within_0_2": 0.7335766423357665,
+        "macro_target_ccc": 0.43921552522227464,
+        "na_items": 3,
+        "available_items": 285
+      }
+    }
+  },
+  {
+    "source": {
+      "experiment": "flash_brief_repaired60_20261023T034311Z",
+      "artifact": "results/summary.json",
+      "sha256": "3f695e7512be0fc3fca8a337ad3200c75f10879c5490f44006a5836b0740e3df"
+    },
+    "points": 60,
+    "interpretation": "Expanded repaired explanation pilot; paired numeric subset. New NA reported separately.",
+    "methods": {
+      "v2_baseline": {
+        "n": 715,
+        "mae": 0.15706293706293706,
+        "rmse": 0.2138230102684922,
+        "bias": -0.0944055944055944,
+        "within_0_1": 0.5370629370629371,
+        "severe_ge_0_3": 0.21958041958041957,
+        "ccc": 0.6790126762894132,
+        "icc_A1": 0.6793176446148584,
+        "spearman": 0.7333516490708939,
+        "prediction_sd": 0.2542159551847742,
+        "reference_sd": 0.2624847321893225,
+        "within_0_2": 0.7804195804195804,
+        "macro_target_ccc": 0.5345512673654245,
+        "na_items": 0
+      },
+      "brief_repaired": {
+        "n": 715,
+        "mae": 0.15776223776223777,
+        "rmse": 0.21664963174919766,
+        "bias": -0.02853146853146853,
+        "within_0_1": 0.5664335664335665,
+        "severe_ge_0_3": 0.22097902097902097,
+        "ccc": 0.6984779011044108,
+        "icc_A1": 0.6987725799505048,
+        "spearman": 0.7093913860419172,
+        "prediction_sd": 0.2931804817096359,
+        "reference_sd": 0.2624847321893225,
+        "within_0_2": 0.779020979020979,
+        "macro_target_ccc": 0.5436168119800519,
+        "na_items": 5
+      }
+    },
+    "new_na": 5,
+    "resolved_na": 0
+  }
+]

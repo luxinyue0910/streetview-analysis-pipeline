@@ -1,6 +1,21 @@
 # 后续阶段
 
-## October 20 update: VLM scoring pilots
+## Current status: selected scoring method, full run not started
+
+The selected method is Flash with prompt v2 + frozen DINOv2 + a supervised
+regression/probability mixture. Deliver one-decimal scores and retain continuous
+scores. The [method report](scoring_method_2026-10-23.md) and
+[experiment history](scoring_iterations_2026-10-23.md) supersede the historical
+plans below. The 200-point test has been evaluated; the 500-point validation set
+has not been used. The user explicitly deferred full-dataset scoring.
+
+Next, only when authorized: prepare resumable batch execution with the frozen
+components, check image/reference mapping, preserve both score precisions and
+raw-response provenance, and handle missing images or failed calls explicitly.
+Do not retune on the evaluated 200-point test or report training-point fitted
+scores as generalization evidence. Safety remains the main quality limitation.
+
+## Historical October 20 plan: VLM scoring pilots
 
 Two local Qwen scoring experiments are complete and summarized in the
 [pilot report](vlm_pilot_2026-10-20.md). Versioned prompt fragments and aggregate

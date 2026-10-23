@@ -18,7 +18,7 @@ def compose(version_dir: Path, stage: str, rubric_text: str) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", choices=["v0", "v1_compact", "v2_organized"], required=True)
+    parser.add_argument("--version", choices=["v0", "v1_compact", "v2_organized", "v3_evidence_aligned"], required=True)
     parser.add_argument("--stage", choices=["overall", "side_A", "side_B"], required=True)
     parser.add_argument("--rubric-text", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
@@ -30,8 +30,12 @@ def main():
     prompt = compose(version_dir, args.stage, rubric)
     digest = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
     config = json.loads((version_dir / "config.json").read_text(encoding="utf-8"))
-    if args.verify_pilot_hash and digest != config["pilot_composed_prompt_sha256"][args.stage]:
-        parser.error("Composed prompt differs from the archived pilot hash; no output written.")
+    if args.verify_pilot_hash:
+        expected = config.get("pilot_composed_prompt_sha256", {}).get(args.stage)
+        if expected is None:
+            parser.error("This version has no archived pilot hash; no output written.")
+        if digest != expected:
+            parser.error("Composed prompt differs from the archived pilot hash; no output written.")
     if args.output.exists():
         parser.error("Output already exists; choose a new filename.")
     args.output.parent.mkdir(parents=True, exist_ok=True)

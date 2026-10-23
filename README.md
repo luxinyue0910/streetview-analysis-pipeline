@@ -2,14 +2,42 @@
 
 A local pipeline for selecting study-area coordinates, identifying side-facing street views, validating image selections, and preparing for VLM scoring and analysis.
 
-**Data filtering, annotation, visual classification, model evaluation, and resumable full-dataset selection are implemented.** Initial Qwen VLM scoring pilots are documented; production scoring and downstream analysis remain in development. Full-dataset selection produces provisional model choices and a separate review queue.
+**Image selection is complete. The VLM scoring method has been selected and independently evaluated; full-dataset VLM scoring has not started.** The selected scoring workflow combines Flash with prompt v2, frozen DINOv2 features, and a supervised regression/probability mixture. Deliver scores to one decimal and retain continuous predictions for analysis.
+
+## Current Scoring Milestone
+
+- [Selected method and all 12 test targets](docs/scoring_method_2026-10-23.md)
+- [Experiment history, alternatives and selection rationale](docs/scoring_iterations_2026-10-23.md)
+- [Frozen method specification and chosen components](configs/scoring/flash_v2_dino_decimal.json)
+- [Aggregate experiment records](results/scoring_2026-10-23/)
+
+| Evaluation set and output | Absolute error ≤0.1 | MAE | Absolute error ≥0.3 |
+|---|---:|---:|---:|
+| 488-point spatial development OOF, one decimal | 81.71% | 0.0864 | 4.66% |
+| Independent 200-point test, continuous | 69.75% | 0.0861 | 2.54% |
+| Independent 200-point test, one decimal | 82.71% | 0.0824 | 4.58% |
+
+Continuous output was the predeclared primary test endpoint; its >70% tolerance
+hit-rate goal was not met. The decimal output is the selected delivery format,
+not a retroactive change to that endpoint. Side-specific safety remains weaker
+than greenery and maintenance. These are empirical agreement metrics against
+the accepted team reference, not confidence probabilities or a claim that every
+score matches independent human annotation. The 500-point validation set has
+not been used.
+
+Removing DINO in the same 488-point spatial nested CV reduced one-decimal hit
+rate from 81.71% to 77.13% and increased large errors. DINO is retained; no new
+full-dataset calls are started by this update. The public method archive does
+not include the private fitted models or local scoring experiment runners.
+
+## Earlier Milestones
 
 The final center-point selection and local team handoff are complete under the user's acceptance policy. See the [October 13 milestone report](docs/milestone_2026-10-13.md) for final counts, review decisions, validation, and delivery scope. The data-bearing handoff package is not published in this repository.
 
 The [October 20 VLM pilot report](docs/vlm_pilot_2026-10-20.md) records model options,
 versioned prompts, compact versus verbose output, observed token costs, and known
 scoring failures. Qwen3.8 Flash is the next-test candidate from a three-point
-comparison, not a validated winner. Prior AI-assisted reference scores are not
+comparison at that stage, not a validated winner from that pilot. Prior AI-assisted reference scores are not
 independent human ground truth. VLM inference uses a cloud API; image-selection
 inference remains local.
 
@@ -51,6 +79,8 @@ Full-run counts describe output coverage and review workload, not measured full-
 - `results/aggregate_metrics.json`: aggregate results without individual coordinates.
 - `prompts/qwen_scoring/`: versioned scoring instructions and the compact response contract; private rubric text is supplied locally.
 - `results/vlm_*_2026-10-20.json`: aggregate-only scoring pilot metrics and usage-based cost estimates.
+- `results/scoring_2026-10-23/`: supervised development, prompt diagnostics, independent test and DINO-ablation aggregates.
+- `configs/scoring/`: selected scoring method specification, component settings and output precision policy.
 
 The experiment scripts retain fixed sample sizes and round-specific directories for traceability. They are not yet a general-purpose batch-processing product.
 
