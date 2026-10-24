@@ -2,14 +2,23 @@
 
 A local pipeline for selecting study-area coordinates, identifying side-facing street views, validating image selections, and preparing for VLM scoring and analysis.
 
-**Image selection is complete. The VLM scoring method has been selected and independently evaluated; full-dataset VLM scoring has not started.** The selected scoring workflow combines Flash with prompt v2, frozen DINOv2 features, and a supervised regression/probability mixture. Deliver scores to one decimal and retain continuous predictions for analysis.
+**Image selection is complete. The selected next-validation scoring method uses
+Flash v2, frozen DINOv2, the supervised mixture and a two-step low-safety extension.**
+Deliver one-decimal scores and retain continuous scores. The base mixture was
+independently evaluated; the extension currently has development CV evidence only.
+The 500-point validation and full-dataset VLM scoring have not started.
 
 ## Current Scoring Milestone
 
-- [Selected method and all 12 test targets](docs/scoring_method_2026-10-23.md)
+- [Current selected method, low-safety extension and all 12 development targets](docs/scoring_low_safety_extension_2026-10-23.md)
+- [Separate dimension-wise A/B diagnostic](docs/ab_dimension_diagnostic_2026-10-23.md)
+- [Historical frozen base and all 12 independent-test targets](docs/scoring_method_2026-10-23.md)
 - [Experiment history, alternatives and selection rationale](docs/scoring_iterations_2026-10-23.md)
-- [Frozen method specification and chosen components](configs/scoring/flash_v2_dino_decimal.json)
+- [Selected extension specification and outer-fold choices](configs/scoring/flash_v2_dino_low_safety.json)
+- [Historical frozen base specification](configs/scoring/flash_v2_dino_decimal.json)
 - [Aggregate experiment records](results/scoring_2026-10-23/)
+
+The following table is **historical base-mixture evidence**, not extension results.
 
 | Evaluation set and output | Absolute error ≤0.1 | MAE | Absolute error ≥0.3 |
 |---|---:|---:|---:|
@@ -29,6 +38,13 @@ Removing DINO in the same 488-point spatial nested CV reduced one-decimal hit
 rate from 81.71% to 77.13% and increased large errors. DINO is retained; no new
 full-dataset calls are started by this update. The public method archive does
 not include the private fitted models or local scoring experiment runners.
+
+The selected low-safety extension has 488-point rounded OOF within-0.1 of 81.88%,
+MAE 0.08583 and 268/5,856 large errors. Low safety improves 56.00% -> 66.67%, at a
+nonlow hit-rate cost of 1.13 pp, exceeding the original 1 pp guard. This tradeoff
+was explicitly accepted; final all-development wrapper fitting and new validation
+remain pending. A/B matching is reference-guided diagnosis, not part of inference;
+its gains are not added to the above rates.
 
 ## Earlier Milestones
 

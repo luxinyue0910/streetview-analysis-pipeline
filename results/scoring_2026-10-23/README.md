@@ -37,3 +37,18 @@ continuous >70% hit-rate check remains false. The 200-point test has not been
 used to fit the selected model or to select the no-DINO ablation, and is now an
 evaluated holdout rather than an untouched resource. Full-dataset scoring has
 not started.
+
+## October 23 follow-up archive
+
+| File | Evidence scope |
+|---|---|
+| `conservative_safety.json` | Same 488-point development OOF: caps and raw/base gates |
+| `grounded_roi_pilot.json` | Separate 24-point raw-VLM pilot; do not rank against supervised OOF |
+| `dino_spatial_grid.json` | Same 488 folds: CLS versus CLS+2x3 patch grid |
+| `low_safety_expert.json` | Selected extension; both precisions, 12 targets, folds, bands and failed nonlow guard |
+| `ab_dimension_diagnostic.json` | Reference-guided dimension matching on 488+200 already-scored points; not independent accuracy |
+
+The extension was user-selected after accepting the nonlow-safety tradeoff.
+Its all-488 wrapper refit is pending; old independent-test metrics remain
+historical base-only evidence. A/B diagnostic gains are not stacked onto the
+extension. No validation500 or full-dataset scoring was run by this archive update.

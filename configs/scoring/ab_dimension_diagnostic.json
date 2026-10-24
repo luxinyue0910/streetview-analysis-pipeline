@@ -1,0 +1,26 @@
+{
+  "version": "dimensionwise_ab_error_count_reduction_2026-10-23",
+  "status": "reference_guided_diagnostic_only",
+  "precision": "one_decimal",
+  "threshold": 0.3,
+  "comparison": "absolute_error >= threshold, inclusive",
+  "accept": "post_swap_large_error_count < pre_swap_large_error_count",
+  "accepted_transitions": [
+    "2->1",
+    "2->0",
+    "1->0"
+  ],
+  "tie": "keep original correspondence",
+  "scopes_changed": [
+    "side_A",
+    "side_B"
+  ],
+  "dimensions_independent": true,
+  "overall_unchanged": true,
+  "mae_guard": false,
+  "per_dimension_source_tracking_required": true,
+  "requires_point_reference_scores": true,
+  "use_on_unlabelled_full_dataset": false,
+  "stack_on_low_safety_expert_evaluated": false,
+  "overwrite_original_predictions": false
+}

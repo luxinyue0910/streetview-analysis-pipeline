@@ -1,0 +1,1182 @@
+{
+  "provenance": {
+    "local_experiment": "dimensionwise_ab_count_reduction_20261023T203645Z",
+    "source_file": "summary.json",
+    "sha256": "c67b5868f4d83c51f7a34452939bb408591fdbd21439c9fa3f4a38e73b2c5292"
+  },
+  "selection_precision": "one_decimal",
+  "rule": "For each point and each side dimension, swap iff the count of absolute errors >=0.3 strictly decreases. Do not change overall scores. No MAE guard.",
+  "cohorts": {
+    "dev488": {
+      "accepted_pairs": 44,
+      "affected_points": 42,
+      "pair_mae_increased": 1,
+      "before": {
+        "n": 5856,
+        "ge03": 273,
+        "hit": 4785,
+        "mae": 0.08640710382513661,
+        "points_ge03": 174
+      },
+      "old_rule": {
+        "n": 5856,
+        "ge03": 231,
+        "hit": 4800,
+        "mae": 0.0851775956284153,
+        "points_ge03": 149
+      },
+      "new_rule": {
+        "n": 5856,
+        "ge03": 224,
+        "hit": 4801,
+        "mae": 0.08514344262295082,
+        "points_ge03": 149
+      }
+    },
+    "test200": {
+      "accepted_pairs": 20,
+      "affected_points": 19,
+      "pair_mae_increased": 0,
+      "before": {
+        "n": 2400,
+        "ge03": 110,
+        "hit": 1985,
+        "mae": 0.082375,
+        "points_ge03": 73
+      },
+      "old_rule": {
+        "n": 2400,
+        "ge03": 89,
+        "hit": 1997,
+        "mae": 0.08054166666666666,
+        "points_ge03": 61
+      },
+      "new_rule": {
+        "n": 2400,
+        "ge03": 87,
+        "hit": 1998,
+        "mae": 0.08020833333333334,
+        "points_ge03": 61
+      }
+    },
+    "all688": {
+      "accepted_pairs": 64,
+      "affected_points": 61,
+      "pair_mae_increased": 1,
+      "before": {
+        "n": 8256,
+        "ge03": 383,
+        "hit": 6770,
+        "mae": 0.08523498062015504,
+        "points_ge03": 247
+      },
+      "old_rule": {
+        "n": 8256,
+        "ge03": 320,
+        "hit": 6797,
+        "mae": 0.08382994186046512,
+        "points_ge03": 210
+      },
+      "new_rule": {
+        "n": 8256,
+        "ge03": 311,
+        "hit": 6799,
+        "mae": 0.08370881782945737,
+        "points_ge03": 210
+      }
+    }
+  },
+  "transitions": {
+    "1->0": 47,
+    "2->1": 9,
+    "2->0": 8
+  },
+  "additional_pairs_vs_old": 9,
+  "per_target": [
+    {
+      "group": "dev488",
+      "target": "overall_pedestrian_safety",
+      "method": "before",
+      "n": "488",
+      "ge03": "26",
+      "hit": "374",
+      "mae": "0.10061475409836065",
+      "points_ge03": "26"
+    },
+    {
+      "group": "dev488",
+      "target": "overall_pedestrian_safety",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "26",
+      "hit": "374",
+      "mae": "0.10061475409836065",
+      "points_ge03": "26"
+    },
+    {
+      "group": "dev488",
+      "target": "overall_pedestrian_safety",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "26",
+      "hit": "374",
+      "mae": "0.10061475409836065",
+      "points_ge03": "26"
+    },
+    {
+      "group": "dev488",
+      "target": "overall_street_interface",
+      "method": "before",
+      "n": "488",
+      "ge03": "29",
+      "hit": "385",
+      "mae": "0.09282786885245901",
+      "points_ge03": "29"
+    },
+    {
+      "group": "dev488",
+      "target": "overall_street_interface",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "29",
+      "hit": "385",
+      "mae": "0.09282786885245901",
+      "points_ge03": "29"
+    },
+    {
+      "group": "dev488",
+      "target": "overall_street_interface",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "29",
+      "hit": "385",
+      "mae": "0.09282786885245901",
+      "points_ge03": "29"
+    },
+    {
+      "group": "dev488",
+      "target": "overall_greenery_staying",
+      "method": "before",
+      "n": "488",
+      "ge03": "4",
+      "hit": "455",
+      "mae": "0.05983606557377049",
+      "points_ge03": "4"
+    },
+    {
+      "group": "dev488",
+      "target": "overall_greenery_staying",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "4",
+      "hit": "455",
+      "mae": "0.05983606557377049",
+      "points_ge03": "4"
+    },
+    {
+      "group": "dev488",
+      "target": "overall_greenery_staying",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "4",
+      "hit": "455",
+      "mae": "0.05983606557377049",
+      "points_ge03": "4"
+    },
+    {
+      "group": "dev488",
+      "target": "overall_environmental_maintenance",
+      "method": "before",
+      "n": "488",
+      "ge03": "6",
+      "hit": "444",
+      "mae": "0.06311475409836066",
+      "points_ge03": "6"
+    },
+    {
+      "group": "dev488",
+      "target": "overall_environmental_maintenance",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "6",
+      "hit": "444",
+      "mae": "0.06311475409836066",
+      "points_ge03": "6"
+    },
+    {
+      "group": "dev488",
+      "target": "overall_environmental_maintenance",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "6",
+      "hit": "444",
+      "mae": "0.06311475409836066",
+      "points_ge03": "6"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_pedestrian_safety",
+      "method": "before",
+      "n": "488",
+      "ge03": "41",
+      "hit": "372",
+      "mae": "0.10512295081967213",
+      "points_ge03": "41"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_pedestrian_safety",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "34",
+      "hit": "372",
+      "mae": "0.10348360655737705",
+      "points_ge03": "34"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_pedestrian_safety",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "31",
+      "hit": "372",
+      "mae": "0.10348360655737705",
+      "points_ge03": "31"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_street_interface",
+      "method": "before",
+      "n": "488",
+      "ge03": "28",
+      "hit": "361",
+      "mae": "0.10225409836065574",
+      "points_ge03": "28"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_street_interface",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "20",
+      "hit": "366",
+      "mae": "0.09795081967213115",
+      "points_ge03": "20"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_street_interface",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "19",
+      "hit": "366",
+      "mae": "0.09897540983606558",
+      "points_ge03": "19"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_greenery_staying",
+      "method": "before",
+      "n": "488",
+      "ge03": "9",
+      "hit": "408",
+      "mae": "0.07807377049180328",
+      "points_ge03": "9"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_greenery_staying",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "5",
+      "hit": "409",
+      "mae": "0.07684426229508197",
+      "points_ge03": "5"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_greenery_staying",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "5",
+      "hit": "409",
+      "mae": "0.07684426229508197",
+      "points_ge03": "5"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_environmental_maintenance",
+      "method": "before",
+      "n": "488",
+      "ge03": "9",
+      "hit": "442",
+      "mae": "0.05614754098360656",
+      "points_ge03": "9"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_environmental_maintenance",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "6",
+      "hit": "443",
+      "mae": "0.055327868852459015",
+      "points_ge03": "6"
+    },
+    {
+      "group": "dev488",
+      "target": "side_A_environmental_maintenance",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "6",
+      "hit": "443",
+      "mae": "0.055327868852459015",
+      "points_ge03": "6"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_pedestrian_safety",
+      "method": "before",
+      "n": "488",
+      "ge03": "48",
+      "hit": "357",
+      "mae": "0.11700819672131148",
+      "points_ge03": "48"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_pedestrian_safety",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "44",
+      "hit": "356",
+      "mae": "0.11700819672131148",
+      "points_ge03": "44"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_pedestrian_safety",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "43",
+      "hit": "356",
+      "mae": "0.11618852459016393",
+      "points_ge03": "43"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_street_interface",
+      "method": "before",
+      "n": "488",
+      "ge03": "47",
+      "hit": "356",
+      "mae": "0.11331967213114755",
+      "points_ge03": "47"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_street_interface",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "35",
+      "hit": "364",
+      "mae": "0.10778688524590165",
+      "points_ge03": "35"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_street_interface",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "33",
+      "hit": "365",
+      "mae": "0.10717213114754098",
+      "points_ge03": "33"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_greenery_staying",
+      "method": "before",
+      "n": "488",
+      "ge03": "20",
+      "hit": "388",
+      "mae": "0.08934426229508197",
+      "points_ge03": "20"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_greenery_staying",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "16",
+      "hit": "391",
+      "mae": "0.08770491803278689",
+      "points_ge03": "16"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_greenery_staying",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "16",
+      "hit": "391",
+      "mae": "0.08770491803278689",
+      "points_ge03": "16"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_environmental_maintenance",
+      "method": "before",
+      "n": "488",
+      "ge03": "6",
+      "hit": "443",
+      "mae": "0.059221311475409835",
+      "points_ge03": "6"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_environmental_maintenance",
+      "method": "old_rule",
+      "n": "488",
+      "ge03": "6",
+      "hit": "441",
+      "mae": "0.05963114754098361",
+      "points_ge03": "6"
+    },
+    {
+      "group": "dev488",
+      "target": "side_B_environmental_maintenance",
+      "method": "new_rule",
+      "n": "488",
+      "ge03": "6",
+      "hit": "441",
+      "mae": "0.05963114754098361",
+      "points_ge03": "6"
+    },
+    {
+      "group": "test200",
+      "target": "overall_pedestrian_safety",
+      "method": "before",
+      "n": "200",
+      "ge03": "8",
+      "hit": "160",
+      "mae": "0.094",
+      "points_ge03": "8"
+    },
+    {
+      "group": "test200",
+      "target": "overall_pedestrian_safety",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "8",
+      "hit": "160",
+      "mae": "0.094",
+      "points_ge03": "8"
+    },
+    {
+      "group": "test200",
+      "target": "overall_pedestrian_safety",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "8",
+      "hit": "160",
+      "mae": "0.094",
+      "points_ge03": "8"
+    },
+    {
+      "group": "test200",
+      "target": "overall_street_interface",
+      "method": "before",
+      "n": "200",
+      "ge03": "5",
+      "hit": "162",
+      "mae": "0.085",
+      "points_ge03": "5"
+    },
+    {
+      "group": "test200",
+      "target": "overall_street_interface",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "5",
+      "hit": "162",
+      "mae": "0.085",
+      "points_ge03": "5"
+    },
+    {
+      "group": "test200",
+      "target": "overall_street_interface",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "5",
+      "hit": "162",
+      "mae": "0.085",
+      "points_ge03": "5"
+    },
+    {
+      "group": "test200",
+      "target": "overall_greenery_staying",
+      "method": "before",
+      "n": "200",
+      "ge03": "2",
+      "hit": "186",
+      "mae": "0.0485",
+      "points_ge03": "2"
+    },
+    {
+      "group": "test200",
+      "target": "overall_greenery_staying",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "2",
+      "hit": "186",
+      "mae": "0.0485",
+      "points_ge03": "2"
+    },
+    {
+      "group": "test200",
+      "target": "overall_greenery_staying",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "2",
+      "hit": "186",
+      "mae": "0.0485",
+      "points_ge03": "2"
+    },
+    {
+      "group": "test200",
+      "target": "overall_environmental_maintenance",
+      "method": "before",
+      "n": "200",
+      "ge03": "4",
+      "hit": "183",
+      "mae": "0.062",
+      "points_ge03": "4"
+    },
+    {
+      "group": "test200",
+      "target": "overall_environmental_maintenance",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "4",
+      "hit": "183",
+      "mae": "0.062",
+      "points_ge03": "4"
+    },
+    {
+      "group": "test200",
+      "target": "overall_environmental_maintenance",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "4",
+      "hit": "183",
+      "mae": "0.062",
+      "points_ge03": "4"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_pedestrian_safety",
+      "method": "before",
+      "n": "200",
+      "ge03": "20",
+      "hit": "134",
+      "mae": "0.118",
+      "points_ge03": "20"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_pedestrian_safety",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "16",
+      "hit": "135",
+      "mae": "0.116",
+      "points_ge03": "16"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_pedestrian_safety",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "15",
+      "hit": "135",
+      "mae": "0.1155",
+      "points_ge03": "15"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_street_interface",
+      "method": "before",
+      "n": "200",
+      "ge03": "19",
+      "hit": "158",
+      "mae": "0.1",
+      "points_ge03": "19"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_street_interface",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "14",
+      "hit": "159",
+      "mae": "0.095",
+      "points_ge03": "14"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_street_interface",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "13",
+      "hit": "160",
+      "mae": "0.0935",
+      "points_ge03": "13"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_greenery_staying",
+      "method": "before",
+      "n": "200",
+      "ge03": "6",
+      "hit": "170",
+      "mae": "0.074",
+      "points_ge03": "6"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_greenery_staying",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "4",
+      "hit": "171",
+      "mae": "0.071",
+      "points_ge03": "4"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_greenery_staying",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "4",
+      "hit": "171",
+      "mae": "0.071",
+      "points_ge03": "4"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_environmental_maintenance",
+      "method": "before",
+      "n": "200",
+      "ge03": "1",
+      "hit": "183",
+      "mae": "0.053",
+      "points_ge03": "1"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_environmental_maintenance",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "1",
+      "hit": "184",
+      "mae": "0.0525",
+      "points_ge03": "1"
+    },
+    {
+      "group": "test200",
+      "target": "side_A_environmental_maintenance",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "1",
+      "hit": "184",
+      "mae": "0.0525",
+      "points_ge03": "1"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_pedestrian_safety",
+      "method": "before",
+      "n": "200",
+      "ge03": "21",
+      "hit": "148",
+      "mae": "0.123",
+      "points_ge03": "21"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_pedestrian_safety",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "18",
+      "hit": "152",
+      "mae": "0.119",
+      "points_ge03": "18"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_pedestrian_safety",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "18",
+      "hit": "152",
+      "mae": "0.1185",
+      "points_ge03": "18"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_street_interface",
+      "method": "before",
+      "n": "200",
+      "ge03": "13",
+      "hit": "157",
+      "mae": "0.0985",
+      "points_ge03": "13"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_street_interface",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "8",
+      "hit": "158",
+      "mae": "0.0945",
+      "points_ge03": "8"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_street_interface",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "8",
+      "hit": "158",
+      "mae": "0.093",
+      "points_ge03": "8"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_greenery_staying",
+      "method": "before",
+      "n": "200",
+      "ge03": "8",
+      "hit": "162",
+      "mae": "0.0735",
+      "points_ge03": "8"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_greenery_staying",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "7",
+      "hit": "164",
+      "mae": "0.0715",
+      "points_ge03": "7"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_greenery_staying",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "7",
+      "hit": "164",
+      "mae": "0.0715",
+      "points_ge03": "7"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_environmental_maintenance",
+      "method": "before",
+      "n": "200",
+      "ge03": "3",
+      "hit": "182",
+      "mae": "0.059",
+      "points_ge03": "3"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_environmental_maintenance",
+      "method": "old_rule",
+      "n": "200",
+      "ge03": "2",
+      "hit": "183",
+      "mae": "0.0575",
+      "points_ge03": "2"
+    },
+    {
+      "group": "test200",
+      "target": "side_B_environmental_maintenance",
+      "method": "new_rule",
+      "n": "200",
+      "ge03": "2",
+      "hit": "183",
+      "mae": "0.0575",
+      "points_ge03": "2"
+    },
+    {
+      "group": "all688",
+      "target": "overall_pedestrian_safety",
+      "method": "before",
+      "n": "688",
+      "ge03": "34",
+      "hit": "534",
+      "mae": "0.09869186046511629",
+      "points_ge03": "34"
+    },
+    {
+      "group": "all688",
+      "target": "overall_pedestrian_safety",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "34",
+      "hit": "534",
+      "mae": "0.09869186046511629",
+      "points_ge03": "34"
+    },
+    {
+      "group": "all688",
+      "target": "overall_pedestrian_safety",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "34",
+      "hit": "534",
+      "mae": "0.09869186046511629",
+      "points_ge03": "34"
+    },
+    {
+      "group": "all688",
+      "target": "overall_street_interface",
+      "method": "before",
+      "n": "688",
+      "ge03": "34",
+      "hit": "547",
+      "mae": "0.09055232558139535",
+      "points_ge03": "34"
+    },
+    {
+      "group": "all688",
+      "target": "overall_street_interface",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "34",
+      "hit": "547",
+      "mae": "0.09055232558139535",
+      "points_ge03": "34"
+    },
+    {
+      "group": "all688",
+      "target": "overall_street_interface",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "34",
+      "hit": "547",
+      "mae": "0.09055232558139535",
+      "points_ge03": "34"
+    },
+    {
+      "group": "all688",
+      "target": "overall_greenery_staying",
+      "method": "before",
+      "n": "688",
+      "ge03": "6",
+      "hit": "641",
+      "mae": "0.056540697674418605",
+      "points_ge03": "6"
+    },
+    {
+      "group": "all688",
+      "target": "overall_greenery_staying",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "6",
+      "hit": "641",
+      "mae": "0.056540697674418605",
+      "points_ge03": "6"
+    },
+    {
+      "group": "all688",
+      "target": "overall_greenery_staying",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "6",
+      "hit": "641",
+      "mae": "0.056540697674418605",
+      "points_ge03": "6"
+    },
+    {
+      "group": "all688",
+      "target": "overall_environmental_maintenance",
+      "method": "before",
+      "n": "688",
+      "ge03": "10",
+      "hit": "627",
+      "mae": "0.06279069767441861",
+      "points_ge03": "10"
+    },
+    {
+      "group": "all688",
+      "target": "overall_environmental_maintenance",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "10",
+      "hit": "627",
+      "mae": "0.06279069767441861",
+      "points_ge03": "10"
+    },
+    {
+      "group": "all688",
+      "target": "overall_environmental_maintenance",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "10",
+      "hit": "627",
+      "mae": "0.06279069767441861",
+      "points_ge03": "10"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_pedestrian_safety",
+      "method": "before",
+      "n": "688",
+      "ge03": "61",
+      "hit": "506",
+      "mae": "0.10886627906976744",
+      "points_ge03": "61"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_pedestrian_safety",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "50",
+      "hit": "507",
+      "mae": "0.10712209302325582",
+      "points_ge03": "50"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_pedestrian_safety",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "46",
+      "hit": "507",
+      "mae": "0.10697674418604651",
+      "points_ge03": "46"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_street_interface",
+      "method": "before",
+      "n": "688",
+      "ge03": "47",
+      "hit": "519",
+      "mae": "0.10159883720930232",
+      "points_ge03": "47"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_street_interface",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "34",
+      "hit": "525",
+      "mae": "0.09709302325581395",
+      "points_ge03": "34"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_street_interface",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "32",
+      "hit": "526",
+      "mae": "0.09738372093023256",
+      "points_ge03": "32"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_greenery_staying",
+      "method": "before",
+      "n": "688",
+      "ge03": "15",
+      "hit": "578",
+      "mae": "0.07688953488372093",
+      "points_ge03": "15"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_greenery_staying",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "9",
+      "hit": "580",
+      "mae": "0.0751453488372093",
+      "points_ge03": "9"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_greenery_staying",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "9",
+      "hit": "580",
+      "mae": "0.0751453488372093",
+      "points_ge03": "9"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_environmental_maintenance",
+      "method": "before",
+      "n": "688",
+      "ge03": "10",
+      "hit": "625",
+      "mae": "0.055232558139534885",
+      "points_ge03": "10"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_environmental_maintenance",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "7",
+      "hit": "627",
+      "mae": "0.05450581395348837",
+      "points_ge03": "7"
+    },
+    {
+      "group": "all688",
+      "target": "side_A_environmental_maintenance",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "7",
+      "hit": "627",
+      "mae": "0.05450581395348837",
+      "points_ge03": "7"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_pedestrian_safety",
+      "method": "before",
+      "n": "688",
+      "ge03": "69",
+      "hit": "505",
+      "mae": "0.11875",
+      "points_ge03": "69"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_pedestrian_safety",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "62",
+      "hit": "508",
+      "mae": "0.11758720930232558",
+      "points_ge03": "62"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_pedestrian_safety",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "61",
+      "hit": "508",
+      "mae": "0.11686046511627907",
+      "points_ge03": "61"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_street_interface",
+      "method": "before",
+      "n": "688",
+      "ge03": "60",
+      "hit": "513",
+      "mae": "0.10901162790697674",
+      "points_ge03": "60"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_street_interface",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "43",
+      "hit": "522",
+      "mae": "0.10392441860465117",
+      "points_ge03": "43"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_street_interface",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "41",
+      "hit": "523",
+      "mae": "0.10305232558139535",
+      "points_ge03": "41"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_greenery_staying",
+      "method": "before",
+      "n": "688",
+      "ge03": "28",
+      "hit": "550",
+      "mae": "0.08473837209302326",
+      "points_ge03": "28"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_greenery_staying",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "23",
+      "hit": "555",
+      "mae": "0.08299418604651163",
+      "points_ge03": "23"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_greenery_staying",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "23",
+      "hit": "555",
+      "mae": "0.08299418604651163",
+      "points_ge03": "23"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_environmental_maintenance",
+      "method": "before",
+      "n": "688",
+      "ge03": "9",
+      "hit": "625",
+      "mae": "0.059156976744186046",
+      "points_ge03": "9"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_environmental_maintenance",
+      "method": "old_rule",
+      "n": "688",
+      "ge03": "8",
+      "hit": "624",
+      "mae": "0.05901162790697674",
+      "points_ge03": "8"
+    },
+    {
+      "group": "all688",
+      "target": "side_B_environmental_maintenance",
+      "method": "new_rule",
+      "n": "688",
+      "ge03": "8",
+      "hit": "624",
+      "mae": "0.05901162790697674",
+      "points_ge03": "8"
+    }
+  ],
+  "reference_guided_posthoc": true,
+  "independent_accuracy_improvement": false,
+  "new_model_calls": 0,
+  "stacked_on_low_safety_expert": false,
+  "test200_status": "Already evaluated; diagnostic matching uses its reference labels, not a new independent test."
+}

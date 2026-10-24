@@ -1,6 +1,10 @@
-# Selected streetview scoring method
+# Historical frozen base scoring method
 
-**Decision: retain Flash with prompt v2, retain DINOv2, and deliver uniformly
+> **Latest decision:** the user subsequently selected a low-safety extension for
+> the next validation stage. See the [updated method](scoring_low_safety_extension_2026-10-23.md).
+> The independent 200-point results below apply only to this historical base.
+
+**Historical decision: retain Flash with prompt v2, retain DINOv2, and deliver uniformly
 rounded one-decimal scores. Keep continuous predictions for analysis. Full-dataset
 VLM scoring has not been started.** Dates in this update use UTC; the experiments
 span October 22–23 UTC.

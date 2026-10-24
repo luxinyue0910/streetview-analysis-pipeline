@@ -1,0 +1,545 @@
+{
+  "provenance": {
+    "local_experiment": "dino_spatial_grid_groupcv488_20261023T195338Z",
+    "source_file": "summary.json",
+    "sha256": "57c6542fc7dc656f18ea507a983ba32c278e2ed72966aad7645a5599acd002da"
+  },
+  "metrics": {
+    "points": 488,
+    "spatial_groups": 400,
+    "scoring_items": 5856,
+    "overall": [
+      {
+        "arm": "current_cls",
+        "precision": "continuous",
+        "n": 5856,
+        "mae": 0.08969216583520212,
+        "rmse": 0.1220291887303353,
+        "bias": 0.0013863543201998489,
+        "hit_count": 3883,
+        "hit_rate": 0.6630806010928961,
+        "severe_count": 147,
+        "severe_rate": 0.025102459016393443,
+        "ccc": 0.8803380624242985,
+        "macro_ccc": 0.7298746565281754
+      },
+      {
+        "arm": "current_cls",
+        "precision": "rounded",
+        "n": 5856,
+        "mae": 0.08640710382513661,
+        "rmse": 0.1253683098504327,
+        "bias": 0.0013661202185792313,
+        "hit_count": 4785,
+        "hit_rate": 0.8171106557377049,
+        "severe_count": 273,
+        "severe_rate": 0.0466188524590164,
+        "ccc": 0.8748070021697035,
+        "macro_ccc": 0.7185749328692541
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "continuous",
+        "n": 5856,
+        "mae": 0.08839919691162398,
+        "rmse": 0.12043333108398746,
+        "bias": 0.001316545909033674,
+        "hit_count": 3929,
+        "hit_rate": 0.6709357923497268,
+        "severe_count": 144,
+        "severe_rate": 0.02459016393442623,
+        "ccc": 0.8832611774977032,
+        "macro_ccc": 0.736130090600814
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "rounded",
+        "n": 5856,
+        "mae": 0.08529713114754098,
+        "rmse": 0.12439059098534368,
+        "bias": 0.0014856557377049137,
+        "hit_count": 4815,
+        "hit_rate": 0.8222336065573771,
+        "severe_count": 272,
+        "severe_rate": 0.04644808743169399,
+        "ccc": 0.8765267630136088,
+        "macro_ccc": 0.7236235402023339
+      }
+    ],
+    "dimensions": [
+      {
+        "arm": "current_cls",
+        "precision": "continuous",
+        "dimension": "通行安全",
+        "n": 1464,
+        "mae": 0.10994439807023833,
+        "rmse": 0.1488814480315852,
+        "bias": 0.010214620487417085,
+        "hit_count": 823,
+        "hit_rate": 0.5621584699453552,
+        "severe_count": 78,
+        "severe_rate": 0.05327868852459016,
+        "ccc": 0.7045711962999068
+      },
+      {
+        "arm": "current_cls",
+        "precision": "continuous",
+        "dimension": "沿街界面",
+        "n": 1464,
+        "mae": 0.10599085654222502,
+        "rmse": 0.13905303622339,
+        "bias": -0.001802075779429786,
+        "hit_count": 845,
+        "hit_rate": 0.5771857923497268,
+        "severe_count": 56,
+        "severe_rate": 0.03825136612021858,
+        "ccc": 0.7654488080924402
+      },
+      {
+        "arm": "current_cls",
+        "precision": "continuous",
+        "dimension": "绿荫停留",
+        "n": 1464,
+        "mae": 0.07894197628018249,
+        "rmse": 0.10268869940456729,
+        "bias": -0.003318834999245075,
+        "hit_count": 1016,
+        "hit_rate": 0.6939890710382514,
+        "severe_count": 7,
+        "severe_rate": 0.0047814207650273225,
+        "ccc": 0.7747684808410931
+      },
+      {
+        "arm": "current_cls",
+        "precision": "continuous",
+        "dimension": "环境维护",
+        "n": 1464,
+        "mae": 0.06389143244816269,
+        "rmse": 0.08670692113325547,
+        "bias": 0.0004517075720571708,
+        "hit_count": 1199,
+        "hit_rate": 0.8189890710382514,
+        "severe_count": 6,
+        "severe_rate": 0.004098360655737705,
+        "ccc": 0.6830165116488593
+      },
+      {
+        "arm": "current_cls",
+        "precision": "rounded",
+        "dimension": "通行安全",
+        "n": 1464,
+        "mae": 0.10758196721311478,
+        "rmse": 0.15133738951257508,
+        "bias": 0.01045081967213113,
+        "hit_count": 1103,
+        "hit_rate": 0.7534153005464481,
+        "severe_count": 115,
+        "severe_rate": 0.07855191256830601,
+        "ccc": 0.698658103094849
+      },
+      {
+        "arm": "current_cls",
+        "precision": "rounded",
+        "dimension": "沿街界面",
+        "n": 1464,
+        "mae": 0.10280054644808743,
+        "rmse": 0.14173495621831494,
+        "bias": -0.0017076502732240458,
+        "hit_count": 1102,
+        "hit_rate": 0.7527322404371585,
+        "severe_count": 104,
+        "severe_rate": 0.07103825136612021,
+        "ccc": 0.7592501637197119
+      },
+      {
+        "arm": "current_cls",
+        "precision": "rounded",
+        "dimension": "绿荫停留",
+        "n": 1464,
+        "mae": 0.07575136612021857,
+        "rmse": 0.1072826306609325,
+        "bias": -0.003620218579234971,
+        "hit_count": 1251,
+        "hit_rate": 0.8545081967213115,
+        "severe_count": 33,
+        "severe_rate": 0.022540983606557378,
+        "ccc": 0.7596532702915683
+      },
+      {
+        "arm": "current_cls",
+        "precision": "rounded",
+        "dimension": "环境维护",
+        "n": 1464,
+        "mae": 0.05949453551912568,
+        "rmse": 0.09147396536063042,
+        "bias": 0.0003415300546448095,
+        "hit_count": 1329,
+        "hit_rate": 0.9077868852459017,
+        "severe_count": 21,
+        "severe_rate": 0.014344262295081968,
+        "ccc": 0.6667320789049991
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "continuous",
+        "dimension": "通行安全",
+        "n": 1464,
+        "mae": 0.10765307411346157,
+        "rmse": 0.14662374272584,
+        "bias": 0.007652549527061674,
+        "hit_count": 848,
+        "hit_rate": 0.5792349726775956,
+        "severe_count": 77,
+        "severe_rate": 0.05259562841530055,
+        "ccc": 0.7143310038312496
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "continuous",
+        "dimension": "沿街界面",
+        "n": 1464,
+        "mae": 0.10311030480468916,
+        "rmse": 0.13584979887801776,
+        "bias": 0.00048076153626092197,
+        "hit_count": 866,
+        "hit_rate": 0.5915300546448088,
+        "severe_count": 54,
+        "severe_rate": 0.036885245901639344,
+        "ccc": 0.7768753149389318
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "continuous",
+        "dimension": "绿荫停留",
+        "n": 1464,
+        "mae": 0.07894197628018249,
+        "rmse": 0.10268869940456729,
+        "bias": -0.003318834999245075,
+        "hit_count": 1016,
+        "hit_rate": 0.6939890710382514,
+        "severe_count": 7,
+        "severe_rate": 0.0047814207650273225,
+        "ccc": 0.7747684808410931
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "continuous",
+        "dimension": "环境维护",
+        "n": 1464,
+        "mae": 0.06389143244816269,
+        "rmse": 0.08670692113325547,
+        "bias": 0.0004517075720571708,
+        "hit_count": 1199,
+        "hit_rate": 0.8189890710382514,
+        "severe_count": 6,
+        "severe_rate": 0.004098360655737705,
+        "ccc": 0.6830165116488593
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "rounded",
+        "dimension": "通行安全",
+        "n": 1464,
+        "mae": 0.10539617486338798,
+        "rmse": 0.15034114212813954,
+        "bias": 0.00799180327868851,
+        "hit_count": 1118,
+        "hit_rate": 0.7636612021857924,
+        "severe_count": 118,
+        "severe_rate": 0.08060109289617487,
+        "ccc": 0.7049106272659933
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "rounded",
+        "dimension": "沿街界面",
+        "n": 1464,
+        "mae": 0.10054644808743168,
+        "rmse": 0.13932899305604318,
+        "bias": 0.0012295081967213083,
+        "hit_count": 1117,
+        "hit_rate": 0.7629781420765027,
+        "severe_count": 100,
+        "severe_rate": 0.06830601092896176,
+        "ccc": 0.7675952679496265
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "rounded",
+        "dimension": "绿荫停留",
+        "n": 1464,
+        "mae": 0.07575136612021857,
+        "rmse": 0.1072826306609325,
+        "bias": -0.003620218579234971,
+        "hit_count": 1251,
+        "hit_rate": 0.8545081967213115,
+        "severe_count": 33,
+        "severe_rate": 0.022540983606557378,
+        "ccc": 0.7596532702915683
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "rounded",
+        "dimension": "环境维护",
+        "n": 1464,
+        "mae": 0.05949453551912568,
+        "rmse": 0.09147396536063042,
+        "bias": 0.0003415300546448095,
+        "hit_count": 1329,
+        "hit_rate": 0.9077868852459017,
+        "severe_count": 21,
+        "severe_rate": 0.014344262295081968,
+        "ccc": 0.6667320789049991
+      }
+    ],
+    "extremes": [
+      {
+        "arm": "current_cls",
+        "precision": "continuous",
+        "dimension": "通行安全",
+        "band": "low_0_to_0.3",
+        "n": 225,
+        "mae": 0.18272924174532854,
+        "rmse": 0.24200536739866096,
+        "bias": 0.16613616527037614,
+        "hit_count": 87,
+        "hit_rate": 0.38666666666666666,
+        "severe_count": 48,
+        "severe_rate": 0.21333333333333335,
+        "ccc": -0.03446039017220133
+      },
+      {
+        "arm": "current_cls",
+        "precision": "continuous",
+        "dimension": "沿街界面",
+        "band": "high_0.8_to_1",
+        "n": 76,
+        "mae": 0.17177650858114757,
+        "rmse": 0.21156894490753797,
+        "bias": -0.16237781533061332,
+        "hit_count": 24,
+        "hit_rate": 0.3157894736842105,
+        "severe_count": 11,
+        "severe_rate": 0.14473684210526316,
+        "ccc": 0.018633410315763255
+      },
+      {
+        "arm": "current_cls",
+        "precision": "rounded",
+        "dimension": "通行安全",
+        "band": "low_0_to_0.3",
+        "n": 225,
+        "mae": 0.17955555555555558,
+        "rmse": 0.24129281427805147,
+        "bias": 0.16355555555555557,
+        "hit_count": 126,
+        "hit_rate": 0.56,
+        "severe_count": 59,
+        "severe_rate": 0.26222222222222225,
+        "ccc": -0.024953577166225042
+      },
+      {
+        "arm": "current_cls",
+        "precision": "rounded",
+        "dimension": "沿街界面",
+        "band": "high_0.8_to_1",
+        "n": 76,
+        "mae": 0.17500000000000004,
+        "rmse": 0.21854783891573226,
+        "bias": -0.16447368421052636,
+        "hit_count": 39,
+        "hit_rate": 0.5131578947368421,
+        "severe_count": 20,
+        "severe_rate": 0.2631578947368421,
+        "ccc": 0.013022323983972536
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "continuous",
+        "dimension": "通行安全",
+        "band": "low_0_to_0.3",
+        "n": 225,
+        "mae": 0.17607839105851647,
+        "rmse": 0.23702573823725584,
+        "bias": 0.16158389967556805,
+        "hit_count": 91,
+        "hit_rate": 0.40444444444444444,
+        "severe_count": 44,
+        "severe_rate": 0.19555555555555557,
+        "ccc": -0.02404290965854246
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "continuous",
+        "dimension": "沿街界面",
+        "band": "high_0.8_to_1",
+        "n": 76,
+        "mae": 0.16272186318933435,
+        "rmse": 0.20238879290582112,
+        "bias": -0.15171299041267106,
+        "hit_count": 27,
+        "hit_rate": 0.35526315789473684,
+        "severe_count": 12,
+        "severe_rate": 0.15789473684210525,
+        "ccc": 0.023553229186282554
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "rounded",
+        "dimension": "通行安全",
+        "band": "low_0_to_0.3",
+        "n": 225,
+        "mae": 0.17600000000000002,
+        "rmse": 0.24055491403558288,
+        "bias": 0.16177777777777777,
+        "hit_count": 125,
+        "hit_rate": 0.5555555555555556,
+        "severe_count": 55,
+        "severe_rate": 0.24444444444444444,
+        "ccc": -0.028082316773586757
+      },
+      {
+        "arm": "cls_plus_grid",
+        "precision": "rounded",
+        "dimension": "沿街界面",
+        "band": "high_0.8_to_1",
+        "n": 76,
+        "mae": 0.15657894736842107,
+        "rmse": 0.2009844194013687,
+        "bias": -0.14868421052631584,
+        "hit_count": 43,
+        "hit_rate": 0.5657894736842105,
+        "severe_count": 16,
+        "severe_rate": 0.21052631578947367,
+        "ccc": 0.028157280906364542
+      }
+    ],
+    "promotion_checks": {
+      "overall_hit_gain_at_least_0_5pp": true,
+      "overall_mae_increase_le_001": true,
+      "overall_severe_rate_not_increased": true,
+      "safety_low_mae_not_worse_by_more_than_005": true,
+      "interface_high_mae_not_worse_by_more_than_005": true
+    },
+    "passes_development_gate": true,
+    "bootstrap": {
+      "all12": {
+        "mae": {
+          "estimate": -0.0011099726775956283,
+          "ci95": [
+            -0.002283647251733254,
+            3.516492278888074e-05
+          ]
+        },
+        "hit": {
+          "estimate": 0.005122950819672131,
+          "ci95": [
+            -0.000848870738586656,
+            0.01141785957736878
+          ]
+        },
+        "severe": {
+          "estimate": -0.00017076502732240437,
+          "ci95": [
+            -0.0036537752261656224,
+            0.0033405422342351995
+          ]
+        }
+      },
+      "safety": {
+        "mae": {
+          "estimate": -0.0021857923497267755,
+          "ci95": [
+            -0.0057732640308776175,
+            0.0012980823510816064
+          ]
+        },
+        "hit": {
+          "estimate": 0.010245901639344262,
+          "ci95": [
+            -0.007483759897401583,
+            0.02851469304626128
+          ]
+        },
+        "severe": {
+          "estimate": 0.0020491803278688526,
+          "ci95": [
+            -0.008386184662544264,
+            0.012474012474012475
+          ]
+        }
+      },
+      "interface": {
+        "mae": {
+          "estimate": -0.002254098360655738,
+          "ci95": [
+            -0.0052411112801785354,
+            0.0006749015395631937
+          ]
+        },
+        "hit": {
+          "estimate": 0.010245901639344262,
+          "ci95": [
+            -0.005420054200542005,
+            0.025798872751272413
+          ]
+        },
+        "severe": {
+          "estimate": -0.00273224043715847,
+          "ci95": [
+            -0.012073978489064292,
+            0.006858710562414266
+          ]
+        }
+      },
+      "safety_low": {
+        "mae": {
+          "estimate": -0.003555555555555553,
+          "ci95": [
+            -0.015686494328673174,
+            0.008290325135190171
+          ]
+        },
+        "hit": {
+          "estimate": -0.0044444444444444444,
+          "ci95": [
+            -0.05660568329386602,
+            0.0502340706296343
+          ]
+        },
+        "severe": {
+          "estimate": -0.017777777777777778,
+          "ci95": [
+            -0.056818181818181816,
+            0.02252252252252252
+          ]
+        }
+      },
+      "interface_high": {
+        "mae": {
+          "estimate": -0.018421052631578946,
+          "ci95": [
+            -0.03494288843686434,
+            -0.0010408775252525129
+          ]
+        },
+        "hit": {
+          "estimate": 0.05263157894736842,
+          "ci95": [
+            -0.03571428571428571,
+            0.13333333333333333
+          ]
+        },
+        "severe": {
+          "estimate": -0.05263157894736842,
+          "ci95": [
+            -0.10526315789473684,
+            -0.011624565624164649
+          ]
+        }
+      }
+    },
+    "test200_used": false,
+    "new_qwen_calls": 0
+  }
+}

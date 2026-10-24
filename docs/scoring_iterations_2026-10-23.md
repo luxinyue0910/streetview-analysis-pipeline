@@ -2,7 +2,7 @@
 
 This is a retrospective record of local experiments through October 23 UTC.
 It does not reconstruct them as historical Git commits. The selected method is
-described in [the method report](scoring_method_2026-10-23.md); full-dataset
+described in [the updated method report](scoring_low_safety_extension_2026-10-23.md); full-dataset
 scoring remains paused. New documentation is in English; archived task prompts
 retain their original Chinese language.
 
@@ -341,8 +341,37 @@ All five folds lost hit rate; the largest target loss was Side A greenery
 (−11.07 percentage points). Retain DINO. Maintenance changed relatively little;
 no per-target removal was selected after inspecting these outer-fold results.
 
-**Final user-selected configuration:** Flash v2 + frozen DINO + supervised
+**Earlier frozen configuration (before the low-safety follow-up below):** Flash v2 + frozen DINO + supervised
 mixture, one-decimal delivery with continuous predictions retained. No full
 batch run is authorized by this documentation update. The public artifacts
 are aggregate evidence and a method specification; data-bearing experiments
 and fitted model files stay private.
+
+## 9. October 23 follow-up: low-safety errors and routing
+
+After the frozen baseline, compare conservative correction caps, raw/base gates,
+a separate grounded-crop pilot, fixed spatial DINO grid features and a two-step
+low-only expert. The [follow-up method and results](scoring_low_safety_extension_2026-10-23.md)
+record the complete sequence, all 12 targets and the accepted tradeoff.
+
+The user-selected next-validation method retains Flash v2 and the original DINO
+mixture, adding a learned low-safety classifier and low-only Ridge expert for
+each safety scope. Rounded low-safety within-0.1 rises 56.00% -> 66.67%, while
+nonlow safety falls 78.85% -> 77.72%. All-target hit rate rises 81.71% -> 81.88%.
+The original 1 pp nonlow guard failed; user selection accepts this tradeoff
+rather than retroactively passing it. There is no new independent result and
+the all-488 safety-wrapper refit is pending. Validation500 and full batch remain
+unrun. The old model's independent 200-point scores cannot be assigned to this extension.
+
+## 10. Separate A/B correspondence diagnosis
+
+A teammate's A/B hypothesis led to visual review and correspondence experiments.
+The selected diagnostic exchanges A/B separately per dimension whenever the
+count of errors >=0.3 strictly decreases. The latest rule includes 2->1 as well
+as 2->0 and 1->0 transitions; whole-side exchange is not adopted here.
+
+On 688 already-scored points, 64 dimension pairs at 61 points qualify. Large
+errors fall 383 -> 311 (18.8%), with hit rate 82.00% -> 82.35%. These results use
+the base mixture, not the low-safety extension, and are reference-guided posthoc
+diagnosis, including the already-evaluated 200 points. They are not independent
+accuracy gains or inference rules for unlabelled data. See the [dedicated diagnostic](ab_dimension_diagnostic_2026-10-23.md).

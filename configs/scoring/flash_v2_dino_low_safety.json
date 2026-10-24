@@ -1,0 +1,523 @@
+{
+  "points": 488,
+  "spatial_groups": 400,
+  "outer_folds": 5,
+  "inner_folds": 4,
+  "targets_retrained": [
+    "overall_pedestrian_safety",
+    "side_A_pedestrian_safety",
+    "side_B_pedestrian_safety"
+  ],
+  "other_nine_targets_frozen": true,
+  "low_definition": "Reference <=0.3; this is the operational reference threshold, including averaged 0.3 labels.",
+  "classifier_configs": [
+    {
+      "features": "cls",
+      "family": "logistic",
+      "C": 0.01,
+      "class_weight": "balanced",
+      "hard_negative_weight": 1.0
+    },
+    {
+      "features": "cls",
+      "family": "logistic",
+      "C": 0.01,
+      "class_weight": "balanced",
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "cls",
+      "family": "logistic",
+      "C": 0.1,
+      "class_weight": "balanced",
+      "hard_negative_weight": 1.0
+    },
+    {
+      "features": "cls",
+      "family": "logistic",
+      "C": 0.1,
+      "class_weight": "balanced",
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "cls",
+      "family": "logistic",
+      "C": 1.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 1.0
+    },
+    {
+      "features": "cls",
+      "family": "logistic",
+      "C": 1.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "cls",
+      "family": "hist_gradient_boosting",
+      "max_leaf_nodes": 3,
+      "l2_regularization": 10.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 1.0
+    },
+    {
+      "features": "cls",
+      "family": "hist_gradient_boosting",
+      "max_leaf_nodes": 3,
+      "l2_regularization": 10.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "cls",
+      "family": "hist_gradient_boosting",
+      "max_leaf_nodes": 7,
+      "l2_regularization": 10.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 1.0
+    },
+    {
+      "features": "cls",
+      "family": "hist_gradient_boosting",
+      "max_leaf_nodes": 7,
+      "l2_regularization": 10.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "cls",
+      "family": "logistic",
+      "C": 0.1,
+      "class_weight": null,
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "cls",
+      "family": "logistic",
+      "C": 1.0,
+      "class_weight": null,
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "grid",
+      "family": "logistic",
+      "C": 0.01,
+      "class_weight": "balanced",
+      "hard_negative_weight": 1.0
+    },
+    {
+      "features": "grid",
+      "family": "logistic",
+      "C": 0.01,
+      "class_weight": "balanced",
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "grid",
+      "family": "logistic",
+      "C": 0.1,
+      "class_weight": "balanced",
+      "hard_negative_weight": 1.0
+    },
+    {
+      "features": "grid",
+      "family": "logistic",
+      "C": 0.1,
+      "class_weight": "balanced",
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "grid",
+      "family": "logistic",
+      "C": 1.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 1.0
+    },
+    {
+      "features": "grid",
+      "family": "logistic",
+      "C": 1.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "grid",
+      "family": "hist_gradient_boosting",
+      "max_leaf_nodes": 3,
+      "l2_regularization": 10.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 1.0
+    },
+    {
+      "features": "grid",
+      "family": "hist_gradient_boosting",
+      "max_leaf_nodes": 3,
+      "l2_regularization": 10.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "grid",
+      "family": "hist_gradient_boosting",
+      "max_leaf_nodes": 7,
+      "l2_regularization": 10.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 1.0
+    },
+    {
+      "features": "grid",
+      "family": "hist_gradient_boosting",
+      "max_leaf_nodes": 7,
+      "l2_regularization": 10.0,
+      "class_weight": "balanced",
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "grid",
+      "family": "logistic",
+      "C": 0.1,
+      "class_weight": null,
+      "hard_negative_weight": 2.0
+    },
+    {
+      "features": "grid",
+      "family": "logistic",
+      "C": 1.0,
+      "class_weight": null,
+      "hard_negative_weight": 2.0
+    }
+  ],
+  "expert_alphas": [
+    1.0,
+    10.0,
+    100.0,
+    1000.0
+  ],
+  "routing_thresholds": [
+    0.25,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    0.95
+  ],
+  "preprocessing": "Own-scope four frozen Flash scores + missing flags + 20 PCA components of frozen CLS or CLS+2x3 grid. Scalers, imputation and PCA fitted on each active training fold only.",
+  "classifier_training": "All active training samples; label reference<=0.3. Balanced or unbalanced logistic, shallow histogram boosting. Optional hard negative sample weights only for training rows with reference>0.3 and raw Flash safety<=0.3.",
+  "expert_training": "Ridge on reference-low samples of active training fold ONLY, using same train-fitted feature transform. Predictions clipped to [0,0.3], not fixed to an arbitrary low score. No validation labels define routing.",
+  "prediction": "If classifier routing score>=inner-selected threshold, replace current score with learned low expert; otherwise preserve frozen current mixture. This is not a blend of raw Flash and current score.",
+  "baseline_inner_reuse": "Frozen current mixture reconstructed from outer-training-only cached inner candidate predictions and selected configuration. No cross-outer OOF scores used as training features. Base and wrapper reuse inner validation evidence; outer validation labels excluded.",
+  "selection": {
+    "score_precision": "One-decimal scores, floor(10*p+0.5)/10; continuous also reported.",
+    "guards_per_safety_target_vs_current_inner": {
+      "overall_hit_drop_max": 0.02,
+      "overall_mae_increase_max": 0.003,
+      "severe_count_increase_max": 0,
+      "nonlow_hit_drop_max": 0.01,
+      "nonlow_mae_increase_max": 0.003,
+      "low_mae_increase_max": 0.005
+    },
+    "objective": "Among eligible candidates maximize low-reference hit<=0.1, tie lower low MAE, higher overall hit, lower nonlow MAE, lower severe count, earlier index. Exact baseline is included and always eligible. With fewer than 10 reference-low inner rows, prioritize overall hit instead."
+  },
+  "promotion_gate": {
+    "low_safety_hit_rate_min": 0.65,
+    "all12_hit_drop_max": 0.005,
+    "all12_severe_count_increase_max": 0,
+    "normal_safety_hit_drop_max": 0.01
+  },
+  "version": "flash_v2_dino_low_safety_extension_2026-10-23",
+  "status": "user_selected_method_for_next_validation_not_final_refit_or_batch_run",
+  "base_config": "flash_v2_dino_decimal.json",
+  "base_config_is_historical_and_unchanged": true,
+  "user_accepts_nonlow_tradeoff": true,
+  "predeclared_gate_passed": false,
+  "feature_candidates": {
+    "cls": "384 original CLS features per image",
+    "grid": "Original CLS plus six 384-dimensional means from a 2x3 DINO patch grid: 2688 per image; same frozen encoder and image preprocessing.",
+    "pooling": "16x32 patch grid for the recorded 1024x512 images: row boundaries [0,8,16], columns [0,10,21,32]. Overall concatenates mean and absolute difference; sides use own image."
+  },
+  "output": {
+    "continuous_range": [
+      0,
+      1
+    ],
+    "delivery_rounding": "floor(10*p+0.5)/10",
+    "retain_continuous": true
+  },
+  "fitted_artifacts": {
+    "published": false,
+    "available_locally": "15 outer-fold safety wrapper models; historical full-fit base model",
+    "pending": "Select and refit three safety wrappers using all 488 development points before next validation; do not select on validation500."
+  },
+  "ab_matching": {
+    "inference_enabled": false,
+    "diagnostic_config": "ab_dimension_diagnostic.json"
+  },
+  "validation500_run": false,
+  "full_dataset_run": false,
+  "outer_fold_choices": [
+    {
+      "fold": 0,
+      "target": "overall_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 12,
+        "expert_alpha": 100.0,
+        "threshold": 0.7
+      },
+      "classifier_config": {
+        "features": "grid",
+        "family": "logistic",
+        "C": 0.01,
+        "class_weight": "balanced",
+        "hard_negative_weight": 1.0
+      }
+    },
+    {
+      "fold": 0,
+      "target": "side_A_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 8,
+        "expert_alpha": 100.0,
+        "threshold": 0.8
+      },
+      "classifier_config": {
+        "features": "cls",
+        "family": "hist_gradient_boosting",
+        "max_leaf_nodes": 7,
+        "l2_regularization": 10.0,
+        "class_weight": "balanced",
+        "hard_negative_weight": 1.0
+      }
+    },
+    {
+      "fold": 0,
+      "target": "side_B_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 9,
+        "expert_alpha": 1000.0,
+        "threshold": 0.7
+      },
+      "classifier_config": {
+        "features": "cls",
+        "family": "hist_gradient_boosting",
+        "max_leaf_nodes": 7,
+        "l2_regularization": 10.0,
+        "class_weight": "balanced",
+        "hard_negative_weight": 2.0
+      }
+    },
+    {
+      "fold": 1,
+      "target": "overall_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 6,
+        "expert_alpha": 10.0,
+        "threshold": 0.8
+      },
+      "classifier_config": {
+        "features": "cls",
+        "family": "hist_gradient_boosting",
+        "max_leaf_nodes": 3,
+        "l2_regularization": 10.0,
+        "class_weight": "balanced",
+        "hard_negative_weight": 1.0
+      }
+    },
+    {
+      "fold": 1,
+      "target": "side_A_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 20,
+        "expert_alpha": 1000.0,
+        "threshold": 0.8
+      },
+      "classifier_config": {
+        "features": "grid",
+        "family": "hist_gradient_boosting",
+        "max_leaf_nodes": 7,
+        "l2_regularization": 10.0,
+        "class_weight": "balanced",
+        "hard_negative_weight": 1.0
+      }
+    },
+    {
+      "fold": 1,
+      "target": "side_B_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 23,
+        "expert_alpha": 1000.0,
+        "threshold": 0.5
+      },
+      "classifier_config": {
+        "features": "grid",
+        "family": "logistic",
+        "C": 1.0,
+        "class_weight": null,
+        "hard_negative_weight": 2.0
+      }
+    },
+    {
+      "fold": 2,
+      "target": "overall_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 7,
+        "expert_alpha": 10.0,
+        "threshold": 0.8
+      },
+      "classifier_config": {
+        "features": "cls",
+        "family": "hist_gradient_boosting",
+        "max_leaf_nodes": 3,
+        "l2_regularization": 10.0,
+        "class_weight": "balanced",
+        "hard_negative_weight": 2.0
+      }
+    },
+    {
+      "fold": 2,
+      "target": "side_A_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 22,
+        "expert_alpha": 10.0,
+        "threshold": 0.4
+      },
+      "classifier_config": {
+        "features": "grid",
+        "family": "logistic",
+        "C": 0.1,
+        "class_weight": null,
+        "hard_negative_weight": 2.0
+      }
+    },
+    {
+      "fold": 2,
+      "target": "side_B_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 21,
+        "expert_alpha": 10.0,
+        "threshold": 0.7
+      },
+      "classifier_config": {
+        "features": "grid",
+        "family": "hist_gradient_boosting",
+        "max_leaf_nodes": 7,
+        "l2_regularization": 10.0,
+        "class_weight": "balanced",
+        "hard_negative_weight": 2.0
+      }
+    },
+    {
+      "fold": 3,
+      "target": "overall_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 0,
+        "expert_alpha": 100.0,
+        "threshold": 0.7
+      },
+      "classifier_config": {
+        "features": "cls",
+        "family": "logistic",
+        "C": 0.01,
+        "class_weight": "balanced",
+        "hard_negative_weight": 1.0
+      }
+    },
+    {
+      "fold": 3,
+      "target": "side_A_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 13,
+        "expert_alpha": 100.0,
+        "threshold": 0.7
+      },
+      "classifier_config": {
+        "features": "grid",
+        "family": "logistic",
+        "C": 0.01,
+        "class_weight": "balanced",
+        "hard_negative_weight": 2.0
+      }
+    },
+    {
+      "fold": 3,
+      "target": "side_B_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 11,
+        "expert_alpha": 10.0,
+        "threshold": 0.4
+      },
+      "classifier_config": {
+        "features": "cls",
+        "family": "logistic",
+        "C": 1.0,
+        "class_weight": null,
+        "hard_negative_weight": 2.0
+      }
+    },
+    {
+      "fold": 4,
+      "target": "overall_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 22,
+        "expert_alpha": 100.0,
+        "threshold": 0.25
+      },
+      "classifier_config": {
+        "features": "grid",
+        "family": "logistic",
+        "C": 0.1,
+        "class_weight": null,
+        "hard_negative_weight": 2.0
+      }
+    },
+    {
+      "fold": 4,
+      "target": "side_A_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 17,
+        "expert_alpha": 100.0,
+        "threshold": 0.9
+      },
+      "classifier_config": {
+        "features": "grid",
+        "family": "logistic",
+        "C": 1.0,
+        "class_weight": "balanced",
+        "hard_negative_weight": 2.0
+      }
+    },
+    {
+      "fold": 4,
+      "target": "side_B_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 14,
+        "expert_alpha": 1000.0,
+        "threshold": 0.8
+      },
+      "classifier_config": {
+        "features": "grid",
+        "family": "logistic",
+        "C": 0.1,
+        "class_weight": "balanced",
+        "hard_negative_weight": 1.0
+      }
+    }
+  ]
+}
