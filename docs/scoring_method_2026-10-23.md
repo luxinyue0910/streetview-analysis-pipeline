@@ -1,12 +1,13 @@
 # Historical frozen base scoring method
 
-> **Latest decision:** the user subsequently selected a low-safety extension for
-> the next validation stage. See the [updated method](scoring_low_safety_extension_2026-10-23.md).
+> **Historical base record.** The [final canonical method](scoring_frozen_2026-10-25.md)
+> now has completed 500-point validation and remaining-12,160 inference.
 > The independent 200-point results below apply only to this historical base.
 
 **Historical decision: retain Flash with prompt v2, retain DINOv2, and deliver uniformly
-rounded one-decimal scores. Keep continuous predictions for analysis. Full-dataset
-VLM scoring has not been started.** Dates in this update use UTC; the experiments
+rounded one-decimal scores. Keep continuous predictions for analysis. At this historical
+stage, full-dataset VLM scoring had not started; it is now complete under the
+[final canonical method](scoring_frozen_2026-10-25.md).** Dates in this update use UTC; the experiments
 span October 22–23 UTC.
 
 This is the scoring phase, separate from the earlier CLIP classifier that chose
@@ -190,13 +191,16 @@ The [ablation record](../results/scoring_2026-10-23/dino_ablation.json) includes
 both precisions and per-fold results. This is repeated development evidence,
 not another independent test and not an ablation on the 200-point holdout.
 
-## Current status and reproducibility boundary
+## Historical status and reproducibility boundary
+
+The bullets below describe the base-method milestone, not current pending work.
+See the [latest completion record](full_scoring_2026-10-25.md).
 
 - **Selected:** Flash + v2 organized rubric + frozen DINO + supervised mixture;
   one-decimal delivery, continuous scores retained.
-- **Not started:** full-dataset VLM scoring. The earlier image-selection batch
+- **At that milestone, not started:** full-dataset VLM scoring. The earlier image-selection batch
   is a separate completed task.
-- **Not used:** the isolated 85-point buffer or the future 500-point validation
+- **At that milestone, not used:** the isolated 85-point buffer or the then-future 500-point validation
   set. The 200-point holdout has now been evaluated and cannot be treated as
   untouched data in future tuning.
 - **Main limitation:** single-side safety remains materially weaker than

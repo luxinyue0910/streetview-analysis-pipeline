@@ -228,7 +228,7 @@
     "normal_safety_hit_drop_max": 0.01
   },
   "version": "flash_v2_dino_low_safety_extension_2026-10-23",
-  "status": "user_selected_method_for_next_validation_not_final_refit_or_batch_run",
+  "status": "historical_specification_see_canonical_final_freeze",
   "base_config": "flash_v2_dino_decimal.json",
   "base_config_is_historical_and_unchanged": true,
   "user_accepts_nonlow_tradeoff": true,
@@ -519,5 +519,8 @@
         "hard_negative_weight": 1.0
       }
     }
-  ]
+  ],
+  "historical_status": "user_selected_method_for_next_validation_not_final_refit_or_batch_run",
+  "current_specification": "flash_v2_dino_canonical_frozen.json",
+  "status_updated_local_date": "2026-10-25"
 }

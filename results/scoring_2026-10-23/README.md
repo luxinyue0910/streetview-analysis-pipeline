@@ -1,5 +1,8 @@
 # Aggregate scoring evidence
 
+> Historical experiment archive. Current canonical refit, validation and full
+> completion evidence is in [scoring_2026-10-25](../scoring_2026-10-25/).
+
 These files contain aggregate metrics only. No image, coordinate, per-point
 reference score, prediction row, split membership or fitted model is published.
 Source experiment names and SHA-256 hashes link each extract to a local artifact
@@ -35,8 +38,8 @@ One-decimal delivery was chosen after reviewing the independent test, while
 the rounding rule itself was fixed before that test. The original primary
 continuous >70% hit-rate check remains false. The 200-point test has not been
 used to fit the selected model or to select the no-DINO ablation, and is now an
-evaluated holdout rather than an untouched resource. Full-dataset scoring has
-not started.
+evaluated holdout rather than an untouched resource. Full-dataset scoring had
+not started at that milestone; it is now complete under the canonical extension.
 
 ## October 23 follow-up archive
 
@@ -49,6 +52,6 @@ not started.
 | `ab_dimension_diagnostic.json` | Reference-guided dimension matching on 488+200 already-scored points; not independent accuracy |
 
 The extension was user-selected after accepting the nonlow-safety tradeoff.
-Its all-488 wrapper refit is pending; old independent-test metrics remain
+At that milestone its all-488 wrapper refit was pending; old independent-test metrics remain
 historical base-only evidence. A/B diagnostic gains are not stacked onto the
 extension. No validation500 or full-dataset scoring was run by this archive update.

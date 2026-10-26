@@ -1,6 +1,6 @@
 {
   "version": "flash_v2_dino_mixture_decimal_2026-10-23",
-  "status": "selected_for_future_batch_scoring_not_run",
+  "status": "historical_specification_see_canonical_final_freeze",
   "vlm": {
     "model": "qwen3.8-flash",
     "prompt_version": "v2_organized",
@@ -798,5 +798,8 @@
     "continuous_gt70_target_met": false
   },
   "private_artifacts_included": false,
-  "full_dataset_scoring_started": false
+  "full_dataset_scoring_started": false,
+  "historical_status": "selected_for_future_batch_scoring_not_run",
+  "current_specification": "flash_v2_dino_canonical_frozen.json",
+  "status_updated_local_date": "2026-10-25"
 }

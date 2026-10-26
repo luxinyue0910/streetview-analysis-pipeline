@@ -1,50 +1,55 @@
 # Streetview Analysis Pipeline
 
-A local pipeline for selecting study-area coordinates, identifying side-facing street views, validating image selections, and preparing for VLM scoring and analysis.
+A pipeline for selecting study-area coordinates, identifying side-facing street views, validating image selections, scoring both sides with a frozen VLM/visual-feature mixture, and preparing paired street-side analysis.
 
-**Image selection is complete. The selected next-validation scoring method uses
-Flash v2, frozen DINOv2, the supervised mixture and a two-step low-safety extension.**
-Deliver one-decimal scores and retain continuous scores. The base mixture was
-independently evaluated; the extension currently has development CV evidence only.
-The 500-point validation and full-dataset VLM scoring have not started.
+**Image selection, 500-point validation and remaining-12,160-point scoring are
+complete.** The final frozen scorer uses Flash v2, DINOv2, a supervised mixture
+and three low-safety gates/experts. Deliver one-decimal scores and retain
+continuous scores. A = selected 0/90-degree image; B = selected 180/270-degree
+image throughout images, features and scores.
 
 ## Current Scoring Milestone
 
-- [Current selected method, low-safety extension and all 12 development targets](docs/scoring_low_safety_extension_2026-10-23.md)
-- [Separate dimension-wise A/B diagnostic](docs/ab_dimension_diagnostic_2026-10-23.md)
-- [Historical frozen base and all 12 independent-test targets](docs/scoring_method_2026-10-23.md)
-- [Experiment history, alternatives and selection rationale](docs/scoring_iterations_2026-10-23.md)
-- [Selected extension specification and outer-fold choices](configs/scoring/flash_v2_dino_low_safety.json)
-- [Historical frozen base specification](configs/scoring/flash_v2_dino_decimal.json)
-- [Aggregate experiment records](results/scoring_2026-10-23/)
+- [Final canonical method, training, parameters and freeze](docs/scoring_frozen_2026-10-25.md)
+- [500-point validation: all 12 targets and raw Flash comparison](docs/validation500_2026-10-25.md)
+- [12,160-point completion, local deliverables and independent audit](docs/full_scoring_2026-10-25.md)
+- [Separate validation A/B matching diagnostic](docs/ab_dimension_diagnostic_2026-10-25.md)
+- [Final component settings and artifact hashes](configs/scoring/flash_v2_dino_canonical_frozen.json)
+- [Latest aggregate evidence](results/scoring_2026-10-25/)
+- [Prompt and model iteration history](docs/scoring_iterations_2026-10-23.md)
+- [Historical base and 200-point test](docs/scoring_method_2026-10-23.md)
+- [Historical low-safety development experiment](docs/scoring_low_safety_extension_2026-10-23.md)
 
-The following table is **historical base-mixture evidence**, not extension results.
+The 500-point validation has **405 numeric-reference points (4,860 items)** and
+95 all-NA reference points. Fixed A/B automatic results, without diagnostic swaps:
 
-| Evaluation set and output | Absolute error ≤0.1 | MAE | Absolute error ≥0.3 |
-|---|---:|---:|---:|
-| 488-point spatial development OOF, one decimal | 81.71% | 0.0864 | 4.66% |
-| Independent 200-point test, continuous | 69.75% | 0.0861 | 2.54% |
-| Independent 200-point test, one decimal | 82.71% | 0.0824 | 4.58% |
+| Frozen canonical output | Numeric pairs | Absolute error <=0.1 | MAE | Absolute error >=0.3 |
+|---|---:|---:|---:|---:|
+| Raw Flash v2 | 4,843 | 50.73% | 0.1651 | 22.22% |
+| Final continuous (primary evaluation precision) | 4,860 | 63.60% | 0.0865 | 2.16% |
+| Final one decimal (selected delivery format) | 4,860 | 84.61% | 0.0761 | 3.60% |
 
-Continuous output was the predeclared primary test endpoint; its >70% tolerance
-hit-rate goal was not met. The decimal output is the selected delivery format,
-not a retroactive change to that endpoint. Side-specific safety remains weaker
-than greenery and maintenance. These are empirical agreement metrics against
-the accepted team reference, not confidence probabilities or a claim that every
-score matches independent human annotation. The 500-point validation set has
-not been used.
+Raw Flash has 17 NA items on numeric references; the validation report also
+compares the same 4,843 numeric pairs. Rounding changes threshold decisions and
+raises both the tolerance hit rate and large-error rate. The historical >70%
+continuous hit-rate aspiration is not met by this validation. These are empirical
+agreement metrics, not confidence probabilities or exact-match accuracy.
 
-Removing DINO in the same 488-point spatial nested CV reduced one-decimal hit
-rate from 81.71% to 77.13% and increased large errors. DINO is retained; no new
-full-dataset calls are started by this update. The public method archive does
-not include the private fitted models or local scoring experiment runners.
+Development/validation point IDs are disjoint, but four image hashes at two
+validation points overlap development; all 500 points were retained. The final
+canonical model's development regression check also found 16 more rounded large
+errors than the earlier noncanonical expert scheme. Both limitations are recorded;
+historical 200-point base results are not reassigned to this extension.
 
-The selected low-safety extension has 488-point rounded OOF within-0.1 of 81.88%,
-MAE 0.08583 and 268/5,856 large errors. Low safety improves 56.00% -> 66.67%, at a
-nonlow hit-rate cost of 1.13 pp, exceeding the original 1 pp guard. This tradeoff
-was explicitly accepted; final all-development wrapper fitting and new validation
-remain pending. A/B matching is reference-guided diagnosis, not part of inference;
-its gains are not added to the above rates.
+The final model was fitted on 488 development points and then reused unchanged
+for the 500-point validation and the remaining 12,160 points. The full batch has
+**145,920 finite scores per precision**, with canonical identities, frozen files,
+forward inference and every delivered value independently verified. No batch
+reference scores, retraining or reference-guided A/B matching entered inference.
+
+Images, per-point outputs and fitted coefficients remain private. This public
+repository records methods, prompt fragments, hyperparameters, hashes and aggregate
+evidence; it is not a turnkey reproduction package or a public data release.
 
 ## Earlier Milestones
 
@@ -69,7 +74,7 @@ Each location has four images named `longitude_latitude_angle_extra.png`, with a
 
 The angles do not directly identify forward, backward, left, or right relative to the road. The model compares the opposing pairs 0/180 and 90/270; the annotation interface allows any two images to be selected. `side_a` and `side_b` are reference labels, not physical left/right directions.
 
-Deliverables are a **selection manifest and an image-reading script**. Images remain in the original local ZIP archives. Subsequent VLM jobs can read image bytes from the manifest without repackaging or uploading the images.
+The image-selection deliverables are a **selection manifest and an image-reading script**, with an optional private image package. Original archives are preserved. The completed scoring stage adds **continuous and one-decimal 12-target CSVs**, including canonical image names and angles; see the [completion record](docs/full_scoring_2026-10-25.md). These data-bearing deliverables remain local rather than being published here. Flash scoring uses a cloud API; DINO extraction and learned fusion run locally.
 
 ## Results
 

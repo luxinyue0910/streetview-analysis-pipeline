@@ -1,8 +1,13 @@
 # Selected low-safety extension and October 23 follow-up
 
+> **Historical development record:** the final canonical all-488 refit, 500-point
+> validation and remaining-12,160 inference are now complete. See the
+> [final method](scoring_frozen_2026-10-25.md). The development metrics below
+> remain the original experiment, not the later canonical refit or validation.
+
 The user selected **Flash v2 + frozen DINOv2 + the existing supervised mixture,
 with a two-step low-safety extension**, for the next validation stage. Deliver
-one-decimal scores and retain continuous scores. The extension is selected as a
+one-decimal scores and retain continuous scores. At that milestone, the extension was selected as a
 method, not yet a newly validated production model. No 500-point validation or
 full-dataset scoring was run in this documentation update.
 
@@ -69,7 +74,7 @@ fits selected an expert; the nine remaining targets exactly reproduce the base.
 Saved models were reloaded and predictions replayed; selections were independently
 checked. No new Qwen calls or labels were needed.
 
-The original base already has a private all-488 fit. The extension currently has
+The original base already has a private all-488 fit. At that milestone the extension had
 15 outer-fold safety models, not a completed all-488 final wrapper. Before the
 next validation, select final safety configurations from development-only folds
 and refit on all 488; freeze them and predictions before opening validation
@@ -138,7 +143,10 @@ The other three follow-ups reused local cached predictions/features with no new
 Qwen calls. Grid candidates remain eligible inside the selected safety wrapper;
 the unselected blanket grid refit is not stacked underneath it.
 
-## Reproducibility and next-stage boundary
+## Historical reproducibility and next-stage boundary
+
+These pending-stage statements describe October 23. The final all-488 wrapper
+and subsequent scoring are documented in the [current method](scoring_frozen_2026-10-25.md).
 
 - [Extension specification](../configs/scoring/flash_v2_dino_low_safety.json):
   classifier/expert grids, routing thresholds, guards, preprocessing and the
@@ -152,4 +160,5 @@ the unselected blanket grid refit is not stacked underneath it.
   any reference-guided A/B matching separately as posthoc diagnosis. Do not tune
   on that validation and still call it an independent test of the same method.
 - Future full dataset: automatic inference only; reference-guided matching is
-  unavailable without reference scores. No batch has started.
+  unavailable without reference scores. No batch had started at that milestone;
+  the [12,160-point batch](full_scoring_2026-10-25.md) is now complete.

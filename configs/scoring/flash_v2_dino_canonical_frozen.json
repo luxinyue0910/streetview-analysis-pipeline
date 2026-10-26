@@ -1,0 +1,1401 @@
+{
+  "status": "frozen_final_fit_validation500_and_full12160_completed",
+  "as_of_local_date": "2026-10-25",
+  "timezone": "America/Los_Angeles",
+  "method": "Flash v2 + frozen DINO + hierarchical supervised mixture + two-step low-safety expert",
+  "model_run_id": "frozen_validation500_canonical_20261024T022506Z",
+  "final_model_freeze_sha256": "acb1db4dd55d768ac9fcdd4553706ef719c18ff8ec3831ce4aa4c66faadf481a",
+  "frozen_utc": "2026-10-24T02:26:46.968339+00:00",
+  "training": {
+    "points": 488,
+    "spatial_groups": 400,
+    "outer_folds": 5,
+    "inner_folds": 4,
+    "excluded_buffer_points": 85,
+    "validation_reference_used": false,
+    "test200_labels_used_for_refit": false,
+    "final_fit_not_outer_fold_ensemble": true
+  },
+  "canonical_A_angles": [
+    0,
+    90
+  ],
+  "canonical_B_angles": [
+    180,
+    270
+  ],
+  "canonicalization": "Permute recorded image identity, existing Qwen side predictions, DINO feature rows and all four corresponding reference columns together; no error-based side matching.",
+  "historical_annotation_mapping_caveat": "Reference side identity follows the source image_1/image_2 record; this cannot establish how historical annotators visually chose their sides.",
+  "flash": {
+    "model": "qwen3.8-flash",
+    "endpoint": "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+    "prompt_version": "v2_organized",
+    "parameters": {
+      "temperature": 0,
+      "enable_thinking": false,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "complete_prompt_sha256": {
+      "overall": "8ed80087c0109d4bf6313931982439ff2924a6b55bb439285d34b6c4b2731f36",
+      "side_A": "9d97bb49c0f85f8f8904522656fafb3a4065693d04cc1d663e5abeda0fd1da1f",
+      "side_B": "9d97bb49c0f85f8f8904522656fafb3a4065693d04cc1d663e5abeda0fd1da1f"
+    },
+    "requests_per_point": 3,
+    "reference_scores_in_requests": false,
+    "image_input": "Original PNG bytes as base64 data URLs; filename, canonical side and angle text adjacent to each image; overall A then B, each side request uses only its own image.",
+    "numeric_string_policy": "Accept lossless numeric strings at legal V2 anchors; retain raw response. Evidence strings have at most 40 characters per dimension.",
+    "response_schema": "prompts/qwen_scoring/v2_organized/response.schema.json"
+  },
+  "dino": {
+    "model": "facebook/dinov2-small",
+    "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "fine_tuned": false,
+    "device": "cpu",
+    "preprocessing": "EXIF transpose; RGB; shortest side 224; round width and height to multiples of 14; bicubic interpolation; recorded ImageNet normalization; no crop.",
+    "cls_dimensions": 384,
+    "cls_plus_grid_dimensions": 2688,
+    "patch_grid": "2x3 mean-pooled final-layer patch-token cells concatenated after CLS",
+    "overall_scope": "concatenate pairwise feature mean and absolute difference",
+    "side_scope": "only the corresponding canonical image"
+  },
+  "rounding": "floor(10*p+0.5)/10",
+  "retain_continuous": true,
+  "inference_retraining": false,
+  "reference_guided_ab_matching": false,
+  "base_selections": [
+    {
+      "target": "overall_pedestrian_safety",
+      "base_index": 11,
+      "old_selected_index": 84,
+      "old_selected": {
+        "candidate": 21,
+        "weight": 1.0
+      },
+      "development_only": true,
+      "tolerance_selected_index": 144,
+      "tolerance_selected": {
+        "kind": "svr",
+        "index": 13,
+        "weight": 1.0
+      },
+      "mixture_selected_index": 53,
+      "mixture_selected": {
+        "candidate": 13,
+        "weight": 0.25
+      },
+      "probability_config": {
+        "classifier": 3,
+        "decoder": 1
+      }
+    },
+    {
+      "target": "overall_street_interface",
+      "base_index": 11,
+      "old_selected_index": 2,
+      "old_selected": {
+        "candidate": 0,
+        "weight": 0.5
+      },
+      "development_only": true,
+      "tolerance_selected_index": 130,
+      "tolerance_selected": {
+        "kind": "svr",
+        "index": 10,
+        "weight": 0.5
+      },
+      "mixture_selected_index": 42,
+      "mixture_selected": {
+        "candidate": 10,
+        "weight": 0.5
+      },
+      "probability_config": {
+        "classifier": 2,
+        "decoder": 2
+      }
+    },
+    {
+      "target": "overall_greenery_staying",
+      "base_index": 11,
+      "old_selected_index": 1,
+      "old_selected": {
+        "candidate": 0,
+        "weight": 0.25
+      },
+      "development_only": true,
+      "tolerance_selected_index": 129,
+      "tolerance_selected": {
+        "kind": "svr",
+        "index": 10,
+        "weight": 0.25
+      },
+      "mixture_selected_index": 59,
+      "mixture_selected": {
+        "candidate": 14,
+        "weight": 0.75
+      },
+      "probability_config": {
+        "classifier": 3,
+        "decoder": 2
+      }
+    },
+    {
+      "target": "overall_environmental_maintenance",
+      "base_index": 11,
+      "old_selected_index": 11,
+      "old_selected": {
+        "candidate": 2,
+        "weight": 0.75
+      },
+      "development_only": true
+    },
+    {
+      "target": "side_A_pedestrian_safety",
+      "base_index": 10,
+      "old_selected_index": 61,
+      "old_selected": {
+        "candidate": 16,
+        "weight": 0.25
+      },
+      "development_only": true,
+      "tolerance_selected_index": 130,
+      "tolerance_selected": {
+        "kind": "svr",
+        "index": 10,
+        "weight": 0.5
+      },
+      "mixture_selected_index": 33,
+      "mixture_selected": {
+        "candidate": 8,
+        "weight": 0.25
+      },
+      "probability_config": {
+        "classifier": 2,
+        "decoder": 0
+      }
+    },
+    {
+      "target": "side_A_street_interface",
+      "base_index": 10,
+      "old_selected_index": 2,
+      "old_selected": {
+        "candidate": 0,
+        "weight": 0.5
+      },
+      "development_only": true,
+      "tolerance_selected_index": 129,
+      "tolerance_selected": {
+        "kind": "svr",
+        "index": 10,
+        "weight": 0.25
+      },
+      "mixture_selected_index": 50,
+      "mixture_selected": {
+        "candidate": 12,
+        "weight": 0.5
+      },
+      "probability_config": {
+        "classifier": 3,
+        "decoder": 0
+      }
+    },
+    {
+      "target": "side_A_greenery_staying",
+      "base_index": 10,
+      "old_selected_index": 78,
+      "old_selected": {
+        "candidate": 20,
+        "weight": 0.5
+      },
+      "development_only": true,
+      "tolerance_selected_index": 126,
+      "tolerance_selected": {
+        "kind": "svr",
+        "index": 9,
+        "weight": 0.5
+      },
+      "mixture_selected_index": 62,
+      "mixture_selected": {
+        "candidate": 15,
+        "weight": 0.5
+      },
+      "probability_config": {
+        "classifier": 3,
+        "decoder": 3
+      }
+    },
+    {
+      "target": "side_A_environmental_maintenance",
+      "base_index": 11,
+      "old_selected_index": 12,
+      "old_selected": {
+        "candidate": 2,
+        "weight": 1.0
+      },
+      "development_only": true
+    },
+    {
+      "target": "side_B_pedestrian_safety",
+      "base_index": 11,
+      "old_selected_index": 63,
+      "old_selected": {
+        "candidate": 16,
+        "weight": 0.75
+      },
+      "development_only": true,
+      "tolerance_selected_index": 143,
+      "tolerance_selected": {
+        "kind": "svr",
+        "index": 13,
+        "weight": 0.75
+      },
+      "mixture_selected_index": 47,
+      "mixture_selected": {
+        "candidate": 11,
+        "weight": 0.75
+      },
+      "probability_config": {
+        "classifier": 2,
+        "decoder": 3
+      }
+    },
+    {
+      "target": "side_B_street_interface",
+      "base_index": 11,
+      "old_selected_index": 2,
+      "old_selected": {
+        "candidate": 0,
+        "weight": 0.5
+      },
+      "development_only": true,
+      "tolerance_selected_index": 2,
+      "tolerance_selected": {
+        "kind": "old",
+        "index": 2
+      },
+      "mixture_selected_index": 0,
+      "mixture_selected": {
+        "candidate": null,
+        "weight": 0.0
+      },
+      "probability_config": null
+    },
+    {
+      "target": "side_B_greenery_staying",
+      "base_index": 11,
+      "old_selected_index": 78,
+      "old_selected": {
+        "candidate": 20,
+        "weight": 0.5
+      },
+      "development_only": true,
+      "tolerance_selected_index": 143,
+      "tolerance_selected": {
+        "kind": "svr",
+        "index": 13,
+        "weight": 0.75
+      },
+      "mixture_selected_index": 50,
+      "mixture_selected": {
+        "candidate": 12,
+        "weight": 0.5
+      },
+      "probability_config": {
+        "classifier": 3,
+        "decoder": 0
+      }
+    },
+    {
+      "target": "side_B_environmental_maintenance",
+      "base_index": 11,
+      "old_selected_index": 12,
+      "old_selected": {
+        "candidate": 2,
+        "weight": 1.0
+      },
+      "development_only": true
+    }
+  ],
+  "base_structures": [
+    {
+      "target": "overall_environmental_maintenance",
+      "structure": {
+        "kind": "old",
+        "weight": 0.75,
+        "base_model": {
+          "cfg": {
+            "family": "fusion",
+            "alpha": 1000,
+            "beta": 0,
+            "name": "fusion_b0_a1000"
+          },
+          "regressor": {
+            "class": "Ridge",
+            "parameters": {
+              "alpha": 1000,
+              "copy_X": true,
+              "fit_intercept": true,
+              "max_iter": null,
+              "positive": false,
+              "random_state": null,
+              "solver": "cholesky",
+              "tol": 0.0001
+            }
+          }
+        },
+        "candidate_model": {
+          "cfg": {
+            "family": "qwen_isotonic",
+            "qsource": "v2",
+            "name": "qwen_isotonic_v2"
+          },
+          "regressor": {
+            "class": "IsotonicRegression",
+            "parameters": {
+              "increasing": true,
+              "out_of_bounds": "clip",
+              "y_max": 1,
+              "y_min": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "target": "overall_greenery_staying",
+      "structure": {
+        "kind": "probability_mix",
+        "decoder": {
+          "kind": "window",
+          "sigma": 0.1
+        },
+        "weight": 0.75,
+        "baseline_model": {
+          "kind": "svr",
+          "weight": 0.25,
+          "baseline_model": {
+            "kind": "old",
+            "weight": 0.25,
+            "base_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 1000,
+                "beta": 0,
+                "name": "fusion_b0_a1000"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 1000,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            },
+            "candidate_model": {
+              "cfg": {
+                "family": "qwen_raw",
+                "qsource": "v2",
+                "name": "qwen_raw_v2"
+              }
+            }
+          },
+          "regressor": {
+            "class": "SVR",
+            "parameters": {
+              "C": 1.0,
+              "cache_size": 200,
+              "coef0": 0.0,
+              "degree": 3,
+              "epsilon": 0.02,
+              "gamma": 0.01,
+              "kernel": "rbf",
+              "max_iter": -1,
+              "shrinking": true,
+              "tol": 0.001,
+              "verbose": false
+            }
+          }
+        },
+        "classifier": {
+          "class": "LogisticRegression",
+          "parameters": {
+            "C": 10.0,
+            "class_weight": null,
+            "dual": false,
+            "fit_intercept": true,
+            "intercept_scaling": 1,
+            "l1_ratio": 0.0,
+            "max_iter": 2000,
+            "n_jobs": null,
+            "penalty": "deprecated",
+            "random_state": null,
+            "solver": "lbfgs",
+            "tol": 1e-07,
+            "verbose": 0,
+            "warm_start": false
+          }
+        }
+      }
+    },
+    {
+      "target": "overall_pedestrian_safety",
+      "structure": {
+        "kind": "probability_mix",
+        "decoder": {
+          "kind": "window",
+          "sigma": 0.05
+        },
+        "weight": 0.25,
+        "baseline_model": {
+          "kind": "svr",
+          "weight": 1.0,
+          "baseline_model": {
+            "kind": "old",
+            "weight": 1.0,
+            "base_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 1000,
+                "beta": 0,
+                "name": "fusion_b0_a1000"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 1000,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            },
+            "candidate_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 1000,
+                "beta": 1,
+                "name": "fusion_b1_a1000"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 1000,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            }
+          },
+          "regressor": {
+            "class": "SVR",
+            "parameters": {
+              "C": 1.0,
+              "cache_size": 200,
+              "coef0": 0.0,
+              "degree": 3,
+              "epsilon": 0.05,
+              "gamma": 0.01,
+              "kernel": "rbf",
+              "max_iter": -1,
+              "shrinking": true,
+              "tol": 0.001,
+              "verbose": false
+            }
+          }
+        },
+        "classifier": {
+          "class": "LogisticRegression",
+          "parameters": {
+            "C": 10.0,
+            "class_weight": null,
+            "dual": false,
+            "fit_intercept": true,
+            "intercept_scaling": 1,
+            "l1_ratio": 0.0,
+            "max_iter": 2000,
+            "n_jobs": null,
+            "penalty": "deprecated",
+            "random_state": null,
+            "solver": "lbfgs",
+            "tol": 1e-07,
+            "verbose": 0,
+            "warm_start": false
+          }
+        }
+      }
+    },
+    {
+      "target": "overall_street_interface",
+      "structure": {
+        "kind": "probability_mix",
+        "decoder": {
+          "kind": "window",
+          "sigma": 0.1
+        },
+        "weight": 0.5,
+        "baseline_model": {
+          "kind": "svr",
+          "weight": 0.5,
+          "baseline_model": {
+            "kind": "old",
+            "weight": 0.5,
+            "base_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 1000,
+                "beta": 0,
+                "name": "fusion_b0_a1000"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 1000,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            },
+            "candidate_model": {
+              "cfg": {
+                "family": "qwen_raw",
+                "qsource": "v2",
+                "name": "qwen_raw_v2"
+              }
+            }
+          },
+          "regressor": {
+            "class": "SVR",
+            "parameters": {
+              "C": 1.0,
+              "cache_size": 200,
+              "coef0": 0.0,
+              "degree": 3,
+              "epsilon": 0.02,
+              "gamma": 0.01,
+              "kernel": "rbf",
+              "max_iter": -1,
+              "shrinking": true,
+              "tol": 0.001,
+              "verbose": false
+            }
+          }
+        },
+        "classifier": {
+          "class": "LogisticRegression",
+          "parameters": {
+            "C": 1.0,
+            "class_weight": null,
+            "dual": false,
+            "fit_intercept": true,
+            "intercept_scaling": 1,
+            "l1_ratio": 0.0,
+            "max_iter": 2000,
+            "n_jobs": null,
+            "penalty": "deprecated",
+            "random_state": null,
+            "solver": "lbfgs",
+            "tol": 1e-07,
+            "verbose": 0,
+            "warm_start": false
+          }
+        }
+      }
+    },
+    {
+      "target": "side_A_environmental_maintenance",
+      "structure": {
+        "kind": "old",
+        "weight": 1.0,
+        "base_model": {
+          "cfg": {
+            "family": "fusion",
+            "alpha": 1000,
+            "beta": 0,
+            "name": "fusion_b0_a1000"
+          },
+          "regressor": {
+            "class": "Ridge",
+            "parameters": {
+              "alpha": 1000,
+              "copy_X": true,
+              "fit_intercept": true,
+              "max_iter": null,
+              "positive": false,
+              "random_state": null,
+              "solver": "cholesky",
+              "tol": 0.0001
+            }
+          }
+        },
+        "candidate_model": {
+          "cfg": {
+            "family": "qwen_isotonic",
+            "qsource": "v2",
+            "name": "qwen_isotonic_v2"
+          },
+          "regressor": {
+            "class": "IsotonicRegression",
+            "parameters": {
+              "increasing": true,
+              "out_of_bounds": "clip",
+              "y_max": 1,
+              "y_min": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "target": "side_A_greenery_staying",
+      "structure": {
+        "kind": "probability_mix",
+        "decoder": {
+          "kind": "window",
+          "sigma": 0.15
+        },
+        "weight": 0.5,
+        "baseline_model": {
+          "kind": "svr",
+          "weight": 0.5,
+          "baseline_model": {
+            "kind": "old",
+            "weight": 0.5,
+            "base_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 100,
+                "beta": 0,
+                "name": "fusion_b0_a100"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 100,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            },
+            "candidate_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 100,
+                "beta": 1,
+                "name": "fusion_b1_a100"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 100,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            }
+          },
+          "regressor": {
+            "class": "SVR",
+            "parameters": {
+              "C": 1.0,
+              "cache_size": 200,
+              "coef0": 0.0,
+              "degree": 3,
+              "epsilon": 0.02,
+              "gamma": "scale",
+              "kernel": "rbf",
+              "max_iter": -1,
+              "shrinking": true,
+              "tol": 0.001,
+              "verbose": false
+            }
+          }
+        },
+        "classifier": {
+          "class": "LogisticRegression",
+          "parameters": {
+            "C": 10.0,
+            "class_weight": null,
+            "dual": false,
+            "fit_intercept": true,
+            "intercept_scaling": 1,
+            "l1_ratio": 0.0,
+            "max_iter": 2000,
+            "n_jobs": null,
+            "penalty": "deprecated",
+            "random_state": null,
+            "solver": "lbfgs",
+            "tol": 1e-07,
+            "verbose": 0,
+            "warm_start": false
+          }
+        }
+      }
+    },
+    {
+      "target": "side_A_pedestrian_safety",
+      "structure": {
+        "kind": "probability_mix",
+        "decoder": {
+          "kind": "mean"
+        },
+        "weight": 0.25,
+        "baseline_model": {
+          "kind": "svr",
+          "weight": 0.5,
+          "baseline_model": {
+            "kind": "old",
+            "weight": 0.25,
+            "base_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 100,
+                "beta": 0,
+                "name": "fusion_b0_a100"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 100,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            },
+            "candidate_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 1000,
+                "beta": 0.5,
+                "name": "fusion_b0.5_a1000"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 1000,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            }
+          },
+          "regressor": {
+            "class": "SVR",
+            "parameters": {
+              "C": 1.0,
+              "cache_size": 200,
+              "coef0": 0.0,
+              "degree": 3,
+              "epsilon": 0.02,
+              "gamma": 0.01,
+              "kernel": "rbf",
+              "max_iter": -1,
+              "shrinking": true,
+              "tol": 0.001,
+              "verbose": false
+            }
+          }
+        },
+        "classifier": {
+          "class": "LogisticRegression",
+          "parameters": {
+            "C": 1.0,
+            "class_weight": null,
+            "dual": false,
+            "fit_intercept": true,
+            "intercept_scaling": 1,
+            "l1_ratio": 0.0,
+            "max_iter": 2000,
+            "n_jobs": null,
+            "penalty": "deprecated",
+            "random_state": null,
+            "solver": "lbfgs",
+            "tol": 1e-07,
+            "verbose": 0,
+            "warm_start": false
+          }
+        }
+      }
+    },
+    {
+      "target": "side_A_street_interface",
+      "structure": {
+        "kind": "probability_mix",
+        "decoder": {
+          "kind": "mean"
+        },
+        "weight": 0.5,
+        "baseline_model": {
+          "kind": "svr",
+          "weight": 0.25,
+          "baseline_model": {
+            "kind": "old",
+            "weight": 0.5,
+            "base_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 100,
+                "beta": 0,
+                "name": "fusion_b0_a100"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 100,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            },
+            "candidate_model": {
+              "cfg": {
+                "family": "qwen_raw",
+                "qsource": "v2",
+                "name": "qwen_raw_v2"
+              }
+            }
+          },
+          "regressor": {
+            "class": "SVR",
+            "parameters": {
+              "C": 1.0,
+              "cache_size": 200,
+              "coef0": 0.0,
+              "degree": 3,
+              "epsilon": 0.02,
+              "gamma": 0.01,
+              "kernel": "rbf",
+              "max_iter": -1,
+              "shrinking": true,
+              "tol": 0.001,
+              "verbose": false
+            }
+          }
+        },
+        "classifier": {
+          "class": "LogisticRegression",
+          "parameters": {
+            "C": 10.0,
+            "class_weight": null,
+            "dual": false,
+            "fit_intercept": true,
+            "intercept_scaling": 1,
+            "l1_ratio": 0.0,
+            "max_iter": 2000,
+            "n_jobs": null,
+            "penalty": "deprecated",
+            "random_state": null,
+            "solver": "lbfgs",
+            "tol": 1e-07,
+            "verbose": 0,
+            "warm_start": false
+          }
+        }
+      }
+    },
+    {
+      "target": "side_B_environmental_maintenance",
+      "structure": {
+        "kind": "old",
+        "weight": 1.0,
+        "base_model": {
+          "cfg": {
+            "family": "fusion",
+            "alpha": 1000,
+            "beta": 0,
+            "name": "fusion_b0_a1000"
+          },
+          "regressor": {
+            "class": "Ridge",
+            "parameters": {
+              "alpha": 1000,
+              "copy_X": true,
+              "fit_intercept": true,
+              "max_iter": null,
+              "positive": false,
+              "random_state": null,
+              "solver": "cholesky",
+              "tol": 0.0001
+            }
+          }
+        },
+        "candidate_model": {
+          "cfg": {
+            "family": "qwen_isotonic",
+            "qsource": "v2",
+            "name": "qwen_isotonic_v2"
+          },
+          "regressor": {
+            "class": "IsotonicRegression",
+            "parameters": {
+              "increasing": true,
+              "out_of_bounds": "clip",
+              "y_max": 1,
+              "y_min": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "target": "side_B_greenery_staying",
+      "structure": {
+        "kind": "probability_mix",
+        "decoder": {
+          "kind": "mean"
+        },
+        "weight": 0.5,
+        "baseline_model": {
+          "kind": "svr",
+          "weight": 0.75,
+          "baseline_model": {
+            "kind": "old",
+            "weight": 0.5,
+            "base_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 1000,
+                "beta": 0,
+                "name": "fusion_b0_a1000"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 1000,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            },
+            "candidate_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 100,
+                "beta": 1,
+                "name": "fusion_b1_a100"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 100,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            }
+          },
+          "regressor": {
+            "class": "SVR",
+            "parameters": {
+              "C": 1.0,
+              "cache_size": 200,
+              "coef0": 0.0,
+              "degree": 3,
+              "epsilon": 0.05,
+              "gamma": 0.01,
+              "kernel": "rbf",
+              "max_iter": -1,
+              "shrinking": true,
+              "tol": 0.001,
+              "verbose": false
+            }
+          }
+        },
+        "classifier": {
+          "class": "LogisticRegression",
+          "parameters": {
+            "C": 10.0,
+            "class_weight": null,
+            "dual": false,
+            "fit_intercept": true,
+            "intercept_scaling": 1,
+            "l1_ratio": 0.0,
+            "max_iter": 2000,
+            "n_jobs": null,
+            "penalty": "deprecated",
+            "random_state": null,
+            "solver": "lbfgs",
+            "tol": 1e-07,
+            "verbose": 0,
+            "warm_start": false
+          }
+        }
+      }
+    },
+    {
+      "target": "side_B_pedestrian_safety",
+      "structure": {
+        "kind": "probability_mix",
+        "decoder": {
+          "kind": "window",
+          "sigma": 0.15
+        },
+        "weight": 0.75,
+        "baseline_model": {
+          "kind": "svr",
+          "weight": 0.75,
+          "baseline_model": {
+            "kind": "old",
+            "weight": 0.75,
+            "base_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 1000,
+                "beta": 0,
+                "name": "fusion_b0_a1000"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 1000,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            },
+            "candidate_model": {
+              "cfg": {
+                "family": "fusion",
+                "alpha": 1000,
+                "beta": 0.5,
+                "name": "fusion_b0.5_a1000"
+              },
+              "regressor": {
+                "class": "Ridge",
+                "parameters": {
+                  "alpha": 1000,
+                  "copy_X": true,
+                  "fit_intercept": true,
+                  "max_iter": null,
+                  "positive": false,
+                  "random_state": null,
+                  "solver": "cholesky",
+                  "tol": 0.0001
+                }
+              }
+            }
+          },
+          "regressor": {
+            "class": "SVR",
+            "parameters": {
+              "C": 1.0,
+              "cache_size": 200,
+              "coef0": 0.0,
+              "degree": 3,
+              "epsilon": 0.05,
+              "gamma": 0.01,
+              "kernel": "rbf",
+              "max_iter": -1,
+              "shrinking": true,
+              "tol": 0.001,
+              "verbose": false
+            }
+          }
+        },
+        "classifier": {
+          "class": "LogisticRegression",
+          "parameters": {
+            "C": 1.0,
+            "class_weight": null,
+            "dual": false,
+            "fit_intercept": true,
+            "intercept_scaling": 1,
+            "l1_ratio": 0.0,
+            "max_iter": 2000,
+            "n_jobs": null,
+            "penalty": "deprecated",
+            "random_state": null,
+            "solver": "lbfgs",
+            "tol": 1e-07,
+            "verbose": 0,
+            "warm_start": false
+          }
+        }
+      }
+    },
+    {
+      "target": "side_B_street_interface",
+      "structure": {
+        "kind": "old",
+        "weight": 0.5,
+        "base_model": {
+          "cfg": {
+            "family": "fusion",
+            "alpha": 1000,
+            "beta": 0,
+            "name": "fusion_b0_a1000"
+          },
+          "regressor": {
+            "class": "Ridge",
+            "parameters": {
+              "alpha": 1000,
+              "copy_X": true,
+              "fit_intercept": true,
+              "max_iter": null,
+              "positive": false,
+              "random_state": null,
+              "solver": "cholesky",
+              "tol": 0.0001
+            }
+          }
+        },
+        "candidate_model": {
+          "cfg": {
+            "family": "qwen_raw",
+            "qsource": "v2",
+            "name": "qwen_raw_v2"
+          }
+        }
+      }
+    }
+  ],
+  "safety_models": [
+    {
+      "target": "overall_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 13,
+        "expert_alpha": 100.0,
+        "threshold": 0.6
+      },
+      "classifier_config": {
+        "features": "grid",
+        "family": "logistic",
+        "C": 0.01,
+        "class_weight": "balanced",
+        "hard_negative_weight": 2.0
+      },
+      "training_counts": {
+        "training_rows": 488,
+        "low_rows": 69,
+        "hard_negative_rows": 73,
+        "hard_negative_weight": 2.0
+      },
+      "expert": {
+        "class": "Ridge",
+        "parameters": {
+          "alpha": 100.0,
+          "copy_X": true,
+          "fit_intercept": true,
+          "max_iter": null,
+          "positive": false,
+          "random_state": null,
+          "solver": "cholesky",
+          "tol": 0.0001
+        }
+      },
+      "image_pca_components": 20,
+      "classifier_parameters": {
+        "C": 0.01,
+        "class_weight": "balanced",
+        "dual": false,
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "l1_ratio": 0.0,
+        "max_iter": 2000,
+        "n_jobs": null,
+        "penalty": "deprecated",
+        "random_state": 42,
+        "solver": "lbfgs",
+        "tol": 1e-07,
+        "verbose": 0,
+        "warm_start": false
+      }
+    },
+    {
+      "target": "side_A_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 1,
+        "expert_alpha": 100.0,
+        "threshold": 0.7
+      },
+      "classifier_config": {
+        "features": "cls",
+        "family": "logistic",
+        "C": 0.01,
+        "class_weight": "balanced",
+        "hard_negative_weight": 2.0
+      },
+      "training_counts": {
+        "training_rows": 488,
+        "low_rows": 74,
+        "hard_negative_rows": 129,
+        "hard_negative_weight": 2.0
+      },
+      "expert": {
+        "class": "Ridge",
+        "parameters": {
+          "alpha": 100.0,
+          "copy_X": true,
+          "fit_intercept": true,
+          "max_iter": null,
+          "positive": false,
+          "random_state": null,
+          "solver": "cholesky",
+          "tol": 0.0001
+        }
+      },
+      "image_pca_components": 20,
+      "classifier_parameters": {
+        "C": 0.01,
+        "class_weight": "balanced",
+        "dual": false,
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "l1_ratio": 0.0,
+        "max_iter": 2000,
+        "n_jobs": null,
+        "penalty": "deprecated",
+        "random_state": 42,
+        "solver": "lbfgs",
+        "tol": 1e-07,
+        "verbose": 0,
+        "warm_start": false
+      }
+    },
+    {
+      "target": "side_B_pedestrian_safety",
+      "selected": {
+        "kind": "low_expert",
+        "classifier_index": 21,
+        "expert_alpha": 1000.0,
+        "threshold": 0.7
+      },
+      "classifier_config": {
+        "features": "grid",
+        "family": "hist_gradient_boosting",
+        "max_leaf_nodes": 7,
+        "l2_regularization": 10.0,
+        "class_weight": "balanced",
+        "hard_negative_weight": 2.0
+      },
+      "training_counts": {
+        "training_rows": 488,
+        "low_rows": 82,
+        "hard_negative_rows": 140,
+        "hard_negative_weight": 2.0
+      },
+      "expert": {
+        "class": "Ridge",
+        "parameters": {
+          "alpha": 1000.0,
+          "copy_X": true,
+          "fit_intercept": true,
+          "max_iter": null,
+          "positive": false,
+          "random_state": null,
+          "solver": "cholesky",
+          "tol": 0.0001
+        }
+      },
+      "image_pca_components": 20,
+      "classifier_parameters": {
+        "categorical_features": "from_dtype",
+        "class_weight": "balanced",
+        "early_stopping": false,
+        "interaction_cst": null,
+        "l2_regularization": 10.0,
+        "learning_rate": 0.05,
+        "loss": "log_loss",
+        "max_bins": 255,
+        "max_depth": null,
+        "max_features": 1.0,
+        "max_iter": 100,
+        "max_leaf_nodes": 7,
+        "min_samples_leaf": 20,
+        "monotonic_cst": null,
+        "n_iter_no_change": 10,
+        "random_state": 42,
+        "scoring": "loss",
+        "tol": 1e-07,
+        "validation_fraction": 0.1,
+        "verbose": 0,
+        "warm_start": false
+      }
+    }
+  ],
+  "frozen_artifact_sha256": {
+    "base/models/overall_environmental_maintenance.joblib": "e3abcb73f59376eae4248287adaba4709297f5859e7bd17e47e9b14d708b1dd1",
+    "base/models/overall_greenery_staying.joblib": "ffba3a75ce2033dda626c0b1139fe77659d56c668129290da67947b8038b0ee2",
+    "base/models/overall_pedestrian_safety.joblib": "d1281cefa8efe22866c6bb699ca2a6a592bc010d09d0afe3929bb47f604da570",
+    "base/models/overall_street_interface.joblib": "114583928c3e7bfb86ef9351306e8fe9884094ca3f99e0820cb3f9577ef133d2",
+    "base/models/side_A_environmental_maintenance.joblib": "d32afb401c31fca734956c8ab7d497946f1be849df8b8b6aec33505301a78aab",
+    "base/models/side_A_greenery_staying.joblib": "102ad5d6bd455af42a685741f7ac019bf8f1fb51f546d798f993d6cd9dafa00a",
+    "base/models/side_A_pedestrian_safety.joblib": "39351fd1f4260e108efa397119e672b1fcc2fe92bb76827dea7650d3ce048f42",
+    "base/models/side_A_street_interface.joblib": "8b0157ada33f6dca899d802cad9d72bc25dd3a72af89c97bc70b0830fc76b034",
+    "base/models/side_B_environmental_maintenance.joblib": "f818390373dc441176a183b9563c1792b5d49a1fe748923a488e73749eaa038d",
+    "base/models/side_B_greenery_staying.joblib": "9c7aec9d257425de23347e98a968bff907970f5e59342464a489c25d220eb6ad",
+    "base/models/side_B_pedestrian_safety.joblib": "b991f32d5b6f566ab51b8f639b536256f1a9a5cd680c4f8fd3e45ba906c5ffc6",
+    "base/models/side_B_street_interface.joblib": "41d20d4a269fc67c87c480f5db7623d907bec2d69df5e4ff643cf49cdde13674",
+    "safety_models/overall_pedestrian_safety.joblib": "62bef629eb05127745a471b9939759f770965d9625dddfdb55293f2f28eb518b",
+    "safety_models/side_A_pedestrian_safety.joblib": "dc30460e24cef30ed17c596850846069c55da210d8c2ce74858722e5819cf2e3",
+    "safety_models/side_B_pedestrian_safety.joblib": "e4cf2763aae7d43bd749dfca487f244a08821f535f8c1895b7c53790c33a425a",
+    "base/selection.json": "48187b531acb00ec8748198fb5ca7be52dc21a73c43620b5377d06c43c4d63a9",
+    "safety_selection.json": "3ab1e74ca700a8442cf0fa3f6cf28fb1f67b9adc2ee0023fc334ba1e6d0d55d4",
+    "protocol.json": "677b6880ee6b35cf863798cf3aa08f6e5baf8f8ccc6f502eaf0a11ef3d7f31b9",
+    "workflow.py": "fa92add4a7500f00614c07c0e88e8fe3f08a9e075679afe485e8f54f46c39ee7"
+  },
+  "public_boundary": "Method, hyperparameters and aggregate evidence only; no fitted coefficients, training memberships, reference rows, images or per-point predictions."
+}

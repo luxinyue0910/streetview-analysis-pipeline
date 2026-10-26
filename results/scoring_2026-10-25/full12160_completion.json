@@ -1,0 +1,115 @@
+{
+  "run_id": "frozen_full12160_canonical_20261025T063746Z",
+  "source_model_run_id": "frozen_validation500_canonical_20261024T022506Z",
+  "model_freeze_sha256": "acb1db4dd55d768ac9fcdd4553706ef719c18ff8ec3831ce4aa4c66faadf481a",
+  "source_list_sha256": "7033b416b0b397fc9160fa0fc63804255364da58f15cb5245667f324237c0a2a",
+  "points": 12160,
+  "images": 24320,
+  "score_items_per_precision": 145920,
+  "score_values_verified_across_both_precisions": 291840,
+  "valid_requests": 36480,
+  "canonical_A_angles": [
+    0,
+    90
+  ],
+  "canonical_B_angles": [
+    180,
+    270
+  ],
+  "points_reordered_to_canonical": 5965,
+  "excluded_training_validation_point_ids": 1500,
+  "models_retrained": false,
+  "new_batch_reference_labels_loaded": false,
+  "reference_guided_ab_swaps": false,
+  "completed_utc": "2026-10-25T19:47:50.012738+00:00",
+  "independent_audit": {
+    "passed": true,
+    "points": 12160,
+    "score_items": 145920,
+    "valid_requests": 36480,
+    "delivery_values_verified": 291840,
+    "request_images_roles_hashes_verified": true,
+    "all_source_images_hashed": true,
+    "feature_order_verified": true,
+    "original_frozen_models_unchanged": true,
+    "base_replay_max_difference": 0.0,
+    "final_replay_max_difference": 0.0,
+    "response_models": {
+      "qwen3.8-flash": 36480
+    },
+    "usage_all_attempts": {
+      "completion_tokens": 4426183,
+      "prompt_tokens": 132483213,
+      "total_tokens": 136909396
+    },
+    "raw_na_items": 2727,
+    "routed_safety_items": 3735,
+    "new_batch_reference_labels_loaded": false,
+    "reference_scores_used_for_prediction": false,
+    "reference_guided_ab_swaps": false,
+    "completed_utc": "2026-10-25T19:48:28.852728+00:00"
+  },
+  "delivery_sha256": {
+    "full12160_flash_short_evidence.csv": "92282ec04d044b8b374412673722294592689287dd3fce9c987c78d32abc30ae",
+    "full12160_continuous.csv": "cfc4a9713350b625c28db6e1b83a7910af8f77e928e98d13faca1b48e718debc",
+    "full12160_flash_v2_raw.csv": "af622e6d3b9bde0c149b410d704e65126312c827e064d9c688faa0b0b8c5c829",
+    "full12160_one_decimal.csv": "3082d6743d178b337c5e5188840ddc7465dd4235a13d109dcaa5b8cd988ad37e",
+    "README.txt": "5bf1b87dbfb6b8eec744dab16f6d489639e585cfd799648ace7b6b72fe3b2428"
+  },
+  "usage_valid_calls": {
+    "prompt_tokens": 132425500,
+    "completion_tokens": 4424244,
+    "total_tokens": 136849744
+  },
+  "features": {
+    "model_id": "facebook/dinov2-small",
+    "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "device": "cpu",
+    "local_files_only": true,
+    "images": 24320,
+    "feature_order": "canonical A then B for each point",
+    "files": {
+      "dinov2_cls.npy": "08a0a5808f6f95b7587c7d73780628237ab58d5c49bd00cc2a694eb2e56d2b40",
+      "dinov2_cls_grid.npy": "f113396c42bb63ba4aaaf7b6b169f6487aecddaa777a54bb79322fbd66c17749",
+      "image_order.json": "911ed364396aff4ff79694fa1650de7c1274657d47bc604565f6adc2b596172f"
+    },
+    "development_feature_parity": {
+      "cls_max_abs_diff": 6.532669067382812e-05,
+      "grid_max_abs_diff": 0.0,
+      "tolerance": 0.001
+    },
+    "seconds": 1370.4586668014526
+  },
+  "operational_handoff": {
+    "original_workers": 8,
+    "final_workers": 16,
+    "preserved_valid_responses_verified": 10300,
+    "change": "Only runner worker argument changed; frozen inference, model files, prompts and image processing unchanged.",
+    "single_writer_lock": true,
+    "inflight_requests_at_stop": 8,
+    "billing_caveat": "A controlled restart may repeat up to eight in-flight requests; cache reuse prevents resending already saved valid stage results. Valid request count is not total attempt count."
+  },
+  "provenance": [
+    {
+      "source_experiment": "frozen_full12160_canonical_20261025T063746Z",
+      "source_file": "COMPLETED.json",
+      "sha256": "848f395bf34815a4704fdad0649a87ac44d40c794151240461da0ad351cb37d7"
+    },
+    {
+      "source_experiment": "frozen_full12160_canonical_20261025T063746Z",
+      "source_file": "INDEPENDENT_FINAL_AUDIT.json",
+      "sha256": "ef247b78f149ce4b5308cfa2fbeb6d2eb0cae48d4e269daf9846c9bb9f2968c7"
+    },
+    {
+      "source_experiment": "frozen_full12160_canonical_20261025T063746Z",
+      "source_file": "HANDOFF_AND_DELIVERY_AUDIT.json",
+      "sha256": "3441cfd9a64f13067c6cacbbb42aa4e52a526b38565d19a8b89d7da662731dca"
+    },
+    {
+      "source_experiment": "frozen_full12160_canonical_20261025T063746Z",
+      "source_file": "RUN_MANIFEST.json",
+      "sha256": "6a3de24109e6614ea6efbb91e80554e942e8f1aa6427462b7f25ebe408b56f81"
+    }
+  ],
+  "coverage_not_accuracy": true
+}

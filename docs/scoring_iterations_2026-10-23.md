@@ -360,8 +360,8 @@ each safety scope. Rounded low-safety within-0.1 rises 56.00% -> 66.67%, while
 nonlow safety falls 78.85% -> 77.72%. All-target hit rate rises 81.71% -> 81.88%.
 The original 1 pp nonlow guard failed; user selection accepts this tradeoff
 rather than retroactively passing it. There is no new independent result and
-the all-488 safety-wrapper refit is pending. Validation500 and full batch remain
-unrun. The old model's independent 200-point scores cannot be assigned to this extension.
+the all-488 safety-wrapper refit was pending at this milestone. Validation500 and
+full batch had not yet run; see the completed canonical follow-up below. The old model's independent 200-point scores cannot be assigned to this extension.
 
 ## 10. Separate A/B correspondence diagnosis
 
@@ -375,3 +375,43 @@ errors fall 383 -> 311 (18.8%), with hit rate 82.00% -> 82.35%. These results us
 the base mixture, not the low-safety extension, and are reference-guided posthoc
 diagnosis, including the already-evaluated 200 points. They are not independent
 accuracy gains or inference rules for unlabelled data. See the [dedicated diagnostic](ab_dimension_diagnostic_2026-10-23.md).
+
+## 11. October 24–25 UTC: canonical identities, final refit and validation
+
+Normalize A to the selected 0/90-degree image and B to selected 180/270 degrees,
+moving reference columns, cached Flash scores and DINO rows with image identity.
+Ten development points needed reordering. Rerun the same 488-point spatial nested
+CV: rounded expert within-0.1 81.88% -> 81.80%, MAE 0.08583 -> 0.08598 and large
+errors 268 -> 284. The no-increase guard failed. The user retained canonical
+identity after reviewing the regression diagnosis; this is not a claim that
+every metric improved. Fit all 12 base models and three safety wrappers on the
+488 development points and freeze before new validation scoring.
+
+Score all 500 planned validation points, without loading their reference labels
+for fitting or inference. After sealing predictions, compare the supplied
+reference: 405 points have numeric targets and 95 are all NA. Fixed canonical
+rounded agreement is 84.61%, MAE 0.0761 and large-error rate 3.60%; continuous
+agreement is 63.60%, MAE 0.0865 and large-error rate 2.16%. Raw Flash agreement
+is 50.73% on 4,843 numeric pairs (17 raw NA items). Known image-byte overlap at
+two retained validation points limits a strict independence claim.
+
+The [final method](scoring_frozen_2026-10-25.md) and
+[all-target validation report](validation500_2026-10-25.md) provide settings,
+denominators and both precisions. The 200-point base test was not rerun for this
+extension. No validation labels were used for another fit after evaluation.
+
+## 12. October 25: remaining full batch and separate A/B diagnosis
+
+Reuse the identical model freeze on 12,160 remaining points / 24,320 image
+references, excluding the 1,000 training-list and 500 validation-list IDs.
+Complete 36,480 valid Flash stage responses and produce 145,920 numeric scores
+per precision. A user-authorized 8-to-16-worker handoff retains 10,300 valid
+cached responses; only concurrency changes. Independent audit hashes every
+source image, checks canonical request/feature identity and replays all fitted
+models with zero score difference. See the [completion record](full_scoring_2026-10-25.md).
+
+Separately, reference-guided per-dimension matching on the 405 evaluable
+validation points accepts 37 swaps and reduces >=0.3 errors 175 -> 138, while
+within-0.1 falls slightly 84.61% -> 84.55%. This is
+[posthoc diagnosis](ab_dimension_diagnostic_2026-10-25.md), not automatic accuracy
+or a stage applied to validation/full delivery. No original scores are overwritten.

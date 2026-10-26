@@ -1,5 +1,9 @@
 # Dimension-wise A/B correspondence diagnostic
 
+> This historical record concerns the base mixture on 688 already-scored points.
+> See the [separate 405-point validation diagnosis](ab_dimension_diagnostic_2026-10-25.md)
+> for the final canonical extension. Automatic full inference uses no swaps.
+
 A teammate proposed that some large disagreements might come from reversed A/B
 correspondence. We tested that explanation separately from improving the scorer.
 This document describes **reference-guided posthoc matching**, not automatic
@@ -88,7 +92,7 @@ that can be reproduced on unlabelled points. The 200-point matched numbers must
 not replace the original independent-test results. No gains from this table have
 been added to the low-safety extension's development scores.
 
-For the future 500-point validation, retain fixed-correspondence predictions and
+For the then-future 500-point validation, the policy was to retain fixed-correspondence predictions and
 their primary metrics, and optionally add this labelled posthoc diagnostic as
 a separate table. For full-data inference without references, keep original A/B
 identity; do not apply this rule. No original data were overwritten.
