@@ -5,6 +5,11 @@
 complete. This supersedes the pending status in the October 23 records. Run IDs
 and timestamps ending in Z use UTC.
 
+For a manuscript-style account with the full mathematical definitions, exact
+12-target component tables, and checked read-only inference code, see the
+[paper-methods and equation supplement](scoring_paper_methodology.md). This
+documentation supplement does not change the model freeze or prediction data.
+
 ## Method and identities
 
 ```mermaid

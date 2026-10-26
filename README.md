@@ -10,6 +10,7 @@ image throughout images, features and scores.
 
 ## Current Scoring Milestone
 
+- [Paper-methods draft: full equations, all 12 model trees and implementation correspondence](docs/scoring_paper_methodology.md)
 - [Final canonical method, training, parameters and freeze](docs/scoring_frozen_2026-10-25.md)
 - [500-point validation: all 12 targets and raw Flash comparison](docs/validation500_2026-10-25.md)
 - [12,160-point completion, local deliverables and independent audit](docs/full_scoring_2026-10-25.md)

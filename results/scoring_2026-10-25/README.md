@@ -9,6 +9,7 @@ or reference-based prediction changes were performed for this publication.
 | `validation500.json` | 500 prediction rows, 405 numeric reference points; fixed A/B, 12 targets, both precisions, raw NA coverage and matched numeric subset |
 | `ab_validation405_diagnostic.json` | Reference-guided per-dimension swaps, strictly reducing >=0.3 counts; separate diagnosis only |
 | `full12160_completion.json` | 12,160-point coverage, independent forward replay, correspondence, output hashes and concurrency handoff |
+| `methodology_formula_audit.json` | Read-only formula-code checks: 12 fitted trees, three safety wrappers, decoder parity, existing 500-point replay and 20 full-batch points; no new fitting or API requests |
 
 Metric fields ending `_pct` are percentages. `hit_rate` and `severe_rate` in the
 canonical CV extract are fractions; its `ccc` is pooled CCC, not macro target CCC.
